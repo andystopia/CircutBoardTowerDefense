@@ -52,7 +52,8 @@ public class Tile : MonoBehaviour
             turret = gameManagerScript.selectedTurret;
             //substract price here
             gameManagerScript.selectedTurret = null;
-            Instantiate(turret, transform.position, Quaternion.identity);
+            Vector3 spawnPos = new Vector3(transform.position.x, (transform.position.y + 3), transform.position.z);
+            Instantiate(turret, transform.position, transform.rotation);
 
         } else if(turret != null && gameManagerScript.selectedTurret != null)
         {
