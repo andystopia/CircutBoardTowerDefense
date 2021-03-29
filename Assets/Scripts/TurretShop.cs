@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurretShop : MonoBehaviour
 {
-    public GameObject cylinderTurret;
-    public GameObject cylinderTurretMouseDrag;
+    public GameObject shopTurret;
+    public GameObject turretMouseDrag;
 
 
     private GameManager gameManagerScript;
@@ -25,7 +25,7 @@ public class TurretShop : MonoBehaviour
 
     private void OnMouseDown()
     {
-        gameManagerScript.selectedTurret = cylinderTurret;
+        gameManagerScript.selectedTurret = shopTurret;
         //spawn in the thing that follows you (inside the scirpt it follows you + kills itself if selectedTurret null)
     }
 
