@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[,] gameBoard = new GameObject[10, 10];
+    public GameObject[,] gameBoard = new GameObject[32, 20];
     public GameObject tilePrefab;
     public GameObject selectedTurret;
 
@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("this isoffsetx = " + offsetX);
         float offsetZ = -gameBoard.GetLength(1) / 2.0f;
         */
-        float offsetX = -4;              //temporary!
-        float offsetZ = -4;              //temp!
+        float offsetX = -15.5f;              //temporary!
+        float offsetZ = -9.5f;              //temp!
         Vector3 spawnLoco;
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             {
                 if(gameBoard[i, r] != null)
                 {
+                    //-0.15f
                     spawnLoco = new Vector3((i + offsetX), 0, (r + offsetZ));
                     Instantiate(gameBoard[i, r], spawnLoco, Quaternion.identity);
                 }
