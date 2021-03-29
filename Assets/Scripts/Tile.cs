@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Light mouseOverTileLight;
-    public Light mouseOverViableTile;
-    public Light mouseOverNotViableTile;
+    public GameObject highlightTileWhite;
+    public GameObject highlightTileGreen;
+    public GameObject highlightTileRed;
 
     public GameObject turret;
 
@@ -28,21 +28,21 @@ public class Tile : MonoBehaviour
     {
         if(turret == null && gameManagerScript.selectedTurret != null)      //AND price is good
         {
-            mouseOverViableTile.gameObject.SetActive(true);
+            highlightTileGreen.gameObject.SetActive(true);
         } else if(turret != null && gameManagerScript.selectedTurret != null)   //OR ^^ + price is bad
         {
-            mouseOverNotViableTile.gameObject.SetActive(true);
+            highlightTileRed.gameObject.SetActive(true);
         } else
         {
-            mouseOverTileLight.gameObject.SetActive(true);
+            highlightTileWhite.gameObject.SetActive(true);
         }
     }
 
     private void OnMouseExit()
     {
-        mouseOverTileLight.gameObject.SetActive(false);
-        mouseOverViableTile.gameObject.SetActive(false);
-        mouseOverNotViableTile.gameObject.SetActive(false);
+        highlightTileWhite.gameObject.SetActive(false);
+        highlightTileGreen.gameObject.SetActive(false);
+        highlightTileRed.gameObject.SetActive(false);
     }
 
     private void OnMouseDown()
