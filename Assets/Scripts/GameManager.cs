@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
                 if(gameBoard[i, r] != null)
                 {
                     //-0.15f
-                    spawnLoco = new Vector3((1.5f * i + offsetX), -0.15f, (1.5f * r + offsetZ));
+                    spawnLoco = new Vector3((1.5f * i + offsetX), 0f, (1.5f * r + offsetZ));
                     Instantiate(gameBoard[i, r], spawnLoco, Quaternion.identity);
                 }
             }
