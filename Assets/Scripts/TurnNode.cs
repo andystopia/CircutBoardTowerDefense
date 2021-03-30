@@ -23,7 +23,6 @@ public class TurnNode : MonoBehaviour
     {
         if (other.transform.position.Equals(transform.position))
         {
-            Debug.Log("COLLIDED!!!");
             other.GetComponent<Enemy>().nextNode = this.nextNode;
             other.transform.LookAt(nextNode.transform);
         }

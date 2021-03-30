@@ -5,6 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject virusEnemyPrefab;
+    public GameObject pingEnemyPrefab;
+    public GameObject trojanEnemyPrefab;
+    public GameObject bossEnemyPrefab;
 
 
 
@@ -12,6 +15,9 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         Instantiate(virusEnemyPrefab, transform.position, transform.rotation);
+        Instantiate(pingEnemyPrefab, transform.position, transform.rotation);
+        Instantiate(trojanEnemyPrefab, transform.position, transform.rotation);
+        Instantiate(bossEnemyPrefab, transform.position, transform.rotation);
     }
 
     // Update is called once per frame

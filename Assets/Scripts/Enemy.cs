@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public GameObject nextNode;
     public int health;
-    public int speed;
+    public float speed;       //maybe have a multiplier for new waves?
 
 
 

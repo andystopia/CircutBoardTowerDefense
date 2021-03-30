@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(turret == null && gameManagerScript.selectedTurret != null)      //AND price is good
+        if(turret == null && gameManagerScript.selectedTurret != null)      //AND price is good     //have a better system for these
         {
             highlightTileGreen.gameObject.SetActive(true);
         } else if(turret != null && gameManagerScript.selectedTurret != null)   //OR ^^ + price is bad
