@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject enemyDisplay;
     public int health;
     public int speed;
 

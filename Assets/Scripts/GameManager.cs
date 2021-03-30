@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[,] gameBoard = new GameObject[21, 13];
+    public GameObject turnNodePrefab;
     public GameObject tilePrefab;
     public GameObject selectedTurret;
 
@@ -33,16 +34,16 @@ public class GameManager : MonoBehaviour
         gameBoard[2, 10] = null;
         gameBoard[2, 9] = null;
         gameBoard[2, 8] = null;
-        gameBoard[2, 7] = null;
+        gameBoard[2, 7] = turnNodePrefab;
 
         gameBoard[3, 7] = null;
         gameBoard[4, 7] = null;
         gameBoard[5, 7] = null;
         gameBoard[6, 7] = null;
-        gameBoard[7, 7] = null;
+        gameBoard[7, 7] = turnNodePrefab;
 
         gameBoard[7, 6] = null;
-        gameBoard[7, 5] = null;
+        //gameBoard[7, 5] = null;
 
         gameBoard[8, 5] = null;
         gameBoard[9, 5] = null;
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
                 if(gameBoard[i, r] != null)
                 {
                     //-0.15f
-                    spawnLoco = new Vector3((1.5f * i + offsetX), -0.15f, (1.5f * r + offsetZ));
+                    spawnLoco = new Vector3((1.5f * i + offsetX), 0, (1.5f * r + offsetZ));
                     Instantiate(gameBoard[i, r], spawnLoco, Quaternion.identity);
                 }
             }
