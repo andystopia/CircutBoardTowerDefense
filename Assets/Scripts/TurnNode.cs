@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class TurnNode : MonoBehaviour
 {
-    private GameObject nextNode;
-    public int nextNodeX;
-    public int nextNodY;
-
-    public GameManager gameManagerScript;
+    public GameObject nextNode;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-        nextNode = gameManagerScript.gameBoard[nextNodeX, nextNodY];
+
     }
 
     // Update is called once per frame
@@ -23,10 +18,15 @@ public class TurnNode : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("COLIDED!!!");
-        //collision.gameObject.transform.rotation = rotateToThisAngle;
+        if (other.transform.position.Equals(transform.position))
+        {
+            Debug.Log("COLLIDED!!!");
+            other.GetComponent<Enemy>().nextNode = this.nextNode;
+            other.transform.LookAt(nextNode.transform);
+        }
     }
 
 
