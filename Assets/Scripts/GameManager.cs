@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         gameBoard[7, 7] = turnNodePrefab;
 
         gameBoard[7, 6] = null;
-        //gameBoard[7, 5] = null;
+        gameBoard[7, 5] = turnNodePrefab;
 
         gameBoard[8, 5] = null;
         gameBoard[9, 5] = null;

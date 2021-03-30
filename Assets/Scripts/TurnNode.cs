@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class TurnNode : MonoBehaviour
 {
-    public Quaternion rotateToThisAngle;
+    private GameObject nextNode;
+    public int nextNodeX;
+    public int nextNodY;
 
+    public GameManager gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
- 
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        nextNode = gameManagerScript.gameBoard[nextNodeX, nextNodY];
     }
 
     // Update is called once per frame

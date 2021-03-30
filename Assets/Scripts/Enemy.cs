@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameManager gameManagerScript;
     public int health;
     public int speed;
 
@@ -12,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
