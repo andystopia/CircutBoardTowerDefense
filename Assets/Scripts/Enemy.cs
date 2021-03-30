@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject nextNode;
-    public int health;
+    public int baseEnergyDrop;
+    public int baseHealth;
     public float speed;       //maybe have a multiplier for new waves?
 
 
@@ -20,9 +21,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextNode.transform.position, speed * Time.deltaTime);
-        if(health <= 0)
+        if(baseHealth <= 0)
         {
             //chance for spawning a chip
+            //ALWAYS spawn a certain amount of energy
             Destroy(gameObject);
         }
     }
