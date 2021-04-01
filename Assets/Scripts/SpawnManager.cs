@@ -5,17 +5,19 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public List<GameObject> enemies;
+    public float healthGain;
     public float wave;
     public float spawnRate;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < enemies.Count - 1; i++)
-        {
-            enemies[i].GetComponent<Enemy>().health += 100;
-        }
+        //for (int i = 0; i < enemies.Count - 1; i++)
+        //{
+            
+        //}
 
+        healthGain = 100;
         StartCoroutine(SpawnWave(10));
     }
 
@@ -31,7 +33,8 @@ public class SpawnManager : MonoBehaviour
         while (counter > 0)
         {
             yield return new WaitForSeconds(spawnRate);
-            Instantiate(enemies[1], transform.position, transform.rotation);
+            GameObject temp = Instantiate(enemies[1], transform.position, transform.rotation);
+            temp.GetComponent<Enemy>().health += healthGain;
             counter -= 1;
         }
     }
