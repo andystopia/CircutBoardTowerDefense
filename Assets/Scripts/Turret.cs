@@ -14,7 +14,7 @@ public class Turret : MonoBehaviour
     public float sellAmount;
     public float damagePerShot;
     public float rateOfFire;
-    private float fireCooldownTime = 0;
+    private float fireCooldownTime;
     public float range;
 
     public float rotationSpeed = 10;
@@ -24,6 +24,7 @@ public class Turret : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0, 0.25f);
+        fireCooldownTime = 1 / rateOfFire;
     }
 
     // Update is called once per frame

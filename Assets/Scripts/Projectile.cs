@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     private float damage;
     private Transform target;
 
-    private float speed = 50;
+    private float speed = 20;
 
     public void ChaseThisEnemy(Transform target, float damagePerShot)
     {
@@ -19,7 +19,9 @@ public class Projectile : MonoBehaviour
     {
         target.GetComponent<Enemy>().health -= damage;
         //instantiate particle for when something is hit here? (then Destroy(particle, 3); it afterwards (use code like Fire()))
+        gameObject.SetActive(false);
         Destroy(gameObject);
+        return;
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class Projectile : MonoBehaviour
             }
 
             transform.Translate(directionToPoint.normalized * goThisFarThisFrame, Space.World);
+            transform.LookAt(target.transform);
 
         }
     }
