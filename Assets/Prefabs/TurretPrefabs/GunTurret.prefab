@@ -134,7 +134,7 @@ MonoBehaviour:
   sellAmount: 25
   damagePerShot: 15
   rateOfFire: 3
-  range: 2.5
+  range: 4
   rotationSpeed: 10
 --- !u!1 &988817686519543480
 GameObject:

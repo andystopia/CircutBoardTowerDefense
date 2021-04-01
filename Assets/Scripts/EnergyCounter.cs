@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnergyCounter : MonoBehaviour
 {
     public int startingEnergy;
+    public int energy;
 
     // Start is called before the first frame update
     void Start()
