@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public List<GameObject> enemies;
-    private float wave;
-    private float spawnRate;
+    public float wave;
+    public float spawnRate;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +16,7 @@ public class SpawnManager : MonoBehaviour
             enemies[i].GetComponent<Enemy>().health += 100;
         }
 
-        wave = 0;
-        spawnRate = 1.0f;
-
-        StartCoroutine(SpawnWave());
+        StartCoroutine(SpawnWave(10));
     }
 
     // Update is called once per frame
@@ -28,12 +25,14 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnWave()
+    IEnumerator SpawnWave(int armySize)
     {
-        while (true)
+        int counter = armySize;
+        while (counter > 0)
         {
             yield return new WaitForSeconds(spawnRate);
             Instantiate(enemies[1], transform.position, transform.rotation);
+            counter -= 1;
         }
     }
 }

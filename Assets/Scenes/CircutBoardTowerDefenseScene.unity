@@ -1976,6 +1976,8 @@ MonoBehaviour:
   - {fileID: 7522207909491208702, guid: ce7de605f364d324a8e949092e7fc55e, type: 3}
   - {fileID: 7541176488772320102, guid: e958022944fb3f341b52ea55777802fa, type: 3}
   - {fileID: 536390706145393694, guid: 09397424f2f686d40abd26d1d2ce5f18, type: 3}
+  wave: 0
+  spawnRate: 1
 --- !u!1 &1810757455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
@@ -2093,6 +2095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingEnergy: 200
+  energy: 0
 --- !u!1 &1884747907
 GameObject:
   m_ObjectHideFlags: 0
