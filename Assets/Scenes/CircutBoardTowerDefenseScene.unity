@@ -1971,14 +1971,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e592d06ba299f941a4571e0080305ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virusEnemyPrefab: {fileID: 7522207909491208702, guid: ce7de605f364d324a8e949092e7fc55e,
-    type: 3}
-  pingEnemyPrefab: {fileID: 7942194039253121859, guid: 8ba993bd41df93a41a46581c3598ae78,
-    type: 3}
-  trojanEnemyPrefab: {fileID: 7541176488772320102, guid: e958022944fb3f341b52ea55777802fa,
-    type: 3}
-  bossEnemyPrefab: {fileID: 536390706145393694, guid: 09397424f2f686d40abd26d1d2ce5f18,
-    type: 3}
+  enemies:
+  - {fileID: 7942194039253121859, guid: 8ba993bd41df93a41a46581c3598ae78, type: 3}
+  - {fileID: 7522207909491208702, guid: ce7de605f364d324a8e949092e7fc55e, type: 3}
+  - {fileID: 7541176488772320102, guid: e958022944fb3f341b52ea55777802fa, type: 3}
+  - {fileID: 536390706145393694, guid: 09397424f2f686d40abd26d1d2ce5f18, type: 3}
 --- !u!1 &1810757455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,

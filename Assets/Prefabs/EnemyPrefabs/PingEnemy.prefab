@@ -111,7 +111,7 @@ MonoBehaviour:
     type: 3}
   energyDrop: 3
   health: 25
-  speed: 2.5
+  speed: 4
 --- !u!1 &8161859690012064109
 GameObject:
   m_ObjectHideFlags: 0
