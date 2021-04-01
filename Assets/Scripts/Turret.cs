@@ -6,11 +6,15 @@ public class Turret : MonoBehaviour
 {
     private Transform target;
 
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
     public Transform turretNeck;
-    public int energyCost;
-    public int sellAmount;
-    public int damagePerShot;
-    public int rateOfFire;
+    public float energyCost;
+    public float sellAmount;
+    public float damagePerShot;
+    public float rateOfFire;
+    private float fireCooldownTime = 0;
     public float range;
 
     public float rotationSpeed = 10;
@@ -32,12 +36,26 @@ public class Turret : MonoBehaviour
             Vector3 rotation = Quaternion.Lerp(turretNeck.rotation, rotateToFaceTarget, Time.deltaTime * rotationSpeed).eulerAngles;
             turretNeck.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
+            if(fireCooldownTime <= 0)
+            {
+                Fire();
+                fireCooldownTime = 1 / rateOfFire;
+            }
+
+            fireCooldownTime -= Time.deltaTime;
+
         }
     }
 
+    void Fire()
+    {
+        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        projectileGO.GetComponent<Projectile>().ChaseThisEnemy(target, damagePerShot);
+    }
+
+
     void UpdateTarget()
     {
-        //if we don't already have a target
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
         GameObject closestEnemy = null;

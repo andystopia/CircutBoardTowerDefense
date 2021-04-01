@@ -23,6 +23,6 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //make sure to update all present "Enemy" tagged objects' health and energy after every wave
     }
 }

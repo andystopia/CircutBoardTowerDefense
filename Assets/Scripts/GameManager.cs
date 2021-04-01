@@ -99,15 +99,9 @@ public class GameManager : MonoBehaviour
     //spawns in gameBoard's Tiles
     void spawnInTiles()
     {
-        //gets offset to the board is centered
-        /*
-        float offsetX = -gameBoard.GetLength(0) / 2.0f;
-        Debug.Log(gameBoard.GetLength(0) + " this is getlength");
-        Debug.Log("this isoffsetx = " + offsetX);
-        float offsetZ = -gameBoard.GetLength(1) / 2.0f;
-        */
-        float offsetX = -15;              //temporary!
-        float offsetZ = -9f;              //temp!
+        //spawn a centered board of tiles
+        float offsetX = -15; 
+        float offsetZ = -9f; 
         Vector3 spawnLoco;
         for (int i = 0; i < gameBoard.GetLength(0); i++)
         {
@@ -115,7 +109,6 @@ public class GameManager : MonoBehaviour
             {
                 if(gameBoard[i, r] != null)
                 {
-                    //-0.15f
                     spawnLoco = new Vector3((1.5f * i + offsetX), -0.15f, (1.5f * r + offsetZ));
                     Instantiate(gameBoard[i, r], spawnLoco, Quaternion.identity);
                 }

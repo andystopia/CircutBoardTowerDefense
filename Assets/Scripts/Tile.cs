@@ -52,8 +52,8 @@ public class Tile : MonoBehaviour
             turret = gameManagerScript.selectedTurret;
             //substract price here
             gameManagerScript.selectedTurret = null;
-            Vector3 spawnPos = new Vector3(transform.position.x, (transform.position.y + 3), transform.position.z);
-            Instantiate(turret, transform.position, transform.rotation);
+            Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
+            Instantiate(turret, spawnPos, transform.rotation);
 
         } else if(turret != null && gameManagerScript.selectedTurret != null)
         {
@@ -65,7 +65,7 @@ public class Tile : MonoBehaviour
             Debug.Log("You can't afford that"); //this should be checked in the TURRET SHOP TO BEGIN WITH (delete OR ^^ part above)
         }
         
-        //have a delete tile to destroy the object if they don't want it
+        //have a delete tile to destroy the object if they don't want it anymore
 
     }
 

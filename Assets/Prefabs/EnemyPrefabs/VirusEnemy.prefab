@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5543820115888059368}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 2}
   m_Children: []
   m_Father: {fileID: 2193883318405167859}
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7522207909491208702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.25, z: 0.5}
   m_Children:
   - {fileID: 2595677558860720022}
@@ -190,6 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
     type: 3}
-  baseEnergyDrop: 5
-  baseHealth: 50
+  energyDrop: 5
+  health: 50
   speed: 1.75
