@@ -77,13 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656e9a02eb261e469ca7b0f42146ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8018243900158835698, guid: 88514601309b1bf4184da66070fd1286,
+    type: 3}
   firePoint: {fileID: 6857057484766557888}
   turretNeck: {fileID: 2678159283907790062}
   energyCost: 225
   sellAmount: 50
   damagePerShot: 10
-  rateOfFire: 5
+  rateOfFire: 1
   range: 3
 --- !u!1 &3831051052687769267
 GameObject:

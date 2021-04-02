@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform target;
+    private GameObject target;
 
     public GameObject projectilePrefab;
     public Transform firePoint;
@@ -32,7 +32,7 @@ public class Turret : MonoBehaviour
     {
         if(target != null)
         {
-                Vector3 directionToPoint = target.position - transform.position;
+                Vector3 directionToPoint = target.transform.position - transform.position;
                 Quaternion rotateToFaceTarget = Quaternion.LookRotation(directionToPoint);
                 Vector3 rotation = Quaternion.Lerp(turretNeck.rotation, rotateToFaceTarget, Time.deltaTime * rotationSpeed).eulerAngles;
                 turretNeck.rotation = Quaternion.Euler(0f, rotation.y, 0f);
@@ -51,6 +51,7 @@ public class Turret : MonoBehaviour
 
     void Fire()
     {
+        //do animation here
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         projectileGO.GetComponent<Projectile>().ChaseThisEnemy(target, damagePerShot);
     }
@@ -60,11 +61,10 @@ public class Turret : MonoBehaviour
     {
         //if target is null, continue
         //if target not null, but out of range, but is out of range, continue
-        
         if(target == null)
         {
             FindNewTarget();
-        } else if((Vector3.Distance(transform.position, target.position)) > range)
+        } else if((Vector3.Distance(transform.position, target.transform.position)) > range)
         {
             FindNewTarget();
         }
@@ -90,7 +90,7 @@ public class Turret : MonoBehaviour
 
         if (closestEnemy != null && shortestDistance <= range)
         {
-            target = closestEnemy.transform;
+            target = closestEnemy;
         }
         else
         {
