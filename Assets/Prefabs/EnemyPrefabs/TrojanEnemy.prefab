@@ -191,5 +191,10 @@ MonoBehaviour:
   nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
     type: 3}
   energyDrop: 7
+  energyGain: 4
   health: 100
+  healthGain: 20
+  armySize: 8
+  armySizeGain: 2
   speed: 1
+  spawnRate: 2

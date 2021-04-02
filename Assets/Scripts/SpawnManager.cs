@@ -7,33 +7,40 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> enemies;
     public float healthGain;
     public float wave;
-    public float spawnRate;
 
     // Start is called before the first frame update
     void Start()
     {
         //for (int i = 0; i < enemies.Count - 1; i++)
         //{
-            
-        //}
-
-        healthGain = 100;
-        StartCoroutine(SpawnWave(10));
+        // enemies[i].GetComponent<Enemy>();
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PickWaveType();
+        }
     }
 
-    IEnumerator SpawnWave(int armySize)
+    public void PickWaveType()
     {
-        int counter = armySize;
+        int waveType = Random.Range(0, enemies.Count - 1);
+        float armySize = enemies[waveType].GetComponent<Enemy>().armySize;
+        float spawnRate = enemies[waveType].GetComponent<Enemy>().spawnRate;
+        StartCoroutine(SpawnWave(waveType, armySize, spawnRate));
+    }
+
+    IEnumerator SpawnWave(int enemyType, float armySize, float spawnRate)
+    {
+        float counter = armySize;
         while (counter > 0)
         {
             yield return new WaitForSeconds(spawnRate);
-            GameObject temp = Instantiate(enemies[1], transform.position, transform.rotation);
+            GameObject temp = Instantiate(enemies[enemyType], transform.position, transform.rotation);
             temp.GetComponent<Enemy>().health += healthGain;
             counter -= 1;
         }

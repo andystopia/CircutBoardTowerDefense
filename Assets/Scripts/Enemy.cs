@@ -6,8 +6,13 @@ public class Enemy : MonoBehaviour
 {
     public GameObject nextNode;
     public float energyDrop;
+    public float energyGain;
     public float health;
-    public float speed;       //maybe have a multiplier for new waves?
+    public float healthGain;
+    public float armySize;
+    public float armySizeGain;
+    public float speed;
+    public float spawnRate; //maybe have a multiplier for new waves?
 
 
 
