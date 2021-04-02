@@ -195,9 +195,9 @@ MonoBehaviour:
   energyCost: 150
   sellAmount: 50
   damagePerShot: 60
-  rateOfFire: 1
-  range: 3
-  rotationSpeed: 10
+  rateOfFire: 0.25
+  range: 5
+  turretStall: 0
 --- !u!1 &7461236902513408099
 GameObject:
   m_ObjectHideFlags: 0

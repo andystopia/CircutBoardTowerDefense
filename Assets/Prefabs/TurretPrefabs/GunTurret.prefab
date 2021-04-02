@@ -134,8 +134,8 @@ MonoBehaviour:
   sellAmount: 25
   damagePerShot: 15
   rateOfFire: 3
-  range: 2.5
-  rotationSpeed: 10
+  range: 3.5
+  turretStall: 0
 --- !u!1 &988817686519543480
 GameObject:
   m_ObjectHideFlags: 0

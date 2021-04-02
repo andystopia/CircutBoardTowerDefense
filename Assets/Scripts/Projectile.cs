@@ -37,13 +37,17 @@ public class Projectile : MonoBehaviour
             float goThisFarThisFrame = speed * Time.deltaTime;
 
             //damage the target and delete itself without going past the target
-            if(directionToPoint.magnitude <= goThisFarThisFrame)
+            if(directionToPoint.magnitude <= goThisFarThisFrame * 4.5)
             {
                 TargetHit();
             }
+            else
+            {
+                transform.LookAt(target.transform);
+                transform.Translate(directionToPoint.normalized * goThisFarThisFrame, Space.World);
+            }
 
-            transform.Translate(directionToPoint.normalized * goThisFarThisFrame, Space.World);
-            transform.LookAt(target.transform);
+
 
         }
     }
