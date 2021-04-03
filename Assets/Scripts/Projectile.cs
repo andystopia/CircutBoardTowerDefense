@@ -8,13 +8,13 @@ public class Projectile : MonoBehaviour
     private float damage;
     private float speed = 20;
 
-    public int energyLeft;      //imput 3 to this
+    public int energyLeft;
     public float range;
-    public GameObject[] oldTargets;
+    public List<GameObject> oldTargets;
 
-    public void ChaseThisEnemy(GameObject target, float damagePerShot)
+    public void ChaseThisEnemy(GameObject targ, float damagePerShot)
     {
-        this.target = target;
+        target = targ;
         damage = damagePerShot;
     }
 
@@ -30,12 +30,16 @@ public class Projectile : MonoBehaviour
         {
             target.GetComponent<Enemy>().health -= damage;
             //particle
-            oldTargets[energyLeft] = target;
+            if(target != null)  //this is just in case
+            {
+                oldTargets.Add(target);
+            }
+            
             energyLeft -= 1;
-            //FindNewTarget();
+            FindNewTarget();
         }
     }
-    /*
+ 
     void FindNewTarget()
     {
         //find new target that isn't any of the old targets
@@ -50,7 +54,7 @@ public class Projectile : MonoBehaviour
             {
                 foreach(GameObject oldTarget in oldTargets)
                 {
-                    if(enemy == oldTarget)
+                    if(enemy != oldTarget)
                     {
                         shortestDistance = distanceToEnemy;
                         closestEnemy = enemy;
@@ -62,7 +66,6 @@ public class Projectile : MonoBehaviour
         if (closestEnemy != null && shortestDistance <= range)
         {
             target = closestEnemy;
-            Debug.Log("EnergyLeft: " + energyLeft);
         }
         else
         {
@@ -77,7 +80,7 @@ public class Projectile : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, rotateToFaceTarget.y, 0f);
         }
     }
-    */
+
 
     // Update is called once per frame
     void Update()
@@ -92,7 +95,7 @@ public class Projectile : MonoBehaviour
             float goThisFarThisFrame = speed * Time.deltaTime;
 
             //damage the target and delete itself without going past the target
-            if(directionToPoint.magnitude <= goThisFarThisFrame * 4.5)
+            if(directionToPoint.magnitude <= goThisFarThisFrame * 3.5)
             {
                 TargetHit();
             }

@@ -85,7 +85,8 @@ MonoBehaviour:
   sellAmount: 50
   damagePerShot: 10
   rateOfFire: 1
-  range: 3
+  range: 2.5
+  isTeslaTurret: 1
 --- !u!1 &3831051052687769267
 GameObject:
   m_ObjectHideFlags: 0

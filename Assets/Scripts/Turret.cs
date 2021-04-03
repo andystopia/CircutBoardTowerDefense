@@ -16,6 +16,7 @@ public class Turret : MonoBehaviour
     public float rateOfFire;
     private float fireCooldownTime;
     public float range;
+    public bool isTeslaTurret;
 
     private float rotationSpeed = 10;
 
@@ -64,7 +65,7 @@ public class Turret : MonoBehaviour
         if(target == null)
         {
             FindNewTarget();
-        } else if((Vector3.Distance(transform.position, target.transform.position)) > range)
+        } else if((Vector3.Distance(transform.position, target.transform.position)) > range || isTeslaTurret)
         {
             FindNewTarget();
         }
