@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
 
         //Turret menu
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < 10; i++)
         {
             for(int j = 0; j < 3; j++)
             {
