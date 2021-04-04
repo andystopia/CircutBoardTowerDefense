@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2858135406588610829}
   - component: {fileID: 8387450570113511432}
   - component: {fileID: 4606484828939149247}
+  - component: {fileID: -8102977904907146063}
   m_Layer: 0
   m_Name: PingEnemy
   m_TagString: Enemy
@@ -117,6 +118,25 @@ MonoBehaviour:
   armySizeGain: 6
   speed: 4
   spawnRate: 0.5
+--- !u!95 &-8102977904907146063
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942194039253121859}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b959430c12d766340a1fccdcd1eef818, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8161859690012064109
 GameObject:
   m_ObjectHideFlags: 0
