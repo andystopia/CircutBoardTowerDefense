@@ -8,12 +8,15 @@ public class Turret : MonoBehaviour
 
     public GameObject projectilePrefab;
     public Transform firePoint;
+    public GameObject turretDisplay;
+    public GameObject turretAnimdisplay;
 
     public Transform turretNeck;
     public float energyCost;
     public float sellAmount;
     public float damagePerShot;
     public float rateOfFire;
+    public float animStopTime;
     private float fireCooldownTime;
     public float range;
     public bool isTeslaTurret;
@@ -53,8 +56,26 @@ public class Turret : MonoBehaviour
     void Fire()
     {
         //do animation here
+        turretDisplay.SetActive(false);
+        turretAnimdisplay.SetActive(true);
+        StartCoroutine(makeProjectile());
+    }
+
+    IEnumerator animStop()
+    {
+        yield return new WaitForSeconds(animStopTime/2);
+        turretAnimdisplay.SetActive(false);
+        turretDisplay.SetActive(true);
+
+    }
+
+
+    IEnumerator makeProjectile()
+    {
+        yield return new WaitForSeconds(animStopTime/2);
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         projectileGO.GetComponent<Projectile>().ChaseThisEnemy(target, damagePerShot);
+        StartCoroutine(animStop());
     }
 
 

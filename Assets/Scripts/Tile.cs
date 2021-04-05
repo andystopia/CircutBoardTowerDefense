@@ -63,6 +63,9 @@ public class Tile : MonoBehaviour
         {
             //display "you can't afford that"
             Debug.Log("You can't afford that"); //this should be checked in the TURRET SHOP TO BEGIN WITH (delete OR ^^ part above)
+        } else if(turret == null && gameManagerScript.selectedTurret == null)
+        {
+            //put up a UI display to delete the turret to get a refund
         }
         
 
