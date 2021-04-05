@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     public float wave;
     public TextMeshProUGUI waveDisplayText;
     public float callCooldown;
+    public bool isOnCd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +25,12 @@ public class SpawnManager : MonoBehaviour
     {
         waveDisplayText.text = ("Wave " + wave);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isOnCd == false)
         {
             wave += 1;
             PickWaveType();
+            isOnCd = true;
+            Cooldown();
         }
     }
 
@@ -49,6 +52,16 @@ public class SpawnManager : MonoBehaviour
             temp.GetComponent<Enemy>().health += (temp.GetComponent<Enemy>().healthGain) * (wave - 1);
             temp.GetComponent<Enemy>().energyDrop += (temp.GetComponent<Enemy>().energyGain) * (wave - 1);
             counter -= 1;
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        while (true)
+        {
+            isOnCd = false;
+            yield return new WaitForSeconds(callCooldown);
+            
         }
     }
 }
