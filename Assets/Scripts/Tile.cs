@@ -29,16 +29,52 @@ public class Tile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(turret == null && gameManagerScript.selectedTurret != null)      //AND price is good     //have a better system for these
+        if(turret == null)
         {
-            highlightTileGreen.gameObject.SetActive(true);
-        } else if(turret != null && gameManagerScript.selectedTurret != null)   //OR ^^ + price is bad
+            if(gameManagerScript.selectedTurret != null)
+            {
+                if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
+                {
+                    highlightTileGreen.gameObject.SetActive(true);
+                } else
+                {
+                    highlightTileRed.gameObject.SetActive(true);
+                }
+            } else
+            {
+                highlightTileWhite.gameObject.SetActive(true);
+            }
+        } else
         {
-            highlightTileRed.gameObject.SetActive(true);
+            if(gameManagerScript.selectedTurret != null)
+            {
+                highlightTileRed.gameObject.SetActive(true);
+            } else
+            {
+                highlightTileWhite.gameObject.SetActive(true);
+            }
+        }
+        /*
+        if(turret == null && gameManagerScript.selectedTurret != null)
+        {
+            if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
+            {
+                highlightTileGreen.gameObject.SetActive(true);
+            }
+        } else if(gameManagerScript.selectedTurret != null)
+        {
+            if(turret != null)
+            {
+                highlightTileRed.gameObject.SetActive(true);
+            } else if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost >= energyCounterScript.energy)
+            {
+                highlightTileRed.gameObject.SetActive(true);
+            }
         } else
         {
             highlightTileWhite.gameObject.SetActive(true);
         }
+        */
     }
 
     private void OnMouseExit()
@@ -50,27 +86,37 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(turret == null && gameManagerScript.selectedTurret != null)     //AND price is good
+        if (turret == null)
         {
-            turret = gameManagerScript.selectedTurret;
-            //substract price here
-            Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
-            Instantiate(turret, spawnPos, transform.rotation);
-
-        } else if(turret != null && gameManagerScript.selectedTurret != null)
-        {
-            //display "you can't place that here"
-            Debug.Log("You can't place that here");
-        } else if(turret == null && gameManagerScript.selectedTurret != null)   //AND price is bad
-        {
-            //display "you can't afford that"
-            Debug.Log("You can't afford that"); //this should be checked in the TURRET SHOP TO BEGIN WITH (delete OR ^^ part above)
-        } else if(turret == null && gameManagerScript.selectedTurret == null)
-        {
-            //put up a UI display to delete the turret to get a refund
+            if (gameManagerScript.selectedTurret != null)
+            {
+                if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
+                {
+                    turret = gameManagerScript.selectedTurret;
+                    energyCounterScript.energy -= turret.GetComponent<Turret>().energyCost;
+                    Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
+                    Instantiate(turret, spawnPos, transform.rotation);
+                }
+                else
+                {
+                    //display "you can't afford that"
+                    Debug.Log("You can't afford that");
+                }
+            }
         }
-        
-
+        else
+        {
+            if (gameManagerScript.selectedTurret != null)
+            {
+                //display "you can't place that here"
+                Debug.Log("You can't place that here");
+            }
+            else
+            {
+                //open UI thing
+                Debug.Log("Open Refund Menu");
+            }
+        }       
     }
 
 
