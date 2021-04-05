@@ -8,7 +8,10 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> enemies;
     public float wave;
     public TextMeshProUGUI waveDisplayText;
+
+    public GameObject enemySpawn;
     public float callCooldown;
+    private float callCooldownBase;
     public bool isOnCd = false;
 
     // Start is called before the first frame update
@@ -18,6 +21,7 @@ public class SpawnManager : MonoBehaviour
         //{
         // enemies[i].GetComponent<Enemy>();
         // }
+        callCooldownBase = callCooldown;
     }
 
     // Update is called once per frame
@@ -30,7 +34,8 @@ public class SpawnManager : MonoBehaviour
             wave += 1;
             PickWaveType();
             isOnCd = true;
-            Cooldown();
+            enemySpawn.SetActive(false);
+            StartCoroutine(Cooldown());
         }
     }
 
@@ -57,11 +62,13 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        while (true)
+        while (callCooldown > 0)
         {
-            isOnCd = false;
-            yield return new WaitForSeconds(callCooldown);
-            
+            yield return new WaitForSeconds(1);
+            callCooldown -= 1;
         }
+        isOnCd = false;
+        callCooldown = callCooldownBase;
+        enemySpawn.SetActive(true);
     }
 }
