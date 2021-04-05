@@ -197,3 +197,5 @@ MonoBehaviour:
   armySize: 1
   armySizeGain: 0
   speed: 0.5
+  spawnRate: 0
+  damageValue: 50

@@ -219,3 +219,4 @@ MonoBehaviour:
   armySizeGain: 4
   speed: 2
   spawnRate: 1
+  damageValue: 10

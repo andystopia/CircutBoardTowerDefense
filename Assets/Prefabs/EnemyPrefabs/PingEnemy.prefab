@@ -118,6 +118,7 @@ MonoBehaviour:
   armySizeGain: 6
   speed: 4
   spawnRate: 0.5
+  damageValue: 5
 --- !u!95 &-8102977904907146063
 Animator:
   serializedVersion: 3

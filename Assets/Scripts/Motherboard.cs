@@ -7,6 +7,7 @@ public class Motherboard : MonoBehaviour
 {
     public float startingHp;
     public float hp;
+    public TextMeshProUGUI hpText;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,6 @@ public class Motherboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        hpText.text = ("Motherboard: " + hp + "/" + startingHp);
     }
 }
