@@ -12,13 +12,13 @@ public class Tile : MonoBehaviour
 
     private GameManager gameManagerScript;
     private TurretShop turretShopScript;
-
-    public GameObject energyCounter;
+    private EnergyCounter energyCounterScript;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
     }
 
     // Update is called once per frame
