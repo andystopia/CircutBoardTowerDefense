@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> enemies;
     public float wave;
     public TextMeshProUGUI waveDisplayText;
-
+    public GameObject tutorialDisplayText;
     public GameObject enemySpawn;
     public float callCooldown;
     private float callCooldownBase;
@@ -67,6 +67,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             callCooldown -= 1;
         }
+        tutorialDisplayText.SetActive(false);
         isOnCd = false;
         callCooldown = callCooldownBase;
         enemySpawn.SetActive(true);
