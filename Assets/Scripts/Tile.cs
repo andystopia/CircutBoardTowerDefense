@@ -13,6 +13,8 @@ public class Tile : MonoBehaviour
     private GameManager gameManagerScript;
     private TurretShop turretShopScript;
 
+    public GameObject energyCounter;
+
     // Start is called before the first frame update
     void Start()
     {

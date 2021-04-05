@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject nextNode;
+    private EnergyCounter energyCounterScript;
     public float energyDrop;
     public float energyGain;
     public float health;
@@ -12,14 +13,14 @@ public class Enemy : MonoBehaviour
     public float armySize;
     public float armySizeGain;
     public float speed;
-    public float spawnRate; //maybe have a multiplier for new waves?
+    public float spawnRate;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             //chance for spawning a chip
-            //ALWAYS spawn a certain amount of energy
+            energyCounterScript.energy += energyDrop;
             Destroy(gameObject);
             return;
         }

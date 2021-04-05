@@ -10,6 +10,7 @@ public class TurretShop : MonoBehaviour
     public GameObject turretMouseDrag;
     public bool hasBeenSelected;
 
+    public float energyCost;
 
     private GameManager gameManagerScript;
     public GameObject otherShop1;

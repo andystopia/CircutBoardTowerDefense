@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
     public List<GameObject> enemies;
-    public float healthGain;
     public float wave;
+    public TextMeshProUGUI waveDisplayText;
+    public float callCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +22,11 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        waveDisplayText.text = ("Wave " + wave);
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            wave += 1;
             PickWaveType();
         }
     }
@@ -29,7 +34,7 @@ public class SpawnManager : MonoBehaviour
     public void PickWaveType()
     {
         int waveType = Random.Range(0, enemies.Count - 1);
-        float armySize = enemies[waveType].GetComponent<Enemy>().armySize;
+        float armySize = (enemies[waveType].GetComponent<Enemy>().armySize) + ((enemies[waveType].GetComponent<Enemy>().armySizeGain) * (wave - 1));
         float spawnRate = enemies[waveType].GetComponent<Enemy>().spawnRate;
         StartCoroutine(SpawnWave(waveType, armySize, spawnRate));
     }
@@ -41,7 +46,8 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             GameObject temp = Instantiate(enemies[enemyType], transform.position, transform.rotation);
-            temp.GetComponent<Enemy>().health += healthGain;
+            temp.GetComponent<Enemy>().health += (temp.GetComponent<Enemy>().healthGain) * (wave - 1);
+            temp.GetComponent<Enemy>().energyDrop += (temp.GetComponent<Enemy>().energyGain) * (wave - 1);
             counter -= 1;
         }
     }

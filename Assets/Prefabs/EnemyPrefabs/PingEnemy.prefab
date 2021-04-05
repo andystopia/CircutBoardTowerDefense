@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
     type: 3}
-  energyDrop: 3
+  energyDrop: 4
   energyGain: 1
   health: 25
   healthGain: 5
