@@ -355,4 +355,6 @@ MonoBehaviour:
   highlightTileWhite: {fileID: 23313452}
   highlightTileGreen: {fileID: 858721252}
   highlightTileRed: {fileID: 1730523028}
+  tileText: {fileID: 5279632092927332786, guid: 850e99aa993e0824499c96e1e6044e70,
+    type: 3}
   turret: {fileID: 0}
