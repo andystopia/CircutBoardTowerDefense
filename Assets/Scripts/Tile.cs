@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour
     public GameObject highlightTileGreen;
     public GameObject highlightTileRed;
 
+    public GameObject tileText;
+
     public GameObject turret;
 
     private GameManager gameManagerScript;
@@ -54,27 +56,6 @@ public class Tile : MonoBehaviour
                 highlightTileWhite.gameObject.SetActive(true);
             }
         }
-        /*
-        if(turret == null && gameManagerScript.selectedTurret != null)
-        {
-            if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
-            {
-                highlightTileGreen.gameObject.SetActive(true);
-            }
-        } else if(gameManagerScript.selectedTurret != null)
-        {
-            if(turret != null)
-            {
-                highlightTileRed.gameObject.SetActive(true);
-            } else if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost >= energyCounterScript.energy)
-            {
-                highlightTileRed.gameObject.SetActive(true);
-            }
-        } else
-        {
-            highlightTileWhite.gameObject.SetActive(true);
-        }
-        */
     }
 
     private void OnMouseExit()
@@ -99,8 +80,10 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    //display "you can't afford that"
-                    Debug.Log("You can't afford that");
+                    Vector3 spawnPos = new Vector3(0, 8, 0);
+                    var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
+                    gO.GetComponent<TextMesh>().text = "You Can't Afford That.";
+                    gO.GetComponent<Transform>().rotation = new Quaternion(90, 0, 0, 90);
                 }
             }
         }
@@ -108,8 +91,10 @@ public class Tile : MonoBehaviour
         {
             if (gameManagerScript.selectedTurret != null)
             {
-                //display "you can't place that here"
-                Debug.Log("You can't place that here");
+                Vector3 spawnPos = new Vector3(0, 8, 0);
+                var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
+                gO.GetComponent<TextMesh>().text = "You Can't Place That Here.";
+                gO.GetComponent<Transform>().rotation = new Quaternion(90, 0, 0, 90);
             }
             else
             {
@@ -117,6 +102,12 @@ public class Tile : MonoBehaviour
                 Debug.Log("Open Refund Menu");
             }
         }       
+    }
+
+    void makeTileText(string theWords)
+    {
+        var gO = Instantiate(tileText, transform.position, Quaternion.identity, transform);
+        gO.GetComponent<TextMesh>().text = "" + theWords;
     }
 
 
