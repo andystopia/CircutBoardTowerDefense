@@ -108,8 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97af2efab8a17c448e728bccb0a31d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 5768595668440655312, guid: 2adadeb8b461b294b9c785b2617f9f12,
+    type: 3}
   energyLeft: 3
-  range: 3
+  range: 4
   oldTargets: []
 --- !u!1 &8232839074074358471
 GameObject:
@@ -181,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a4450581f011ba46a1e082cff0ef30e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0ff0574e51e290488ee4ccb1c8586a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

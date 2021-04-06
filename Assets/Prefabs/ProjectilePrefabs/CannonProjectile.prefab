@@ -108,8 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97af2efab8a17c448e728bccb0a31d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 7053548142214586824, guid: 2b72c34344e18344397e38f179c90343,
+    type: 3}
   energyLeft: -1
   range: 0
+  oldTargets: []
 --- !u!1 &3326998220352596377
 GameObject:
   m_ObjectHideFlags: 0
