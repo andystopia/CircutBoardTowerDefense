@@ -110,13 +110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
     type: 3}
-  energyDrop: 4
-  energyGain: 1
+  energyDrop: 3
+  energyGain: 0
   health: 25
   healthGain: 5
   armySize: 12
   armySizeGain: 6
-  speed: 4
+  speed: 4.5
   spawnRate: 0.5
   damageValue: 5
 --- !u!95 &-8102977904907146063
