@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private GameObject target;
     private float damage;
     private float speed = 20;
+    public GameObject hitParticle;
 
     public int energyLeft;
     public float range;
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour
     {
         if (energyLeft <= 0)    
         {
+            Instantiate(hitParticle, target.transform.position, Quaternion.identity);
             target.GetComponent<Enemy>().health -= damage;
             //instantiate particle for when something is hit here? (then Destroy(particle, 3); it afterwards (use code like Fire()))
             Destroy(gameObject);
@@ -95,7 +97,7 @@ public class Projectile : MonoBehaviour
             float goThisFarThisFrame = speed * Time.deltaTime;
 
             //damage the target and delete itself without going past the target
-            if(directionToPoint.magnitude <= goThisFarThisFrame * 3.5)
+            if(directionToPoint.magnitude <= goThisFarThisFrame * 4.5)
             {
                 TargetHit();
             }
