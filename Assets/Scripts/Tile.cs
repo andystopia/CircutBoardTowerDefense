@@ -7,6 +7,7 @@ public class Tile : MonoBehaviour
     public GameObject highlightTileWhite;
     public GameObject highlightTileGreen;
     public GameObject highlightTileRed;
+    public GameObject rangeIndicator;
 
     public GameObject tileText;
 
@@ -38,6 +39,9 @@ public class Tile : MonoBehaviour
                 if(gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
                 {
                     highlightTileGreen.gameObject.SetActive(true);
+                    rangeIndicator.gameObject.SetActive(true);
+                    rangeIndicator.transform.localScale = new Vector3(gameManagerScript.selectedTurret.GetComponent<Turret>().range, gameManagerScript.selectedTurret.GetComponent<Turret>().range, 1);
+
                 } else
                 {
                     highlightTileRed.gameObject.SetActive(true);
@@ -63,6 +67,7 @@ public class Tile : MonoBehaviour
         highlightTileWhite.gameObject.SetActive(false);
         highlightTileGreen.gameObject.SetActive(false);
         highlightTileRed.gameObject.SetActive(false);
+        rangeIndicator.gameObject.SetActive(false);
     }
 
     private void OnMouseDown()
