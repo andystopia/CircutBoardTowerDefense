@@ -8,6 +8,7 @@ public class Motherboard : MonoBehaviour
     public float startingHp;
     public float hp;
     public TextMeshProUGUI hpText;
+    public GameObject gameOverText;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,10 @@ public class Motherboard : MonoBehaviour
     void Update()
     {
         hpText.text = ("Motherboard: " + hp + "/" + startingHp);
+
+        if (hp <= 0)
+        {
+            gameOverText.SetActive(true);
+        }
     }
 }
