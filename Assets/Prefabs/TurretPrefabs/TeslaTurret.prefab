@@ -188,8 +188,8 @@ MonoBehaviour:
   turretNeck: {fileID: 2678159283907790062}
   energyCost: 225
   sellAmount: 50
-  damagePerShot: 10
-  rateOfFire: 1
+  damagePerShot: 5
+  rateOfFire: 4
   animStopTime: 0.3
   range: 2.5
   isTeslaTurret: 1

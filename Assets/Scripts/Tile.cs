@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
                 {
                     highlightTileGreen.gameObject.SetActive(true);
                     rangeIndicator.gameObject.SetActive(true);
-                    rangeIndicator.transform.localScale = new Vector3(gameManagerScript.selectedTurret.GetComponent<Turret>().range, gameManagerScript.selectedTurret.GetComponent<Turret>().range, 1);
+                    rangeIndicator.transform.localScale = new Vector3(gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, 1);
 
                 } else
                 {

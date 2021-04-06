@@ -3575,6 +3575,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 7654675732882380221, guid: b7a58e0f718044d439ba35730dad9371,
     type: 3}
   selectedTurret: {fileID: 0}
+  gameOver: 0
 --- !u!1 &1750063188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
