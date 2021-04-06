@@ -23,7 +23,7 @@ public class Motherboard : MonoBehaviour
     {
         hpText.text = ("Motherboard: " + hp + "/" + startingHp);
 
-        if (hp <= 0 && gameManagerScript.gameOver)
+        if (hp <= 0)
         {
             gameManagerScript.gameOver = true;
             gameOverText.SetActive(true);
