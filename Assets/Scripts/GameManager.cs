@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject[,] gameBoard = new GameObject[21, 13];
     public GameObject tilePrefab;
     public GameObject selectedTurret;
+    public bool gameOver;
 
 
 

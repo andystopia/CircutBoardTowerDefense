@@ -9,11 +9,13 @@ public class Motherboard : MonoBehaviour
     public float hp;
     public TextMeshProUGUI hpText;
     public GameObject gameOverText;
+    private GameManager gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         hp = startingHp;
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -21,8 +23,9 @@ public class Motherboard : MonoBehaviour
     {
         hpText.text = ("Motherboard: " + hp + "/" + startingHp);
 
-        if (hp <= 0)
+        if (hp <= 0 && gameManagerScript.gameOver)
         {
+            gameManagerScript.gameOver = true;
             gameOverText.SetActive(true);
         }
     }

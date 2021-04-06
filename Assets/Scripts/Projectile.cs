@@ -25,7 +25,6 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(hitParticle, target.transform.position, Quaternion.identity);
             target.GetComponent<Enemy>().health -= damage;
-            //instantiate particle for when something is hit here? (then Destroy(particle, 3); it afterwards (use code like Fire()))
             Destroy(gameObject);
             return;
         } else
