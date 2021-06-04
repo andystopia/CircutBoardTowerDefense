@@ -236,7 +236,7 @@ MonoBehaviour:
   turretNeck: {fileID: 5002282588125109109}
   energyCost: 75
   sellAmount: 25
-  damagePerShot: 15
+  damagePerShot: 10
   rateOfFire: 3
   animStopTime: 0.2
   range: 3.5
