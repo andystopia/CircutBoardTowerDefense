@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: 2b5f3dd5f6291774fb986900da47d73b
+guid: 0850a4b91b65daf4fa56b4b1661ac018
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7586502173740540279
-    second: UpgradeChipAnimation_0
+      213: 4616589072958922972
+    second: LagChipAnimation_0
   - first:
-      213: 8288272791506660206
-    second: UpgradeChipAnimation_1
+      213: -8188234136599205460
+    second: LagChipAnimation_1
   - first:
-      213: 1024234090980838436
-    second: UpgradeChipAnimation_2
+      213: -3276848543087196643
+    second: LagChipAnimation_2
   - first:
-      213: 8122920394037878171
-    second: UpgradeChipAnimation_3
+      213: -5477752835360036100
+    second: LagChipAnimation_3
+  - first:
+      213: -2527987862913552028
+    second: LagChipAnimation_4
+  - first:
+      213: 5239873042889060099
+    second: LagChipAnimation_5
+  - first:
+      213: 2621509930805382447
+    second: LagChipAnimation_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,7 +120,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UpgradeChipAnimation_0
+      name: LagChipAnimation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98e577ec77457b690800000000000000
-      internalID: -7586502173740540279
+      spriteID: cd0aaa75d4b611040800000000000000
+      internalID: 4616589072958922972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UpgradeChipAnimation_1
+      name: LagChipAnimation_1
       rect:
         serializedVersion: 2
         x: 64
@@ -146,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b2a43d03cd50370800000000000000
-      internalID: 8288272791506660206
+      spriteID: ca9e6469f6c8d5e80800000000000000
+      internalID: -8188234136599205460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UpgradeChipAnimation_2
+      name: LagChipAnimation_2
       rect:
         serializedVersion: 2
         x: 128
@@ -167,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42c02c7aa7fc63e00800000000000000
-      internalID: 1024234090980838436
+      spriteID: d16088e8c9b4682d0800000000000000
+      internalID: -3276848543087196643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UpgradeChipAnimation_3
+      name: LagChipAnimation_3
       rect:
         serializedVersion: 2
         x: 192
@@ -188,8 +197,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9d5761bf096ab070800000000000000
-      internalID: 8122920394037878171
+      spriteID: cfae9f091dc1bf3b0800000000000000
+      internalID: -5477752835360036100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LagChipAnimation_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461f98abe68caecd0800000000000000
+      internalID: -2527987862913552028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LagChipAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f2c8d35c4c7b840800000000000000
+      internalID: 5239873042889060099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LagChipAnimation_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d40d88469716420800000000000000
+      internalID: 2621509930805382447
       vertices: []
       indices: 
       edges: []
@@ -197,7 +269,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2fef3da3afcd7374d924f3ad26eefed4
+    spriteID: a95dc6b694c88f14398db89137d337a3
     internalID: 0
     vertices: []
     indices: 
