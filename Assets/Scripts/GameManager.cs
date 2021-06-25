@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject selectedTurret;
     public bool gameOver;
+    public bool inTileMenu = false;
 
 
 
@@ -106,6 +107,10 @@ public class GameManager : MonoBehaviour
         gameBoard[15, 0] = null;
         gameBoard[17, 0] = null;
         gameBoard[18, 0] = null;
+
+        //Wave number
+        gameBoard[5, 12] = null;
+        gameBoard[6, 12] = null;
     }
 
 
