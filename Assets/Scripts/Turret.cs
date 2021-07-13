@@ -20,6 +20,7 @@ public class Turret : MonoBehaviour
     private float fireCooldownTime;
     public float range;
     public bool isTeslaTurret;
+    public bool isLaserTurret;
 
     private float rotationSpeed = 10;
 
@@ -58,12 +59,36 @@ public class Turret : MonoBehaviour
         //do animation here
         turretDisplay.SetActive(false);
         turretAnimdisplay.SetActive(true);
-        StartCoroutine(makeProjectile());
+        if (!isLaserTurret)
+        {
+            StartCoroutine(makeProjectile());
+        } else
+        {
+            StartCoroutine(makeLaser());
+        }
+        
     }
+
+    IEnumerator makeLaser()
+    {
+        yield return new WaitForSeconds(animStopTime);
+        //make the laser thingies
+        //have it damage an enemy once
+        //pause movement
+        Debug.Log("Make LASER NOW!");
+        StartCoroutine(animStop());
+    }
+
 
     IEnumerator animStop()
     {
         yield return new WaitForSeconds(animStopTime/2);
+        if (isLaserTurret)
+        {
+            //end laser
+            //resume movement
+            Debug.Log("delete laser objects");
+        }
         turretAnimdisplay.SetActive(false);
         turretDisplay.SetActive(true);
 

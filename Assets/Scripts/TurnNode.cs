@@ -23,7 +23,7 @@ public class TurnNode : MonoBehaviour
     {
         if (other.transform.position.Equals(transform.position))
         {
-            other.GetComponent<Enemy>().nextNode = this.nextNode;
+            other.GetComponent<Enemy>().nextNode = nextNode;
             other.transform.LookAt(nextNode.transform);
         }
     }

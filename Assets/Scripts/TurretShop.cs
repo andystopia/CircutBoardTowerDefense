@@ -34,28 +34,32 @@ public class TurretShop : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!hasBeenSelected)
+        if (!gameManagerScript.inTileMenu)
         {
-            gameManagerScript.selectedTurret = shopTurret;
-            litDisplay.SetActive(true);
-            hasBeenSelected = true;
-            otherShop1Script.litDisplay.SetActive(false);
-            otherShop2Script.litDisplay.SetActive(false);
-            otherShop1Script.hasBeenSelected = false;
-            otherShop2Script.hasBeenSelected = false;
-            //spawn in the thing that follows you (inside the scirpt it follows you + kills itself if selectedTurret null)
-        } else
-        {
-            gameManagerScript.selectedTurret = null;
-            litDisplay.SetActive(false);
-            hasBeenSelected = false;
-            deleteDisplay.SetActive(false);
+            if (!hasBeenSelected)
+            {
+                gameManagerScript.selectedTurret = shopTurret;
+                litDisplay.SetActive(true);
+                hasBeenSelected = true;
+                otherShop1Script.litDisplay.SetActive(false);
+                otherShop2Script.litDisplay.SetActive(false);
+                otherShop1Script.hasBeenSelected = false;
+                otherShop2Script.hasBeenSelected = false;
+                //spawn in the thing that follows you (inside the scirpt it follows you + kills itself if selectedTurret null)
+            }
+            else
+            {
+                gameManagerScript.selectedTurret = null;
+                litDisplay.SetActive(false);
+                hasBeenSelected = false;
+                deleteDisplay.SetActive(false);
+            }
         }
     }
 
     private void OnMouseEnter()
     {
-        if (hasBeenSelected)
+        if (hasBeenSelected && !gameManagerScript.inTileMenu)
         {
             deleteDisplay.SetActive(true);
         }

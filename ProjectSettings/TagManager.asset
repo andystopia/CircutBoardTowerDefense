@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Motherboard
+  - TurnNode
+  - Tile
   layers:
   - Default
   - TransparentFX

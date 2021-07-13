@@ -17,22 +17,27 @@ public class Tile : MonoBehaviour
     private TurretShop turretShopScript;
     private EnergyCounter energyCounterScript;
 
+
+
+    public TileMenu tileMenuScript;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
+        //tileMenuScript = GameObject.Find("TileMenu").GetComponent<TileMenu>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnMouseEnter()
     {
-        if (!gameManagerScript.gameOver)
+        if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
             if (turret == null)
             {
@@ -79,7 +84,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManagerScript.gameOver)
+        if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
             if (turret == null)
             {
@@ -112,11 +117,13 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    //open UI thing
-                    Debug.Log("Open Refund Menu");
+                    Debug.Log("Open Refund Menu DELETE ONCE DONE");
+                    openTileMenu();
+
+
                 }
             }
-        } 
+        }
     }
 
     void makeTileText(string theWords)
@@ -124,6 +131,25 @@ public class Tile : MonoBehaviour
         var gO = Instantiate(tileText, transform.position, Quaternion.identity, transform);
         gO.GetComponent<TextMesh>().text = "" + theWords;
     }
+
+
+    void openTileMenu()
+    {
+        gameManagerScript.inTileMenu = true;
+        tileMenuScript.show();
+        //tileMenuScript.tileOpened = gameObject;     //that does this tile, right?
+    }
+
+
+    public void closeTileMenu()
+    {
+        gameManagerScript.inTileMenu = false;
+        tileMenuScript.hide();
+        
+    }
+
+
+
 
 
 }
