@@ -18,13 +18,13 @@ public class DeactivateWithinRange : MonoBehaviour
         
     }
 
-    private void OnCollisionStay(Collision collision)
+    public void OnCollisionStay(Collision collision)
     {
         Debug.Log("Collided!");
     }
 
     /*
-    private void OnCollision(Collision collision)
+    public void OnCollision(Collision collision)
     {
         Debug.Log("collided");
         if (collision.gameObject.CompareTag("Tile"))

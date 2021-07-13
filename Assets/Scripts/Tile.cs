@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
-        tileMenuScript = GameObject.Find("TileMenu").GetComponent<TileMenu>();
+        //tileMenuScript = GameObject.Find("TileMenu").GetComponent<TileMenu>();
     }
 
     // Update is called once per frame
@@ -137,7 +137,7 @@ public class Tile : MonoBehaviour
     {
         gameManagerScript.inTileMenu = true;
         tileMenuScript.show();
-        tileMenuScript.tileOpened = gameObject;     //that does this tile, right?
+        //tileMenuScript.tileOpened = gameObject;     //that does this tile, right?
     }
 
 
