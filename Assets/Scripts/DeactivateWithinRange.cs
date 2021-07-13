@@ -18,9 +18,12 @@ public class DeactivateWithinRange : MonoBehaviour
         
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Collided!");
+        if (collider.gameObject.CompareTag("TurnNode"))
+        {
+            Debug.Log("Collided!");
+        }
     }
 
     /*
