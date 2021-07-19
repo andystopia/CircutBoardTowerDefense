@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: ab01ca8d8425926499115ac1351144b4
+guid: 43f3260bfb558a541b05eba3652ec430
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -267114643125124974
-    second: hack animation_0
+      213: -8431496839642920915
+    second: EMPAnimation_0
   - first:
-      213: -1112082220345933889
-    second: hack animation_1
+      213: -6430633178087476114
+    second: EMPAnimation_1
   - first:
-      213: -4573839362428514025
-    second: hack animation_2
+      213: -5250852936685411058
+    second: EMPAnimation_2
   - first:
-      213: 8057877645319295072
-    second: hack animation_3
+      213: 8283231674479449629
+    second: EMPAnimation_3
   - first:
-      213: 8106963812646494740
-    second: hack animation_4
+      213: 7656549833836729945
+    second: EMPAnimation_4
+  - first:
+      213: -5273263625415978769
+    second: EMPAnimation_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hack animation_0
+      name: EMPAnimation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 290c836b5a40b4cf0800000000000000
-      internalID: -267114643125124974
+      spriteID: d28414cdb4e4dfa80800000000000000
+      internalID: -8431496839642920915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hack animation_1
+      name: EMPAnimation_1
       rect:
         serializedVersion: 2
         x: 64
@@ -149,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbfb047dc171190f0800000000000000
-      internalID: -1112082220345933889
+      spriteID: e64314b023dc1c6a0800000000000000
+      internalID: -6430633178087476114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hack animation_2
+      name: EMPAnimation_2
       rect:
         serializedVersion: 2
         x: 128
@@ -170,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 711dfb645557680c0800000000000000
-      internalID: -4573839362428514025
+      spriteID: e05ac0503193127b0800000000000000
+      internalID: -5250852936685411058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hack animation_3
+      name: EMPAnimation_3
       rect:
         serializedVersion: 2
         x: 192
@@ -191,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06051d4a60553df60800000000000000
-      internalID: 8057877645319295072
+      spriteID: d169c9d4253f3f270800000000000000
+      internalID: 8283231674479449629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hack animation_4
+      name: EMPAnimation_4
       rect:
         serializedVersion: 2
         x: 256
@@ -212,8 +215,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 412adb392a8b18070800000000000000
-      internalID: 8106963812646494740
+      spriteID: 9561aeaf187814a60800000000000000
+      internalID: 7656549833836729945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EMPAnimation_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe09710fbaa91d6b0800000000000000
+      internalID: -5273263625415978769
       vertices: []
       indices: 
       edges: []
@@ -221,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: dbb1c410a3fda4946888824bf691f716
     internalID: 0
     vertices: []
     indices: 
