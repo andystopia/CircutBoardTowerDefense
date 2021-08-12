@@ -13,8 +13,12 @@ public class Turret : MonoBehaviour
 
     public Transform turretNeck;
     public float energyCost;
-    public float sellAmount;
+    public float level;
+    public float maxLevel;
+    public float sellAmount; // current = level * base sellAmount;
+    public float upgradeCost; // current = level * base upgradeCost;
     public float damagePerShot;
+    public float damageUp; //Damage increase per level
     public float rateOfFire;
     public float animStopTime;
     private float fireCooldownTime;
@@ -144,5 +148,4 @@ public class Turret : MonoBehaviour
             target = null;
         }
     }
-
 }

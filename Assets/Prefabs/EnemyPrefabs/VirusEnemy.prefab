@@ -215,8 +215,11 @@ MonoBehaviour:
   energyGain: 0
   health: 50
   healthGain: 10
-  armySize: 10
-  armySizeGain: 4
+  armySize: 5
+  armySizeGain: 2
   speed: 2.5
   spawnRate: 1
   damageValue: 10
+  tilesToDisable: []
+  isExploding: 0
+  deactivator: {fileID: 0}
