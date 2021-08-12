@@ -26,6 +26,9 @@ public class Turret : MonoBehaviour
     public bool isTeslaTurret;
     public bool isLaserTurret;
 
+    public AudioClip fireSound;
+    public AudioSource audioSource;
+
     private float rotationSpeed = 10;
 
 
@@ -65,6 +68,8 @@ public class Turret : MonoBehaviour
         turretAnimdisplay.SetActive(true);
         if (!isLaserTurret)
         {
+            audioSource.clip = fireSound;
+            audioSource.Play();
             StartCoroutine(makeProjectile());
         } else
         {
