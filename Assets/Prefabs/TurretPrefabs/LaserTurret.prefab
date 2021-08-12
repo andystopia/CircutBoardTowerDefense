@@ -132,13 +132,18 @@ MonoBehaviour:
   turretDisplay: {fileID: 0}
   turretAnimdisplay: {fileID: 8598350586139793204}
   turretNeck: {fileID: 7376110387619588725}
-  energyCost: 150
-  sellAmount: 50
-  damagePerShot: 90
-  rateOfFire: 0.75
-  animStopTime: 0.5
+  energyCost: 300
+  level: 1
+  maxLevel: 3
+  sellAmount: 100
+  upgradeCost: 400
+  damagePerShot: 45
+  damageUp: 15
+  rateOfFire: 0.5
+  animStopTime: 1
   range: 5
   isTeslaTurret: 0
+  isLaserTurret: 1
 --- !u!1 &4629457550633969280
 GameObject:
   m_ObjectHideFlags: 0

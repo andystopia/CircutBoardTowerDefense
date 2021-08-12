@@ -110,17 +110,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
     type: 3}
-  energyDrop: 3
+  energyDrop: 6
   energyGain: 0
-  health: 25
-  healthGain: 5
-  armySize: 12
-  armySizeGain: 6
-  speed: 4.5
-  spawnRate: 0.5
+  health: 20
+  healthGain: 2.5
+  armySize: 2
+  armySizeGain: 0.5
+  speed: 2.5
+  spawnRate: 2.5
   damageValue: 5
-  isExploding: 1
   tilesToDisable: []
+  isExploding: 1
+  deactivator: {fileID: 0}
 --- !u!95 &5452682385452125087
 Animator:
   serializedVersion: 3
