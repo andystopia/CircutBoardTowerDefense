@@ -5610,6 +5610,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 1213958845398002225, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1213958845398002230, guid: cdfe676ceaaf8784da5daa94241d47f4,
         type: 3}
       propertyPath: m_RootOrder

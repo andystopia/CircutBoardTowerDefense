@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     public float spawnRate;
     public float damageValue;
 
-
+    public List<GameObject> tilesToDisable;
     public bool isExploding;
     public GameObject deactivator;
 
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     public void explodeEnemy()
     {
 
-        Instantiate(deactivator, transform.position, Quaternion.identity);
+        //Instantiate(deactivator, transform.position, Quaternion.identity);
 
 
 
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
 
 
 
-        /*
+        
         //particle effect here
         Debug.Log("working");
 
@@ -81,14 +81,14 @@ public class Enemy : MonoBehaviour
                 {
 
                     //THE PROBLEM IS HERE \/ \/
-                    //distanceToTile = Vector3.Distance(gameManagerScript.gameBoard[i, r].transform.position, transform.position);
-                    difference = new Vector3(gameManagerScript.gameBoard[i, r].transform.position.x - transform.position.x, gameManagerScript.gameBoard[i, r].transform.position.y - transform.position.y, gameManagerScript.gameBoard[i, r].transform.position.z - transform.position.z);
+                    float distanceToTile = Vector3.Distance(gameManagerScript.gameBoard[i, r].transform.position, transform.position);
+                    Vector3 difference = new Vector3(gameManagerScript.gameBoard[i, r].transform.position.x - transform.position.x, gameManagerScript.gameBoard[i, r].transform.position.y - transform.position.y, gameManagerScript.gameBoard[i, r].transform.position.z - transform.position.z);
                     distanceToTile = Mathf.Sqrt(Mathf.Pow(difference.x, 2f) + Mathf.Pow(difference.y, 2f) + Mathf.Pow(difference.z, 2f));
                     Debug.Log("DistanceToTile [" + i + ", " + r + "] = " + distanceToTile);
 
                     if (distanceToTile <= 3.2f)
                     {
-                        //tilesToDisable.Add(gameManagerScript.gameBoard[i, r]);
+                        tilesToDisable.Add(gameManagerScript.gameBoard[i, r]);
                     }
 
                 }
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("disbling a Tile");
             //tile.gameObject.GetComponent<Tile>().disableTileTemp();
         }
-        */
+        
     }
 
 

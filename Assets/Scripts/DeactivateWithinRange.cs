@@ -20,7 +20,7 @@ public class DeactivateWithinRange : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("TurnNode"))
+        if (collider.gameObject.CompareTag("Tile"))
         {
             Debug.Log("Collided!");
         }
