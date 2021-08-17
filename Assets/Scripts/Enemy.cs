@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public float damageValue;
 
     public List<GameObject> tilesToDisable;
+    public List<GameObject> tilesToGoThrough;
     public bool isExploding;
     public GameObject deactivator;
 
@@ -70,39 +71,43 @@ public class Enemy : MonoBehaviour
         
         //particle effect here
         Debug.Log("working");
-
-        for (int i = 0; i < gameManagerScript.gameBoard.GetLength(0); i++)
-        {
-            for (int r = 0; r < gameManagerScript.gameBoard.GetLength(1); r++)
-            {
-                
-
-                if (gameManagerScript.gameBoard[i, r] != null)
-                {
-
-                    //THE PROBLEM IS HERE \/ \/
-                    Debug.Log("gameboard " + gameManagerScript.gameBoard[i, r].transform.position);
-                    float distanceToTile = Vector3.Distance(gameManagerScript.gameBoard[i, r].transform.position, transform.position);
-                    //Vector3 difference = new Vector3(gameManagerScript.gameBoard[i, r].transform.position.x - transform.position.x, gameManagerScript.gameBoard[i, r].transform.position.y - transform.position.y, gameManagerScript.gameBoard[i, r].transform.position.z - transform.position.z);
-                    //float distanceToTile = Mathf.Sqrt(Mathf.Pow(difference.x, 2f) + Mathf.Pow(difference.y, 2f) + Mathf.Pow(difference.z, 2f));
-                    Debug.Log("DistanceToTile [" + i + ", " + r + "] = " + distanceToTile);
-
-                    if (distanceToTile <= 3.2f)
-                    {
-                        tilesToDisable.Add(gameManagerScript.gameBoard[i, r]);
-                    }
-
-                }
-            }
-        }
-
-        foreach (GameObject tile in tilesToDisable)
-        {
-            Debug.Log("disabling a Tile");
-            //tile.gameObject.GetComponent<Tile>().disableTileTemp();
-        }
         
-    }
+
+
+                /*
+                for (int i = 0; i < gameManagerScript.gameBoard.GetLength(0); i++)
+                {
+                    for (int r = 0; r < gameManagerScript.gameBoard.GetLength(1); r++)
+                    {
+
+
+                        if (gameManagerScript.gameBoard[i, r] != null)
+                        {
+
+                            //THE PROBLEM IS HERE \/ \/
+                            Debug.Log("gameboard " + gameManagerScript.gameBoard[i, r].transform.position);
+                            float distanceToTile = Vector3.Distance(gameManagerScript.gameBoard[i, r].transform.position, transform.position);
+                            //Vector3 difference = new Vector3(gameManagerScript.gameBoard[i, r].transform.position.x - transform.position.x, gameManagerScript.gameBoard[i, r].transform.position.y - transform.position.y, gameManagerScript.gameBoard[i, r].transform.position.z - transform.position.z);
+                            //float distanceToTile = Mathf.Sqrt(Mathf.Pow(difference.x, 2f) + Mathf.Pow(difference.y, 2f) + Mathf.Pow(difference.z, 2f));
+                            Debug.Log("DistanceToTile [" + i + ", " + r + "] = " + distanceToTile);
+
+                            if (distanceToTile <= 3.2f)
+                            {
+                                tilesToDisable.Add(gameManagerScript.gameBoard[i, r]);
+                            }
+
+                        }
+                    }
+                }
+
+                foreach (GameObject tile in tilesToDisable)
+                {
+                    Debug.Log("disabling a Tile");
+                    //tile.gameObject.GetComponent<Tile>().disableTileTemp();
+                }
+                */
+
+            }
 
 
 

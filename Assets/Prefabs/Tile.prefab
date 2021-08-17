@@ -441,3 +441,5 @@ MonoBehaviour:
   tileText: {fileID: 5279632092927332786, guid: 850e99aa993e0824499c96e1e6044e70,
     type: 3}
   turret: {fileID: 0}
+  myTileMenu: {fileID: 9041424480412872968, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
+    type: 3}
