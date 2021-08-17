@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
 
 
 
-    public TileMenu tileMenuScript;
+    public TileMenu myTileMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class Tile : MonoBehaviour
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
         //tileMenuScript = GameObject.Find("TileMenu").GetComponent<TileMenu>();
+        myTileMenu.hide();
     }
 
     // Update is called once per frame
@@ -117,7 +118,6 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Open Refund Menu DELETE ONCE DONE");
                     openTileMenu();
 
 
@@ -135,16 +135,16 @@ public class Tile : MonoBehaviour
 
     void openTileMenu()
     {
+        Debug.Log("Open Menu");
         gameManagerScript.inTileMenu = true;
-        tileMenuScript.show();
-        //tileMenuScript.tileOpened = gameObject;     //that does this tile, right?
+        myTileMenu.show();
     }
 
 
     public void closeTileMenu()
     {
         gameManagerScript.inTileMenu = false;
-        tileMenuScript.hide();
+        myTileMenu.hide();
         
     }
 
