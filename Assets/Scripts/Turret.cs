@@ -155,4 +155,16 @@ public class Turret : MonoBehaviour
             target = null;
         }
     }
+
+    public void disableThisTurret()
+    {
+        StartCoroutine(disableTurretTimer());
+    }
+
+    private IEnumerator disableTurretTimer()
+    {
+        yield return new WaitForSeconds(3.0f);
+        isDisabled = false;
+    }
+
 }

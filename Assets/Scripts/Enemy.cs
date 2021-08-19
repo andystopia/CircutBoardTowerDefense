@@ -65,9 +65,8 @@ public class Enemy : MonoBehaviour
         {
             if (hitCollider.gameObject.CompareTag("Turret"))
             {
-                Debug.Log("Disabled!");
                 turretScript = hitCollider.gameObject.GetComponent<Turret>();
-                turretScript.isDisabled = true;
+                turretScript.disableThisTurret();
             }
         }
 

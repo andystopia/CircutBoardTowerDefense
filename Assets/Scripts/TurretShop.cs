@@ -45,7 +45,7 @@ public class TurretShop : MonoBehaviour
                 otherShop2Script.litDisplay.SetActive(false);
                 otherShop1Script.hasBeenSelected = false;
                 otherShop2Script.hasBeenSelected = false;
-                //spawn in the thing that follows you (inside the scirpt it follows you + kills itself if selectedTurret null)
+                //spawn in the thing that follows you (inside the scirpt it follows the mouse + kills itself if selectedTurret null)
             }
             else
             {

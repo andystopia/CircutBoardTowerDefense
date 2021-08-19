@@ -4100,6 +4100,7 @@ GameObject:
   - component: {fileID: 1872554603}
   - component: {fileID: 1872554602}
   - component: {fileID: 1872554601}
+  - component: {fileID: 1872554604}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4195,6 +4196,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &1872554604
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872554599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3043f2933b14f0a4c93ec41061d67fc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1884747907
 GameObject:
   m_ObjectHideFlags: 0
@@ -4365,6 +4385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1951271461}
   - component: {fileID: 1951271460}
+  - component: {fileID: 1951271462}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -4436,6 +4457,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!95 &1951271462
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951271459}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 006a916bb4e71f04dbd92b2e7c137f7f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1962104560
 GameObject:
   m_ObjectHideFlags: 0
