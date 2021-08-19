@@ -18,16 +18,8 @@ public class DeactivateWithinRange : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Tile"))
-        {
-            Debug.Log("Collided!");
-        }
-    }
-
-    /*
-    public void OnCollision(Collision collision)
+    
+    public void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collided");
         if (collision.gameObject.CompareTag("Tile"))
@@ -47,6 +39,6 @@ public class DeactivateWithinRange : MonoBehaviour
             }
         }
     }
-    */
+    
 
 }

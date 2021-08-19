@@ -21,7 +21,8 @@ public class Enemy : MonoBehaviour
     public List<GameObject> tilesToDisable;
     public bool isExploding;
     public GameObject deactivator;
-
+    public Turret turretScript;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class Enemy : MonoBehaviour
             if (isExploding)
             {
                 //particle effect
-                explodeEnemy();
+                explodeEnemy(transform.position, 5.0f);
             }
             Destroy(gameObject);
             return;
@@ -56,51 +57,23 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void explodeEnemy()
+    void explodeEnemy(Vector3 center, float radius)
     {
 
-        //Instantiate(deactivator, transform.position, Quaternion.identity);
-
-
-
-
-
-
-
-        
         //particle effect here
-        Debug.Log("working");
-
-        for (int i = 0; i < gameManagerScript.gameBoard.GetLength(0); i++)
+        //Debug.Log("working");
+        
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
         {
-            for (int r = 0; r < gameManagerScript.gameBoard.GetLength(1); r++)
+            if (hitCollider.gameObject.CompareTag("Turret"))
             {
-                
-
-                if (gameManagerScript.gameBoard[i, r] != null)
-                {
-
-                    //THE PROBLEM IS HERE \/ \/
-                    Debug.Log("gameboard " + gameManagerScript.gameBoard[i, r].transform.position);
-                    float distanceToTile = Vector3.Distance(gameManagerScript.gameBoard[i, r].transform.position, transform.position);
-                    //Vector3 difference = new Vector3(gameManagerScript.gameBoard[i, r].transform.position.x - transform.position.x, gameManagerScript.gameBoard[i, r].transform.position.y - transform.position.y, gameManagerScript.gameBoard[i, r].transform.position.z - transform.position.z);
-                    //float distanceToTile = Mathf.Sqrt(Mathf.Pow(difference.x, 2f) + Mathf.Pow(difference.y, 2f) + Mathf.Pow(difference.z, 2f));
-                    Debug.Log("DistanceToTile [" + i + ", " + r + "] = " + distanceToTile);
-
-                    if (distanceToTile <= 3.2f)
-                    {
-                        tilesToDisable.Add(gameManagerScript.gameBoard[i, r]);
-                    }
-
-                }
+                Debug.Log("Disabled!");
+                turretScript = hitCollider.gameObject.GetComponent<Turret>();
+                turretScript.isDisabled = true;
             }
         }
 
-        foreach (GameObject tile in tilesToDisable)
-        {
-            Debug.Log("disabling a Tile");
-            //tile.gameObject.GetComponent<Tile>().disableTileTemp();
-        }
         
     }
 

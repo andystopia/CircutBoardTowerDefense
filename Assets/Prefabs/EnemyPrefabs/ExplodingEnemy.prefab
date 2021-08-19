@@ -121,7 +121,8 @@ MonoBehaviour:
   damageValue: 5
   tilesToDisable: []
   isExploding: 1
-  deactivator: {fileID: 0}
+  deactivator: {fileID: 5780232224666762415, guid: 9496424fc070316408f99d31b2f6f000,
+    type: 3}
 --- !u!95 &5452682385452125087
 Animator:
   serializedVersion: 3

@@ -5564,7 +5564,7 @@ PrefabInstance:
         type: 3}
       propertyPath: deactivator
       value: 
-      objectReference: {fileID: 7598684086472652869, guid: 1d97eb5914ee9434cb9941cfe2a32192,
+      objectReference: {fileID: 5780232224666762415, guid: 9496424fc070316408f99d31b2f6f000,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6986d3c9adaa44d83e59307cf14ef9, type: 3}

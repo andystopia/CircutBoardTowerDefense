@@ -8,6 +8,8 @@ TagManager:
   - Motherboard
   - TurnNode
   - Tile
+  - Explosion
+  - Turret
   layers:
   - Default
   - TransparentFX

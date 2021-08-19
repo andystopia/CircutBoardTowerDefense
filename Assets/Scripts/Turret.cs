@@ -25,6 +25,7 @@ public class Turret : MonoBehaviour
     public float range;
     public bool isTeslaTurret;
     public bool isLaserTurret;
+    public bool isDisabled;
 
     private float rotationSpeed = 10;
 
@@ -34,12 +35,13 @@ public class Turret : MonoBehaviour
     {
         InvokeRepeating("UpdateTarget", 0, 0.25f);
         fireCooldownTime = 1 / rateOfFire;
+        isDisabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if((target != null) && (isDisabled == false))
         {
                 Vector3 directionToPoint = target.transform.position - transform.position;
                 Quaternion rotateToFaceTarget = Quaternion.LookRotation(directionToPoint);
