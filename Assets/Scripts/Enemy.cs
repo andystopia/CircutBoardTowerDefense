@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public float damageValue;
 
     public List<GameObject> tilesToDisable;
+    public List<GameObject> tilesToGoThrough;
     public bool isExploding;
     public GameObject deactivator;
     public Turret turretScript;
@@ -59,9 +60,6 @@ public class Enemy : MonoBehaviour
 
     void explodeEnemy(Vector3 center, float radius)
     {
-
-        //particle effect here
-        //Debug.Log("working");
         
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
@@ -74,28 +72,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+     
+ }
