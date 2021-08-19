@@ -257,9 +257,10 @@ GameObject:
   - component: {fileID: 7461236901299259384}
   - component: {fileID: 8533836737284022604}
   - component: {fileID: 2610814090338172077}
+  - component: {fileID: 3494784633422334225}
   m_Layer: 0
   m_Name: CannonTurret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -310,6 +311,7 @@ MonoBehaviour:
   range: 5
   isTeslaTurret: 0
   isLaserTurret: 0
+  isDisabled: 0
   fireSound: {fileID: 8300000, guid: e3eae517e0066b340af7fa7480802899, type: 3}
   audioSource: {fileID: 2610814090338172077}
 --- !u!82 &2610814090338172077
@@ -408,6 +410,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3494784633422334225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461236901299259391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7461236902513408099
 GameObject:
   m_ObjectHideFlags: 0

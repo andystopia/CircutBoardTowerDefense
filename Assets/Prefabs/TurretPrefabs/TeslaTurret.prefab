@@ -146,9 +146,10 @@ GameObject:
   - component: {fileID: 3831051052073700870}
   - component: {fileID: 3831051052073700871}
   - component: {fileID: -8702176335463853322}
+  - component: {fileID: -4430718077361728959}
   m_Layer: 0
   m_Name: TeslaTurret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
   range: 2.5
   isTeslaTurret: 1
   isLaserTurret: 0
+  isDisabled: 0
   fireSound: {fileID: 8300000, guid: ca19b1e5effa83d49ba7a3994a701b95, type: 3}
   audioSource: {fileID: -8702176335463853322}
 --- !u!82 &-8702176335463853322
@@ -297,6 +299,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &-4430718077361728959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831051052073700868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3831051052687769267
 GameObject:
   m_ObjectHideFlags: 0

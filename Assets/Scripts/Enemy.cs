@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     public List<GameObject> tilesToDisable;
     public List<GameObject> tilesToGoThrough;
     public bool isExploding;
-    public GameObject deactivator;
     public Turret turretScript;
     
     // Start is called before the first frame update
