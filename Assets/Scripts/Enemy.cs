@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     public float spawnRate;
     public float damageValue;
 
+    public GameObject EMPExplosion;
+    private bool notMoving = false;
+
     public List<GameObject> tilesToDisable;
     public List<GameObject> tilesToGoThrough;
     public bool isExploding;
@@ -42,10 +45,20 @@ public class Enemy : MonoBehaviour
             energyCounterScript.energy += energyDrop;
             if (isExploding)
             {
-                //particle effect
-                explodeEnemy(transform.position, 5.0f);
+                //this explodes the enemy
+                if (!notMoving)
+                {
+                    Vector3 spawnExplosionEffectLoco = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+                    Quaternion spawnExplosionRotation = new Quaternion(180, 0, 0, 180);
+                    Instantiate(EMPExplosion, spawnExplosionEffectLoco, spawnExplosionRotation);
+                    notMoving = true;
+                    StartCoroutine(disableTimer());
+                }
+            } else
+            {
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
             return;
         }
 
@@ -56,10 +69,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-    void explodeEnemy(Vector3 center, float radius)
+    IEnumerator disableTimer()
     {
-        
+        yield return new WaitForSeconds(0.3f);
+        disableTurretsInRange(transform.position, 5.0f);
+    }
+
+    void disableTurretsInRange(Vector3 center, float radius)
+    {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
@@ -69,8 +86,7 @@ public class Enemy : MonoBehaviour
                 turretScript.disableThisTurret();
             }
         }
-
+        Destroy(gameObject);
     }
 
-     
- }
+}

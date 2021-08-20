@@ -199,3 +199,8 @@ MonoBehaviour:
   speed: 0.5
   spawnRate: 0
   damageValue: 50
+  EMPExplosion: {fileID: 0}
+  tilesToDisable: []
+  tilesToGoThrough: []
+  isExploding: 0
+  turretScript: {fileID: 0}

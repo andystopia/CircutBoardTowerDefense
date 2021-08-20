@@ -10,6 +10,7 @@ public class Turret : MonoBehaviour
     public Transform firePoint;
     public GameObject turretDisplay;
     public GameObject turretAnimdisplay;
+    public GameObject hackedAnimDisplay;
 
     public Transform turretNeck;
     public float energyCost;
@@ -158,13 +159,17 @@ public class Turret : MonoBehaviour
 
     public void disableThisTurret()
     {
-        StartCoroutine(disableTurretTimer());
+        hackedAnimDisplay.SetActive(true);
+        isDisabled = true;
+        StartCoroutine(enableTurretTimer());
     }
 
-    private IEnumerator disableTurretTimer()
+    private IEnumerator enableTurretTimer()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.0f);
+        hackedAnimDisplay.SetActive(false);
         isDisabled = false;
+
     }
 
 }
