@@ -32,19 +32,26 @@ public class SpawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isOnCd == false)
         {
             wave += 1;
-            PickWaveType();
+            PickWaveType(2);
             isOnCd = true;
             enemySpawn.SetActive(false);
             StartCoroutine(Cooldown());
         }
     }
 
-    public void PickWaveType()
+    public void PickWaveType(int enemyTypes) //enemyTypes = number of enemy types to spawn in the wave (max 5)
     {
-        int waveType = Random.Range(0, enemies.Count - 1);
-        float armySize = (enemies[waveType].GetComponent<Enemy>().armySize) + ((enemies[waveType].GetComponent<Enemy>().armySizeGain) * (wave - 1));
-        float spawnRate = enemies[waveType].GetComponent<Enemy>().spawnRate;
-        StartCoroutine(SpawnWave(waveType, armySize, spawnRate));
+        for (int i = 0; i < enemyTypes; i++)
+        {
+            int waveType = Random.Range(0, enemies.Count - 1);
+            float armySize = (enemies[waveType].GetComponent<Enemy>().armySize) + ((enemies[waveType].GetComponent<Enemy>().armySizeGain) * (wave - 1));
+            float spawnRate = enemies[waveType].GetComponent<Enemy>().spawnRate;
+            if (i >= 1)
+            {
+                StartCoroutine(SpawnWave(waveType, armySize, spawnRate + 0.5f));
+            }
+            else StartCoroutine(SpawnWave(waveType, armySize, spawnRate));
+        }
     }
 
     IEnumerator SpawnWave(int enemyType, float armySize, float spawnRate)
