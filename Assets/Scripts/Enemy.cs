@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     IEnumerator disableTimer()
     {
         yield return new WaitForSeconds(0.3f);
-        disableTurretsInRange(transform.position, 5.0f);
+        disableTurretsInRange(transform.position, 3.0f);
     }
 
     void disableTurretsInRange(Vector3 center, float radius)
