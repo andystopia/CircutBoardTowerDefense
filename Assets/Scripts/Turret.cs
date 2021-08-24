@@ -26,6 +26,9 @@ public class Turret : MonoBehaviour
     public float range;
     public bool isTeslaTurret;
     public bool isLaserTurret;
+    public bool isFiringLaser = false;
+    private Vector3 placeToFireLaser;
+    private Quaternion angleToFireLaser;
     public bool isDisabled;
 
     public AudioClip fireSound;
@@ -45,10 +48,15 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((target != null) && (isDisabled == false))
+        if(((target != null) && (isDisabled == false)) && !isFiringLaser)
         {
                 Vector3 directionToPoint = target.transform.position - transform.position;
                 Quaternion rotateToFaceTarget = Quaternion.LookRotation(directionToPoint);
+            if (isLaserTurret)
+            {
+                placeToFireLaser = target.transform.position;
+                angleToFireLaser = rotateToFaceTarget;      //i think so?
+            }
                 Vector3 rotation = Quaternion.Lerp(turretNeck.rotation, rotateToFaceTarget, Time.deltaTime * rotationSpeed).eulerAngles;
                 turretNeck.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             
@@ -69,13 +77,15 @@ public class Turret : MonoBehaviour
         //do animation here
         turretDisplay.SetActive(false);
         turretAnimdisplay.SetActive(true);
+        //temp below
+        //audioSource.clip = fireSound;
+        //audioSource.Play();
         if (!isLaserTurret)
         {
-            audioSource.clip = fireSound;
-            audioSource.Play();
             StartCoroutine(makeProjectile());
         } else
         {
+            isFiringLaser = true;
             StartCoroutine(makeLaser());
         }
         
@@ -84,10 +94,17 @@ public class Turret : MonoBehaviour
     IEnumerator makeLaser()
     {
         yield return new WaitForSeconds(animStopTime);
+        for(int i = 0; i < 5; i++)
+        {
+            //this ain't working
+            Vector3 spawnLoco = new Vector3(transform.position.x - placeToFireLaser.x*i*0.2f, transform.position.y, transform.position.z - placeToFireLaser.z*i*0.2f);
+            Debug.Log("spawn at " + spawnLoco);
+            Instantiate(projectilePrefab, spawnLoco, angleToFireLaser);
+        }
         //make the laser thingies
         //have it damage an enemy once
         //pause movement
-        Debug.Log("Make LASER NOW!");
+        Debug.Log("Firing Laser!");
         StartCoroutine(animStop());
     }
 
@@ -99,7 +116,8 @@ public class Turret : MonoBehaviour
         {
             //end laser
             //resume movement
-            Debug.Log("delete laser objects");
+            isFiringLaser = false;
+            Debug.Log("Stopping Laser!");
         }
         turretAnimdisplay.SetActive(false);
         turretDisplay.SetActive(true);

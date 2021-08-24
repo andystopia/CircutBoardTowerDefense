@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     private float damage;
     private float speed = 20;
     public GameObject hitParticle;
+    public bool isLaserProjectile;
 
     public int energyLeft;
     public float range;
@@ -86,25 +87,34 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target == null)
+        if (!isLaserProjectile)
         {
-            Destroy(gameObject);
-            return;
-        } else
-        {
-            Vector3 directionToPoint = target.transform.position - transform.position;
-            float goThisFarThisFrame = speed * Time.deltaTime;
-
-            //damage the target and delete itself without going past the target
-            if(directionToPoint.magnitude <= goThisFarThisFrame * 4.5)
+            if (target == null)
             {
-                TargetHit();
+                Destroy(gameObject);
+                return;
             }
             else
             {
-                transform.LookAt(target.transform);
-                transform.Translate(directionToPoint.normalized * goThisFarThisFrame, Space.World);
+                Vector3 directionToPoint = target.transform.position - transform.position;
+                float goThisFarThisFrame = speed * Time.deltaTime;
+
+                //damage the target and delete itself without going past the target
+                if (directionToPoint.magnitude <= goThisFarThisFrame * 4.5)
+                {
+                    TargetHit();
+                }
+                else
+                {
+                    transform.LookAt(target.transform);
+                    transform.Translate(directionToPoint.normalized * goThisFarThisFrame, Space.World);
+                }
             }
+        } else
+        {
+
+            //Destroy(gameObject, 5);
         }
+        
     }
 }

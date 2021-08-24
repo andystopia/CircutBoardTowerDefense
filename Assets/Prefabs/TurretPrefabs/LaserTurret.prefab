@@ -129,10 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656e9a02eb261e469ca7b0f42146ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 643409982628877262, guid: 9223b5b658b9dcf4087ee7cd86709be4,
-    type: 3}
+  projectilePrefab: {fileID: 0}
   firePoint: {fileID: 6839925556505500675}
-  turretDisplay: {fileID: 0}
+  turretDisplay: {fileID: 8497840752460508260}
   turretAnimdisplay: {fileID: 8598350586139793204}
   hackedAnimDisplay: {fileID: 2066748162975261475}
   turretNeck: {fileID: 7376110387619588725}
@@ -143,11 +142,12 @@ MonoBehaviour:
   upgradeCost: 400
   damagePerShot: 45
   damageUp: 15
-  rateOfFire: 0.5
-  animStopTime: 1
+  rateOfFire: 0.35
+  animStopTime: 2
   range: 5
   isTeslaTurret: 0
   isLaserTurret: 1
+  isFiringLaser: 0
   isDisabled: 0
   fireSound: {fileID: 0}
   audioSource: {fileID: 0}
