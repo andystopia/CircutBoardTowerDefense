@@ -10,6 +10,8 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI waveDisplayText;
     public GameObject tutorialDisplayText;
     public GameObject enemySpawn;
+    public AudioClip spawnSound;
+    public AudioSource audioSource;
     public float callCooldown;
     private float callCooldownBase;
     public bool isOnCd = false;
@@ -31,6 +33,8 @@ public class SpawnManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnCd == false)
         {
+            audioSource.clip = spawnSound;
+            audioSource.Play();
             wave += 1;
             PickWaveType(2);
             isOnCd = true;

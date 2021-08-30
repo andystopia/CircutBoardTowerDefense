@@ -202,6 +202,7 @@ MonoBehaviour:
   range: 2.5
   isTeslaTurret: 1
   isLaserTurret: 0
+  isFiringLaser: 0
   isDisabled: 0
   fireSound: {fileID: 8300000, guid: ca19b1e5effa83d49ba7a3994a701b95, type: 3}
   audioSource: {fileID: -8702176335463853322}
@@ -216,7 +217,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
