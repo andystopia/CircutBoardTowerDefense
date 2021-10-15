@@ -40,11 +40,11 @@ public class Tile : MonoBehaviour
     {
         if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
-            if (turret == null)
+            if (turret == null) //if the tile has no turret in it
             {
-                if (gameManagerScript.selectedTurret != null)
+                if (gameManagerScript.selectedTurret != null)   //if the player is about to place a turret
                 {
-                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
+                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)   //if the player can afford to place the tile
                     {
                         highlightTileGreen.gameObject.SetActive(true);
                         rangeIndicator.gameObject.SetActive(true);
@@ -62,14 +62,14 @@ public class Tile : MonoBehaviour
                 }
             }
             else
-            {
-                if (gameManagerScript.selectedTurret != null)
+            {   //if the tile has a turret in it
+                if (gameManagerScript.selectedTurret != null)   //if the player is trying to place a turret
                 {
                     highlightTileRed.gameObject.SetActive(true);
                 }
                 else
-                {
-                    highlightTileWhite.gameObject.SetActive(true);
+                {   //if the player wants to select the tile to do tileMenu
+                    highlightTileWhite.gameObject.SetActive(true);      //WHY ISN'T this working???     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 }
             }
         }

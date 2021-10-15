@@ -113,7 +113,7 @@ public class Projectile : MonoBehaviour
         } else
         {
 
-            //Destroy(gameObject, 5);
+            Destroy(gameObject, 5);
         }
         
     }

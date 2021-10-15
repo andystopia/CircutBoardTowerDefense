@@ -77,7 +77,7 @@ public class Turret : MonoBehaviour
         //do animation here
         turretDisplay.SetActive(false);
         turretAnimdisplay.SetActive(true);
-        //temp below
+        //temp comment out below
         //audioSource.clip = fireSound;
         //audioSource.Play();
         if (!isLaserTurret)
@@ -94,8 +94,28 @@ public class Turret : MonoBehaviour
     IEnumerator makeLaser()
     {
         yield return new WaitForSeconds(animStopTime);
-        for(int i = 0; i < 5; i++)
+
+
+        if (transform.position.x > placeToFireLaser.x)
         {
+
+        }
+        else
+        {
+
+        }
+        if (transform.position.z > placeToFireLaser.z)
+        {
+
+        }
+        else
+        {
+
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            
+
             //this ain't working
             Vector3 spawnLoco = new Vector3(transform.position.x - placeToFireLaser.x*i*0.2f, transform.position.y, transform.position.z - placeToFireLaser.z*i*0.2f);
             Debug.Log("spawn at " + spawnLoco);
