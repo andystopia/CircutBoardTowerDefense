@@ -77,9 +77,14 @@ public class Turret : MonoBehaviour
         //do animation here
         turretDisplay.SetActive(false);
         turretAnimdisplay.SetActive(true);
-        //temp comment out below
+        //temp comment out below. Once a laser sound is in use that too and don't use if statement
         //audioSource.clip = fireSound;
         //audioSource.Play();
+        if (!isLaserTurret)
+        {
+            audioSource.clip = fireSound;
+            audioSource.Play();
+        }
         if (!isLaserTurret)
         {
             StartCoroutine(makeProjectile());
