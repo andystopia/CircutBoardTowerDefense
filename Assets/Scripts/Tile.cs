@@ -14,7 +14,6 @@ public class Tile : MonoBehaviour
     public Turret turret;
 
     private GameManager gameManagerScript;
-    //private TurretShop turretShopScript;
     private EnergyCounter energyCounterScript;
 
 
@@ -57,27 +56,6 @@ public class Tile : MonoBehaviour
                 {
                     highlightTileWhite.gameObject.SetActive(true);
                 }
-
-                /*
-                if (gameManagerScript.selectedTurret != null)   //if the player is about to place a turret
-                {
-                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)   //if the player can afford to place the tile
-                    {
-                        highlightTileGreen.gameObject.SetActive(true);
-                        rangeIndicator.gameObject.SetActive(true);
-                        rangeIndicator.transform.localScale = new Vector3(gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, 1);
-
-                    }
-                    else
-                    {
-                        highlightTileRed.gameObject.SetActive(true);
-                    }
-                }
-                else
-                {
-                    highlightTileWhite.gameObject.SetActive(true);
-                }
-                */
             }
             else
             {
@@ -89,15 +67,6 @@ public class Tile : MonoBehaviour
                 {   //if the player wants to select the tile to do tileMenu
                     highlightTileWhite.gameObject.SetActive(true);      //WHY ISN'T this working???     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 }
-                ////if the tile has a turret in it
-                //if (gameManagerScript.selectedTurret != null)   //if the player is trying to place a turret
-                //{
-                //    highlightTileRed.gameObject.SetActive(true);
-                //}
-                //else
-                //{   //if the player wants to select the tile to do tileMenu
-                //    highlightTileWhite.gameObject.SetActive(true);      //WHY ISN'T this working???     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                //}
             }
         }
     }
@@ -136,32 +105,9 @@ public class Tile : MonoBehaviour
                     }
 
                 }
-                /*
-                if (gameManagerScript.selectedTurret != null)
-                {
-                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
-                    {
-                        turret = gameManagerScript.selectedTurret;
-                        energyCounterScript.energy -= turret.GetComponent<Turret>().energyCost;
-                        Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
-                        Instantiate(turret, spawnPos, transform.rotation);
-                    }
-                    else
-                    {
-                        Vector3 spawnPos = new Vector3(0, 8, 0);
-                        var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
-                        gO.GetComponent<TextMesh>().text = "You Can't Afford That.";
-                        gO.GetComponent<Transform>().rotation = new Quaternion(90, 0, 0, 90);
-                    }
-                }
-                */
             }
             else
             {
-                /*
-                if (gameManagerScript.selectedTurret != null)
-                {
-                */
                 if (gameManagerScript.turretShop.SelectedShop != null) {
                     Vector3 spawnPos = new Vector3(0, 8, 0);
                     var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
