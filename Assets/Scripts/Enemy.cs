@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
     void disableTurretsInRange(Vector3 center, float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.gameObject.CompareTag("Turret"))

@@ -5,8 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[,] gameBoard = new GameObject[21, 13];
+
+    /// <summary>
+    ///  Tile Prefab: initialized by Unity.
+    ///  Usage: idk.
+    /// </summary>
     public GameObject tilePrefab;
-    public GameObject selectedTurret;
+    //public Turret selectedTurret;
+
+    public FullTurretShop turretShop;
+
     public bool gameOver;
     public bool inTileMenu = false;
 
