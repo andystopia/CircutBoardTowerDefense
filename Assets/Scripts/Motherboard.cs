@@ -21,7 +21,7 @@ public class Motherboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpText.text = ("Motherboard: " + hp + "/" + startingHp);
+        hpText.text = $"Motherboard: {hp}/{startingHp}";
 
         if (hp <= 0)
         {

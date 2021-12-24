@@ -11,10 +11,9 @@ public class Tile : MonoBehaviour
 
     public GameObject tileText;
 
-    public GameObject turret;
+    public Turret turret;
 
     private GameManager gameManagerScript;
-    private TurretShop turretShopScript;
     private EnergyCounter energyCounterScript;
 
 
@@ -42,28 +41,25 @@ public class Tile : MonoBehaviour
         {
             if (turret == null) //if the tile has no turret in it
             {
-                if (gameManagerScript.selectedTurret != null)   //if the player is about to place a turret
+                if (gameManagerScript.turretShop.SelectedShop != null )
                 {
-                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)   //if the player can afford to place the tile
+                    if (gameManagerScript.turretShop.SelectedShop.energyCost <= energyCounterScript.energy)
                     {
                         highlightTileGreen.gameObject.SetActive(true);
                         rangeIndicator.gameObject.SetActive(true);
-                        rangeIndicator.transform.localScale = new Vector3(gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, gameManagerScript.selectedTurret.GetComponent<Turret>().range - 1, 1);
-
-                    }
-                    else
+                        rangeIndicator.transform.localScale = new Vector3(gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, 1);
+                    } else
                     {
                         highlightTileRed.gameObject.SetActive(true);
-                    }
-                }
-                else
+                    } 
+                } else
                 {
                     highlightTileWhite.gameObject.SetActive(true);
                 }
             }
             else
-            {   //if the tile has a turret in it
-                if (gameManagerScript.selectedTurret != null)   //if the player is trying to place a turret
+            {
+                if (gameManagerScript.turretShop.SelectedShop != null)
                 {
                     highlightTileRed.gameObject.SetActive(true);
                 }
@@ -89,12 +85,14 @@ public class Tile : MonoBehaviour
         {
             if (turret == null)
             {
-                if (gameManagerScript.selectedTurret != null)
+
+                if (gameManagerScript.turretShop.SelectedShop != null)
                 {
-                    if (gameManagerScript.selectedTurret.GetComponent<Turret>().energyCost <= energyCounterScript.energy)
+                    if (gameManagerScript.turretShop.SelectedShop.energyCost <= energyCounterScript.energy)
                     {
-                        turret = gameManagerScript.selectedTurret;
-                        energyCounterScript.energy -= turret.GetComponent<Turret>().energyCost;
+                        turret = gameManagerScript.turretShop.SelectedShop.shopTurret;
+
+                        energyCounterScript.energy -= gameManagerScript.turretShop.SelectedShop.energyCost;
                         Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
                         Instantiate(turret, spawnPos, transform.rotation);
                     }
@@ -105,12 +103,12 @@ public class Tile : MonoBehaviour
                         gO.GetComponent<TextMesh>().text = "You Can't Afford That.";
                         gO.GetComponent<Transform>().rotation = new Quaternion(90, 0, 0, 90);
                     }
+
                 }
             }
             else
             {
-                if (gameManagerScript.selectedTurret != null)
-                {
+                if (gameManagerScript.turretShop.SelectedShop != null) {
                     Vector3 spawnPos = new Vector3(0, 8, 0);
                     var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
                     gO.GetComponent<TextMesh>().text = "You Can't Place That Here.";
@@ -119,8 +117,6 @@ public class Tile : MonoBehaviour
                 else
                 {
                     openTileMenu();
-
-
                 }
             }
         }

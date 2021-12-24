@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   litDisplay: {fileID: 362157649}
   deleteDisplay: {fileID: 957328333}
   turretMouseDrag: {fileID: 0}
-  hasBeenSelected: 0
+  shop: {fileID: 997794286}
   energyCost: 225
   otherShop1: {fileID: 1395127644}
   otherShop2: {fileID: 1211658089}
@@ -1980,6 +1980,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &997794285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 997794287}
+  - component: {fileID: 997794286}
+  m_Layer: 0
+  m_Name: FullTurretShop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &997794286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997794285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860fe8b60f54c468b80b5c951c6477be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purchasableTurrets:
+  - {fileID: 1211658090}
+  - {fileID: 1395127649}
+  - {fileID: 926886371}
+  defaultTurretShop: {fileID: 0}
+--- !u!4 &997794287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997794285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 27
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &998073654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,7 +2493,7 @@ MonoBehaviour:
   litDisplay: {fileID: 790854}
   deleteDisplay: {fileID: 1722034450}
   turretMouseDrag: {fileID: 0}
-  hasBeenSelected: 0
+  shop: {fileID: 997794286}
   energyCost: 150
   otherShop1: {fileID: 1395127644}
   otherShop2: {fileID: 926886370}
@@ -3065,7 +3113,7 @@ MonoBehaviour:
   litDisplay: {fileID: 857424201}
   deleteDisplay: {fileID: 294135886}
   turretMouseDrag: {fileID: 0}
-  hasBeenSelected: 0
+  shop: {fileID: 997794286}
   energyCost: 75
   otherShop1: {fileID: 1211658089}
   otherShop2: {fileID: 926886370}
@@ -3714,7 +3762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 7654675732882380221, guid: b7a58e0f718044d439ba35730dad9371,
     type: 3}
-  selectedTurret: {fileID: 0}
+  turretShop: {fileID: 997794286}
   gameOver: 0
   inTileMenu: 0
 --- !u!1 &1750063188 stripped
