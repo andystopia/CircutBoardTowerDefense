@@ -1591,15 +1591,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a21f4f4986890409119ee2f84b5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopTurret: {fileID: 3831051052073700868, guid: 9b17779c9605f6b4384a7b4aec6e2a19,
+  shopTurret: {fileID: 3831051052073700871, guid: 9b17779c9605f6b4384a7b4aec6e2a19,
     type: 3}
   litDisplay: {fileID: 362157649}
   deleteDisplay: {fileID: 957328333}
   turretMouseDrag: {fileID: 0}
   shop: {fileID: 997794286}
   energyCost: 225
-  otherShop1: {fileID: 1395127644}
-  otherShop2: {fileID: 1211658089}
 --- !u!65 &926886372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2488,15 +2486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a21f4f4986890409119ee2f84b5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopTurret: {fileID: 7461236901299259391, guid: 6c78b62db2a5397489648ceac6131ea9,
+  shopTurret: {fileID: 8533836737284022604, guid: 6c78b62db2a5397489648ceac6131ea9,
     type: 3}
   litDisplay: {fileID: 790854}
   deleteDisplay: {fileID: 1722034450}
   turretMouseDrag: {fileID: 0}
   shop: {fileID: 997794286}
   energyCost: 150
-  otherShop1: {fileID: 1395127644}
-  otherShop2: {fileID: 926886370}
 --- !u!65 &1211658091
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3108,15 +3104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a21f4f4986890409119ee2f84b5c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopTurret: {fileID: 988817686221350486, guid: 15f9f850c3edf1140b91880dab49823e,
-    type: 3}
+  shopTurret: {fileID: 1235720074, guid: 15f9f850c3edf1140b91880dab49823e, type: 3}
   litDisplay: {fileID: 857424201}
   deleteDisplay: {fileID: 294135886}
   turretMouseDrag: {fileID: 0}
   shop: {fileID: 997794286}
   energyCost: 75
-  otherShop1: {fileID: 1211658089}
-  otherShop2: {fileID: 926886370}
 --- !u!1001 &1478498647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3760,7 +3753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cec7fbbbe5ece40bc4cdabd9c4ce59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 7654675732882380221, guid: b7a58e0f718044d439ba35730dad9371,
+  tilePrefab: {fileID: 7654675732882380218, guid: b7a58e0f718044d439ba35730dad9371,
     type: 3}
   turretShop: {fileID: 997794286}
   gameOver: 0
@@ -4419,7 +4412,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1872554603
 Canvas:
   m_ObjectHideFlags: 0

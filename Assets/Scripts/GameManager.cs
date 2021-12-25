@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[,] gameBoard = new GameObject[21, 13];
+    public Tile[,] gameBoard = new Tile[21, 13];
 
     /// <summary>
     ///  Tile Prefab: initialized by Unity.
     ///  Usage: idk.
     /// </summary>
-    public GameObject tilePrefab;
+    public Tile tilePrefab;
     //public Turret selectedTurret;
 
     public FullTurretShop turretShop;
+    public TileManager tileManager;
 
     public bool gameOver;
     public bool inTileMenu = false;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
+        tileManager = new TileManager(tilePrefab, new Dimensions<int>(21, 13), this);
         instantiateTiles();
         spawnInTiles();
     }
@@ -129,14 +130,19 @@ public class GameManager : MonoBehaviour
         float offsetX = -15; 
         float offsetZ = -9f; 
         Vector3 spawnLoco;
-        for (int i = 0; i < gameBoard.GetLength(0); i++)
+        for (int col = 0; col < gameBoard.GetLength(0); col++)
         {
-            for (int r = 0; r < gameBoard.GetLength(1); r++)
+            for (int row = 0; row < gameBoard.GetLength(1); row++)
             {
-                if(gameBoard[i, r] != null)
+                if(gameBoard[col, row] != null)
                 {
-                    spawnLoco = new Vector3((1.5f * i + offsetX), -0.15f, (1.5f * r + offsetZ));
-                    Instantiate(gameBoard[i, r], spawnLoco, Quaternion.identity);
+                    spawnLoco = new Vector3((1.5f * col + offsetX), -0.15f, (1.5f * row + offsetZ));
+
+                    // instantiate based on the default value in the array
+                    // replacing the default with each unique instaintiation.
+                    gameBoard[col, row] = Instantiate(gameBoard[col, row], spawnLoco, Quaternion.identity);
+                    // let each instance know where it is in space.
+                    gameBoard[col, row].Location = new Location<int>(row, col);
                 }
             }
         }
@@ -150,6 +156,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        tileManager.Update();
     }
 }

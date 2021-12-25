@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -189,6 +188,7 @@ public class Turret : MonoBehaviour
                 closestEnemy = enemy;
             }
         }
+
 
         if (closestEnemy != null && shortestDistance <= range)
         {

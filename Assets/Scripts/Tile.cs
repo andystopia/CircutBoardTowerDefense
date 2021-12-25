@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
@@ -19,6 +17,10 @@ public class Tile : MonoBehaviour
 
 
     public TileMenu myTileMenu;
+    private Location<int> location;
+
+    public Location<int> Location { get => location; set => location = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,27 +34,35 @@ public class Tile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
-    private void OnMouseEnter()
+
+
+    public void OnMouseEnter()
+    {
+        gameManagerScript.tileManager.Selected = this;
+    }
+
+    public void Hovered()
     {
         if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
             if (turret == null) //if the tile has no turret in it
             {
-                if (gameManagerScript.turretShop.SelectedShop != null )
+                if (gameManagerScript.turretShop.SelectedShop != null)
                 {
                     if (gameManagerScript.turretShop.SelectedShop.energyCost <= energyCounterScript.energy)
                     {
                         highlightTileGreen.gameObject.SetActive(true);
                         rangeIndicator.gameObject.SetActive(true);
                         rangeIndicator.transform.localScale = new Vector3(gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, 1);
-                    } else
+                    }
+                    else
                     {
                         highlightTileRed.gameObject.SetActive(true);
-                    } 
-                } else
+                    }
+                }
+                else
                 {
                     highlightTileWhite.gameObject.SetActive(true);
                 }
@@ -73,6 +83,11 @@ public class Tile : MonoBehaviour
 
     private void OnMouseExit()
     {
+        gameManagerScript.tileManager.EnsureDeselected(this);
+    }
+
+    public void Deselect()
+    {
         highlightTileWhite.gameObject.SetActive(false);
         highlightTileGreen.gameObject.SetActive(false);
         highlightTileRed.gameObject.SetActive(false);
@@ -80,6 +95,12 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown()
+    {
+        AttemptToPlaceTurret();
+    }
+
+
+    private void AttemptToPlaceTurret()
     {
         if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
@@ -108,7 +129,8 @@ public class Tile : MonoBehaviour
             }
             else
             {
-                if (gameManagerScript.turretShop.SelectedShop != null) {
+                if (gameManagerScript.turretShop.SelectedShop != null)
+                {
                     Vector3 spawnPos = new Vector3(0, 8, 0);
                     var gO = Instantiate(tileText, spawnPos, Quaternion.identity, transform);
                     gO.GetComponent<TextMesh>().text = "You Can't Place That Here.";
@@ -141,11 +163,6 @@ public class Tile : MonoBehaviour
     {
         gameManagerScript.inTileMenu = false;
         myTileMenu.hide();
-        
+
     }
-
-
-
-
-
 }
