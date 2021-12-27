@@ -33,7 +33,6 @@ public class TileManager
             selected = value;
             if (selected != null)
             {
-                Debug.Log($"Selected : {selected.Location}");
                 selected.Hovered();
             }
         }
@@ -45,16 +44,16 @@ public class TileManager
         Location<int> deltaLoc = Location<int>.MakeFromCardinalDirection(direction);
         if (Selected != null)
         {
-            Location<int> transform = selected.Location;
-            do
+            Location<int> transform = Location<int>.Add(selected.Location, deltaLoc);
+            while (IsLocationValid(transform))
             {
-                transform = Location<int>.Add(transform, deltaLoc);
                 if (manager.gameBoard[transform.column, transform.row] != null)
                 {
                     Selected = manager.gameBoard[transform.column, transform.row];
                     return true;
                 }
-            } while (IsLocationValid(transform));
+                transform = Location<int>.Add(transform, deltaLoc);
+            }
         }
         return false;
 
@@ -91,6 +90,11 @@ public class TileManager
         if (Input.GetKeyDown(KeyCode.A))
         {
             AttemptMoveCardinalDirection(CardinalDirection.West);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && Selected != null)
+        {
+            Selected.AttemptToPlaceTurret();
         }
     }
 }
