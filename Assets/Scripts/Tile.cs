@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = System.Random;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IFocusable
 {
-    public GameObject highlightTileWhite;
-    public GameObject highlightTileGreen;
-    public GameObject highlightTileRed;
     public GameObject rangeIndicator;
 
     public GameObject tileText;
@@ -22,11 +21,13 @@ public class Tile : MonoBehaviour
     public Location<int> Location { get => location; set => location = value; }
 
 
+    private MeshRenderer meshRenderer;
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
+        meshRenderer = GetComponent<MeshRenderer>();
         //tileMenuScript = GameObject.Find("TileMenu").GetComponent<TileMenu>();
         myTileMenu.hide();
     }
@@ -47,35 +48,41 @@ public class Tile : MonoBehaviour
     {
         if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
+            // gameManagerScript.focus.FocusOn(this);
+            // gameManagerScript.focus.FocusOn(this, new Color((float) random.NextDouble(), (float) random.NextDouble(), (float) random.NextDouble()));
             if (turret == null) //if the tile has no turret in it
             {
                 if (gameManagerScript.turretShop.SelectedShop != null)
                 {
                     if (gameManagerScript.turretShop.SelectedShop.energyCost <= energyCounterScript.energy)
                     {
-                        highlightTileGreen.gameObject.SetActive(true);
+                        gameManagerScript.focus.FocusOn(this, Color.green);
+                        // highlightTileGreen.gameObject.SetActive(true);
                         rangeIndicator.gameObject.SetActive(true);
                         rangeIndicator.transform.localScale = new Vector3(gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, gameManagerScript.turretShop.SelectedShop.shopTurret.range - 1, 1);
                     }
                     else
                     {
-                        highlightTileRed.gameObject.SetActive(true);
+                        gameManagerScript.focus.FocusOn(this, Color.red);
+                        // highlightTileRed.gameObject.SetActive(true);
                     }
                 }
                 else
                 {
-                    highlightTileWhite.gameObject.SetActive(true);
+                    gameManagerScript.focus.FocusOn(this, Color.white);
+                    // highlightTileWhite.gameObject.SetActive(true);
                 }
             }
             else
             {
                 if (gameManagerScript.turretShop.SelectedShop != null)
                 {
-                    highlightTileRed.gameObject.SetActive(true);
+                    gameManagerScript.focus.FocusOn(this, Color.red);
+                    // highlightTileRed.gameObject.SetActive(true);
                 }
                 else
                 {   //if the player wants to select the tile to do tileMenu
-                    highlightTileWhite.gameObject.SetActive(true);      //WHY ISN'T this working???     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    gameManagerScript.focus.FocusOn(this, Color.white);
                 }
             }
         }
@@ -88,10 +95,7 @@ public class Tile : MonoBehaviour
 
     public void Deselect()
     {
-        highlightTileWhite.gameObject.SetActive(false);
-        highlightTileGreen.gameObject.SetActive(false);
-        highlightTileRed.gameObject.SetActive(false);
-        rangeIndicator.gameObject.SetActive(false);
+        gameManagerScript.focus.StopFocusOn(this);
     }
 
     private void OnMouseDown()
@@ -100,7 +104,7 @@ public class Tile : MonoBehaviour
     }
 
 
-    private void AttemptToPlaceTurret()
+    public void AttemptToPlaceTurret()
     {
         if (!gameManagerScript.gameOver || !gameManagerScript.inTileMenu)
         {
@@ -165,4 +169,7 @@ public class Tile : MonoBehaviour
         myTileMenu.hide();
 
     }
+
+    public Bounds FocusBounds => meshRenderer.bounds;
+    public Vector3 FocusCenter => transform.position;
 }
