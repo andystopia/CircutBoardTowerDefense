@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool inTileMenu = false;
 
 
+    public FocusIndicator focus;
     // Start is called before the first frame update
     void Start()
     {
