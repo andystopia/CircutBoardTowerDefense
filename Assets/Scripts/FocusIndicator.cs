@@ -3,42 +3,8 @@ using InterpolationFunction;
 using UnityEngine;
 using VectorInterpolator;
 
-internal static class CommonInterpolatorExtensions
+public class FocusIndicator : MonoBehaviour, IFocusIndicator
 {
-    public static InterpolationFunction.InterpolationFunction GetInterpolationFunction(this FocusIndicator.CommonInterpolators interpolators)
-    {
-        return interpolators switch
-        {
-            FocusIndicator.CommonInterpolators.Ease => CubicBezierInterpolator.Ease,
-            FocusIndicator.CommonInterpolators.EaseIn => CubicBezierInterpolator.EaseIn,
-            FocusIndicator.CommonInterpolators.EaseInOut => CubicBezierInterpolator.EaseInOut,
-            FocusIndicator.CommonInterpolators.EaseOut => CubicBezierInterpolator.EaseOut,
-            FocusIndicator.CommonInterpolators.Linear => PolynomialInterpolator.Linear,
-            FocusIndicator.CommonInterpolators.Quadratic => PolynomialInterpolator.Quadratic,
-            FocusIndicator.CommonInterpolators.Cubic => PolynomialInterpolator.Cubic,
-            FocusIndicator.CommonInterpolators.InverseQuadratic => InversePolynomialInterpolator.InverseQuadratic,
-            FocusIndicator.CommonInterpolators.InverseCubic => InversePolynomialInterpolator.InverseCubic,
-            FocusIndicator.CommonInterpolators.EaseOutElastic => new EaseOutElastic(),
-            _ => throw new ArgumentOutOfRangeException(nameof(interpolators), interpolators, null)
-        };
-    }
-}
-public class FocusIndicator : MonoBehaviour
-{
-
-    public enum CommonInterpolators
-    {
-        Ease,
-        EaseIn,
-        EaseInOut,
-        EaseOut,
-        Linear,
-        Quadratic,
-        Cubic,
-        InverseQuadratic,
-        InverseCubic,
-        EaseOutElastic,
-    }
     /// <summary>
     ///  how wide each side of the focus rectangle is.
     /// </summary>
@@ -131,19 +97,22 @@ public class FocusIndicator : MonoBehaviour
     /// Whatever the current color of the this object is.
     /// </summary>
     private Color currentColor;
-    
-    
 
-    // Start is called before the first frame update
-    void Start()
+
+
+    public void Awake()
     {
         // give each one the unit vector in each direction from the origin.
         leftEdge = new FocusEdge(transform.Find(LEFT_EDGE_NAME), edgeScale, new Vector3(-1, 0, 0), new Vector3(0, 1, 0));
         rightEdge = new FocusEdge(transform.Find(RIGHT_EDGE_NAME), edgeScale, new Vector3(1, 0, 0), new Vector3(0, 1, 0));
         bottomEdge = new FocusEdge(transform.Find(BOTTOM_EDGE_NAME), edgeScale, new Vector3(0, 0, -1), new Vector3(1, 0, 0));
         topEdge = new FocusEdge(transform.Find(TOP_EDGE_NAME), edgeScale, new Vector3(0, 0, 1), new Vector3(1, 0, 0));
-        
-        FocusedOn = null;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        // FocusedOn = null;
         
         currentColor = Color.white;
     }
@@ -197,17 +166,18 @@ public class FocusIndicator : MonoBehaviour
 
         // animate the colors.
         colorInterpolator = new VectorInterpolator.VectorInterpolator(
-                new HSVColor(CurrentColor).AsVector(), 
-                new HSVColor(targetColor).AsVector(), AnimationFrameDuration,
-                colorInterpolationFunction.GetInterpolationFunction());
+            new HSVColor(CurrentColor).AsVector(), 
+            new HSVColor(targetColor).AsVector(), AnimationFrameDuration,
+            colorInterpolationFunction.GetInterpolationFunction());
         
         if (focusable == null)
         {
             return;
         }
         
+        Debug.Log($"${focusable.FocusBounds.center} - ${focusable.FocusBounds.extents}");
         // gotta make sure we are always on the top, so preserve the current `y`.
-        AnimateCenterAt(focusable.FocusCenter);
+        AnimateCenterAt(focusable.FocusBounds.center);
 
         // get the bounds of the focusable.
         AnimateBoundBox(focusable.FocusBounds.extents);
@@ -221,6 +191,7 @@ public class FocusIndicator : MonoBehaviour
     {
         FocusOn(focusable, Color.white);
     }
+    
 
     /// <summary>
     /// Bound the focus around a vector3's x and z components.
@@ -269,8 +240,8 @@ public class FocusIndicator : MonoBehaviour
     /// <param name="height"></param>
     private void BoundBoxStateless(float width, float height)
     {
-        float farEdgeWidth = width + edgeScale;
-        float farEdgeHeight = height + edgeScale;
+        float farEdgeWidth = height + edgeScale;
+        float farEdgeHeight = width + edgeScale;
 
         float lengthHorizontal = farEdgeHeight * 2;
         float lengthVertical = farEdgeWidth * 2;
@@ -298,10 +269,4 @@ public class FocusIndicator : MonoBehaviour
             FocusedOn = null;
         }
     }
-}
-
-public interface IFocusable
-{
-    Bounds FocusBounds { get; }
-    Vector3 FocusCenter { get; }
 }
