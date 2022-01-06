@@ -26,4 +26,9 @@ public struct Dimensions<T>
         this.width = width;
         this.height = height;
     }
+
+    public override string ToString()
+    {
+        return $"Dimensions : <{width}, {height}>";
+    }
 }
