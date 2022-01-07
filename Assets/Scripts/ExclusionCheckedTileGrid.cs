@@ -19,11 +19,6 @@ public class ExclusionCheckedTileGrid : PrefabGrid<Tile> {
     /// <param name="exclusionZones"></param>
     public ExclusionCheckedTileGrid(Dimensions<int> dimensions, GameManager gameManager, TileSelectionManager tileSelectionManager, ExclusiveSubsectionFocusManager tileFocusManager, Tile prefab, ICollection<IExclusionZone> exclusionZones) : base(dimensions, prefab)
     {
-        foreach (var exclusionZone in exclusionZones)
-        {
-            var z = (RectangleExclusionZone) exclusionZone;
-            Debug.Log($"z: ${z.location1}, ${z.location2}");
-        }
         GridInstantiate(new ExclusionCheckedTileGridInstantiationCreator(gameManager, tileSelectionManager, tileFocusManager, exclusionZones));
     }
 }
