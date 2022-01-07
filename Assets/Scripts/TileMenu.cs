@@ -44,7 +44,7 @@ public class TileMenu : MonoBehaviour
 
     void closeMenu()
     {
-        tileOpened.closeTileMenu();
+        // tileOpened.closeTileMenu();
     }
 
 }

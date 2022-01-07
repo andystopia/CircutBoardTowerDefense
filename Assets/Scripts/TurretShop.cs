@@ -1,54 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using ActiveOrInactiveStateManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class TurretShop : MonoBehaviour
+/// <summary>
+/// A class that represents the entire turret shop collection.
+///
+/// A turret must be registered with this class in unity
+/// before it can be used as the active turret.
+/// </summary>
+public class TurretShop : BasicExclusiveStateManager<IOldTurretShopBehavior>
 {
-    public Turret shopTurret;
-    public GameObject litDisplay;
-    public GameObject deleteDisplay;
-    public GameObject turretMouseDrag;
-    public FullTurretShop shop;
+    private List<TurretShopEntry> childEntries;
+    private CircularCollection<TurretShopEntry> entries;
 
-    public float energyCost;
 
-    private GameManager gameManagerScript;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private bool IsSelected()
-    {
-        return ReferenceEquals(shop.SelectedShop, this);
-    }
-
-    private void OnMouseDown()
-    {
-        if (!gameManagerScript.inTileMenu)
-        {
-            shop.ToggleActiveShop(this);
-        }
-    }
-
-    void OnMouseEnter()
-    {
-        if (IsSelected() && !gameManagerScript.inTileMenu)
-        {
-            deleteDisplay.SetActive(true);
-        }
-    }
-
-    void OnMouseExit()
-    {
-        deleteDisplay.SetActive(false);
+        entries = new CircularCollection<TurretShopEntry>(childEntries);
+        // focusManager = GetComponent<TurretShopFocusManager>();
     }
 }
