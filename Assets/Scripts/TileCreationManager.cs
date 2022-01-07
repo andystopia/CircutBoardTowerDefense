@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class TileCreationManager : MonoBehaviour
@@ -6,16 +8,39 @@ public class TileCreationManager : MonoBehaviour
     [SerializeField] private GameManager manager;
     [SerializeField] private Tile tilePrefab;
 
-    public TileGrid TileGrid { get; private set; }
+    public ExclusionCheckedTileGrid TileGrid { get; private set; }
     private TileSelectionManager selectionManager;
     private TileFocusManager focusManager;
-    
+
+    [SerializeField]
+    private List<EditorGridPositionedObjectMonoBehaviour> pathNodes;
+
+    private List<IExclusionZone> exclusionZones = new List<IExclusionZone>
+    {
+        // turret menu
+        new RectangleExclusionZone(new Location<int>(0, 0), new Location<int>(3, 10)),
+        // energy counter
+        new RectangleExclusionZone(new Location<int>(3, 0), new Location<int>(3, 3)),
+        // enemy spawner
+        new RectangleExclusionZone(new Location<int>(12, 0), new Location<int>(12, 4)),
+        // motherboard entrance
+        new RectangleExclusionZone(new Location<int>(0, 14), new Location<int>(0, 18)),
+        // wave numberx
+        new RectangleExclusionZone(new Location<int>(12, 5), new Location<int>(12, 6))
+    };
     
     private void Awake()
     {
+        // add all on path to the exclusion list.
+        for (var i = 0; i < pathNodes.Count - 1; i++)
+        {
+            exclusionZones.Add(new RectangleExclusionZone(pathNodes[i].GetLocation(), pathNodes[i + 1].GetLocation()));
+        }
+        
+        
         selectionManager = GetComponent<TileSelectionManager>();
         focusManager = GetComponent<TileFocusManager>();
-        TileGrid = new TileGrid(manager, selectionManager, focusManager, tilePrefab);
+        TileGrid = new ExclusionCheckedTileGrid(new Dimensions<int>(21, 13), manager, selectionManager, focusManager, tilePrefab, exclusionZones);
     }
 
     private void Start()
@@ -24,8 +49,7 @@ public class TileCreationManager : MonoBehaviour
         // to the focus area manager, 
         // so it will probably cause problems down the 
         // line.
-        Debug.Log("here", this);
-        var randomTile = TileGrid.GetRandomTile();
+        var randomTile = TileGrid.GetRandomNonNullGridItem();
         selectionManager.Activate(randomTile.GetFocusInteraction());
         focusManager.Activate(randomTile.GetFocusInteractor());
     }
