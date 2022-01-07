@@ -3559,7 +3559,7 @@ MonoBehaviour:
   shop: {fileID: 1890313166}
   shopTurret: {fileID: 3831051052073700871, guid: 9b17779c9605f6b4384a7b4aec6e2a19,
     type: 3}
-  litDisplay: {fileID: 1868802677}
+  litDisplay: {fileID: 2105526607}
   deleteDisplay: {fileID: 0}
   turretMouseDrag: {fileID: 0}
   energyCost: 0
@@ -7301,7 +7301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2b1c518b054eccb1f4e8af38a91329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: f5833f1f7bf16c44198985410385051f, type: 3}
+  sprite: {fileID: 21300000, guid: f89ac78f2e8c47a458d48160927720f8, type: 3}
   turretName: Tesla Turret
   cost: 225
   turret: {fileID: 3831051052073700871, guid: 9b17779c9605f6b4384a7b4aec6e2a19, type: 3}
