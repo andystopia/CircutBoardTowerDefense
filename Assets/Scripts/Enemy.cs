@@ -81,10 +81,13 @@ public class Enemy : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject.CompareTag("Turret"))
+            if (hitCollider.gameObject.TryGetComponent(out TileTurretBehavior behavior))
             {
-                turretScript = hitCollider.gameObject.GetComponent<Turret>();
-                turretScript.disableThisTurret();
+                var turret = behavior.GetTurret();
+                if (turret != null)
+                {
+                    turret.disableThisTurret();
+                }
             }
         }
         Destroy(gameObject);
