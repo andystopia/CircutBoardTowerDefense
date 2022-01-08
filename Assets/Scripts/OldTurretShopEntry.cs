@@ -8,7 +8,7 @@ public interface IOldTurretShopBehavior : IActiveOrInactiveState
     float GetEnergyCost();
 }
 
-public class OldTurretShopEntry : MonoBehaviour, IFocusable, IOldTurretShopBehavior
+public class OldTurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
 {
     [SerializeField] private BasicTogglableExclusiveStateManager<IOldTurretShopBehavior> shop;
     
@@ -20,13 +20,10 @@ public class OldTurretShopEntry : MonoBehaviour, IFocusable, IOldTurretShopBehav
     [SerializeField] private float energyCost;
     
     private GameManager gameManagerScript;
-
-    private MeshRenderer meshRenderer;
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -47,9 +44,7 @@ public class OldTurretShopEntry : MonoBehaviour, IFocusable, IOldTurretShopBehav
         }
     }
 
-    public Bounds FocusBounds => meshRenderer.bounds;
-    
-    
+
     public void OnActivate()
     {
         litDisplay.SetActive(true);
