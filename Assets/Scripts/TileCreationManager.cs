@@ -13,9 +13,8 @@ public class TileCreationManager : MonoBehaviour
     private TileSelectionManager selectionManager;
     private TileFocusManager focusManager;
 
-    [SerializeField]
-    private List<EditorGridPositionedObjectMonoBehaviour> pathNodes;
-
+    [SerializeField] private EnemyPathManager pathManager;
+    
     private List<IExclusionZone> exclusionZones = new List<IExclusionZone>
     {
         // turret menu
@@ -33,9 +32,11 @@ public class TileCreationManager : MonoBehaviour
     private void Awake()
     {
         // add all on path to the exclusion list.
-        for (var i = 0; i < pathNodes.Count - 1; i++)
+        var activePath = pathManager.GetActivePath();
+        
+        for (var i = 0; i < activePath.Points.Count - 1; i++)
         {
-            exclusionZones.Add(new RectangleExclusionZone(pathNodes[i].GetLocation(), pathNodes[i + 1].GetLocation()));
+            exclusionZones.Add(new RectangleExclusionZone(activePath.Points[i], activePath.Points[i + 1]));
         }
         
         

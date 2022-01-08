@@ -6,10 +6,22 @@ using UnityEngine;
 /// Represents the abstract concept of a location.
 /// </summary>
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
-public readonly struct GridLocation
+[Serializable]
+public struct GridLocation
 {
-    public readonly int row;
-    public readonly int column;
+    // the following fields cannot
+    // be made readonly. It doesn't
+    // understand that unity cares 
+    // about readonly
+    [SerializeField]
+    private int row;
+    [SerializeField]
+    private int column;
+
+    public readonly int Row => row;
+    public readonly int Column => column;
+    
+    
 
     public GridLocation(int row, int column)
     {

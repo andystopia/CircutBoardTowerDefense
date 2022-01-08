@@ -59,7 +59,7 @@ namespace GameGrid
         /// <returns></returns>
         public bool IsLocationValid(GridLocation location)
         {
-            return location.row < Dimensions.height && location.row >= 0 && location.column < Dimensions.width && location.column >= 0;
+            return location.Row < Dimensions.height && location.Row >= 0 && location.Column < Dimensions.width && location.Column >= 0;
         }
 
         /// <summary>
@@ -118,8 +118,8 @@ namespace GameGrid
         /// <param name="location"></param>
         public T this[GridLocation location]
         {
-            get => gridItems[location.column, location.row];
-            set => gridItems[location.column, location.row] = value;
+            get => gridItems[location.Column, location.Row];
+            set => gridItems[location.Column, location.Row] = value;
         }
     }
 }

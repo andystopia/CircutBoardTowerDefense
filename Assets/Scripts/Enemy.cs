@@ -1,9 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using GameGrid;
+using Unity.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private IEnumerator<GridLocation> path;
+    private Vector3 targetedPosition;
+    private float yOffset = 0.5f;
+    
+    
     public GameObject nextNode;
     private Motherboard motherboardScript;
     private EnergyCounter energyCounterScript;
@@ -34,11 +43,58 @@ public class Enemy : MonoBehaviour
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+    public void Init(IEnumerator<GridLocation> path)
+    {
+        Debug.Log("Init called");
+        this.path = path;
+        Debug.Log($"path current: {path.Current}");
+        path.MoveNext();
+        transform.position = GridSpaceGlobalSpaceConverter.FromLocation(path.Current, yOffset);
+        AdvanceToNextNode();
+    }
+
+    private bool AdvanceToNextNode()
+    {
+        if (path == null)
+        {
+            Debug.Log("path is null.");
+            return true;
+        }
+        var isMoved = path.MoveNext();
+        if (isMoved)
+        {
+            targetedPosition = GridSpaceGlobalSpaceConverter.FromLocation(path.Current, yOffset);
+            transform.LookAt(targetedPosition);
+        }
+        return isMoved;
+    }
+
+    private bool IsReachedCurrentNode()
+    {
+        var position = transform.position;
+        return Enumerable.Range(0, 3).All(i => Math.Abs(position[i] - targetedPosition[i]) < 1e-6);
+    }
     // Update is called once per frame
     void Update()
     {
+        // if we have no path, wait until we can get one.
+        if (path == null) return;
+        // transform.position = Vector3.MoveTowards(transform.position, nextNode.transform.position, speed * Time.deltaTime);
+
+        if (IsReachedCurrentNode())
+        {
+            // if there are no more nodes to go to
+            if (!AdvanceToNextNode())
+            {
+                // destroy the object.
+                motherboardScript.hp -= damageValue;
+                Destroy(gameObject);
+                return;
+            }
+        }
         
-        transform.position = Vector3.MoveTowards(transform.position, nextNode.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetedPosition, speed * Time.deltaTime);
+
         if (health <= 0)
         {
             //chance for spawning a chip
@@ -61,12 +117,12 @@ public class Enemy : MonoBehaviour
             
             return;
         }
-
-        if (transform.position.z < -9.5)
-        {
-            motherboardScript.hp -= damageValue;
-            Destroy(gameObject);
-        }
+        //
+        // if (transform.position.z < -9.5)
+        // {
+        //     motherboardScript.hp -= damageValue;
+        //     Destroy(gameObject);
+        // }
     }
 
     IEnumerator disableTimer()

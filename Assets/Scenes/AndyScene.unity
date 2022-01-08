@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4719,19 +4719,7 @@ MonoBehaviour:
   manager: {fileID: 831659071}
   tilePrefab: {fileID: 7654675732882380218, guid: b7a58e0f718044d439ba35730dad9371,
     type: 3}
-  pathNodes:
-  - {fileID: 1134139344}
-  - {fileID: 910252637}
-  - {fileID: 1260361559}
-  - {fileID: 2125783373}
-  - {fileID: 474205587}
-  - {fileID: 1078656163}
-  - {fileID: 1734178711}
-  - {fileID: 1324306357}
-  - {fileID: 1034424299}
-  - {fileID: 2030973934}
-  - {fileID: 1071678709}
-  - {fileID: 1409378004}
+  pathManager: {fileID: 1458239377}
 --- !u!114 &1081149967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5390,6 +5378,7 @@ MonoBehaviour:
   audioSource: {fileID: 1230176601}
   callCooldown: 3
   isOnCd: 0
+  pathManager: {fileID: 1458239377}
 --- !u!1 &1248256022
 GameObject:
   m_ObjectHideFlags: 0
@@ -6483,6 +6472,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1458239376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1458239378}
+  - component: {fileID: 1458239377}
+  m_Layer: 0
+  m_Name: PathManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1458239377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458239376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4901b146f00452a964c6bec85601e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 11400000, guid: 61219f68285184edab7425648f6c6947, type: 2}
+--- !u!4 &1458239378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458239376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1499085012
 GameObject:
   m_ObjectHideFlags: 0

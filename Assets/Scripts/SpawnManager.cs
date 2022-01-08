@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     public float callCooldown;
     private float callCooldownBase;
     public bool isOnCd = false;
-
+    [SerializeField] private EnemyPathManager pathManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,9 @@ public class SpawnManager : MonoBehaviour
         //{
         // enemies[i].GetComponent<Enemy>();
         // }
+        
+        // for test exploder enemy.
+        GameObject.FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().CreateLocationEnumerator());
         callCooldownBase = callCooldown;
     }
 
@@ -65,8 +68,15 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             GameObject temp = Instantiate(enemies[enemyType], transform.position, transform.rotation);
-            temp.GetComponent<Enemy>().health += (temp.GetComponent<Enemy>().healthGain) * (wave - 1);
-            temp.GetComponent<Enemy>().energyDrop += (temp.GetComponent<Enemy>().energyGain) * (wave - 1);
+            var enemy = temp.GetComponent<Enemy>();
+            enemy.health += (temp.GetComponent<Enemy>().healthGain) * (wave - 1);
+            enemy.energyDrop += (temp.GetComponent<Enemy>().energyGain) * (wave - 1);
+            var locationEnumerator = pathManager.GetActivePath().CreateLocationEnumerator();
+            if (locationEnumerator == null)
+            {
+                Debug.Log("enumerator null in spawnwave", this);
+            }
+            enemy.Init(locationEnumerator);
             counter -= 1;
         }
     }

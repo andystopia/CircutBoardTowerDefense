@@ -42,7 +42,7 @@ public readonly struct RectangleExclusionZone : IExclusionZone
     /// <returns>true if it is in the zone, else false</returns>
     public bool IsInZone(GridLocation loc)
     {
-        return IsSandwiched(location1.column, loc.column, location2.column) &&
-               IsSandwiched(location1.row, loc.row, location2.row);
+        return IsSandwiched(location1.Column, loc.Column, location2.Column) &&
+               IsSandwiched(location1.Row, loc.Row, location2.Row);
     }
 }
