@@ -56,9 +56,18 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
         AttemptToPlaceTurret();
     }
 
+    /// <summary>
+    /// This method returns the active state
+    /// of the tile.
+    /// </summary>
+    /// <returns></returns>
     public (FilledState, TurretShopSelectionStatus) GetState()
     {
+        // determine whether the tile has something in it.
         var filledState = turretBehavior.GetTurret() != null ? FilledState.Filled : FilledState.Empty;
+        
+        // determine whether there is an active turret
+        // in the shop and if we can afford it.
         TurretShopSelectionStatus affordability;
 
         if (turretShop.GetActive() == null)
@@ -79,40 +88,10 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 
     public void Hovered()
     {
-        if (turretBehavior.GetTurret() == null) // if the tile has no turret in it
+        if (GetState() == (FilledState.Empty, TurretShopSelectionStatus.AffordableActiveTurret))
         {
-            if (turretShop.GetActive() != null)
-            {
-                if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
-                {
-                    // focusInteractor.SetFocusDisplayColor(Color.green);
-
-
-                    // show the range
-                    rangeIndicator.SetRange(turretShop.GetActive().AssociatedTurretPrefab().range);
-                    rangeIndicator.Show();
-                }
-                else
-                {
-                    // focusInteractor.SetFocusDisplayColor(Color.red);
-                }
-            }
-            else
-            {
-                // focusInteractor.SetFocusDisplayColor(Color.white);
-            }
-        }
-        else
-        {
-            if (turretShop.GetActive() != null)
-            {
-                // focusInteractor.SetFocusDisplayColor(Color.red);
-            }
-            else
-            {
-                // for future possible tile menu.
-                // focusInteractor.SetFocusDisplayColor(Color.white);
-            }
+            rangeIndicator.SetRange(turretShop.GetActive().AssociatedTurretPrefab().range);
+            rangeIndicator.Show();
         }
     }
     
@@ -123,40 +102,38 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 
     public void AttemptToPlaceTurret()
     {
-        if (turretBehavior.GetTurret() == null)
+        switch (GetState())
         {
-            if (turretShop.GetActive() != null)
-            {
-                if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
-                {
-                    var turret = turretShop.GetActive().AssociatedTurretPrefab();
-
-                    energyCounter.energy -= turretShop.GetActive().GetEnergyCost();
-                    Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
-                    turretBehavior.SetTurret(Instantiate(turret, spawnPos, transform.rotation));
-                }
-                else
-                {
-                    DisplayWarningText("You Can't Afford That.");
-                }
-
-            }
-        }
-        else
-        {
-            if (turretShop.GetActive() != null)
-            {
-                DisplayWarningText("You Can't Place That Here.");
-            }
-            else
-            {
-                // we'll get here eventually.
-                // openTileMenu();
-            }
+            case (FilledState.Empty, TurretShopSelectionStatus.AffordableActiveTurret):
+                PlaceActiveShopTurret();
+                break;
+            
+            case (FilledState.Empty, TurretShopSelectionStatus.TooExpensiveActiveTurret):
+                DisplayWarningText("You Can't Afford That.");
+                break;
+            
+            case (FilledState.Filled, _):
+                DisplayWarningText("Turret already exists!");
+                break;
         }
     }
-    
-    
+
+    /// <summary>
+    /// Places a new turret at this location.
+    ///
+    /// Preconditions
+    ///  * There must be an active turret.
+    ///  * We must be able to afford it.
+    /// </summary>
+    private void PlaceActiveShopTurret()
+    {
+        var turret = turretShop.GetActive().AssociatedTurretPrefab();
+
+        energyCounter.energy -= turretShop.GetActive().GetEnergyCost();
+        Vector3 spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
+        turretBehavior.SetTurret(Instantiate(turret, spawnPos, transform.rotation));
+    }
+
 
     /// <summary>
     /// Displays warning text on screen.
