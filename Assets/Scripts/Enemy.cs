@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 {
     private IEnumerator<GridLocation> path;
     private Vector3 targetedPosition;
-    private float yOffset = 0.5f;
+    private float yOffset = -0.5f;
     
     private Motherboard motherboardScript;
     private EnergyCounter energyCounterScript;
