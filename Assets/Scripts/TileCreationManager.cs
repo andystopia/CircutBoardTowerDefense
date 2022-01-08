@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using DefaultNamespace;
+using GameGrid;
 using UnityEngine;
 
 public class TileCreationManager : MonoBehaviour

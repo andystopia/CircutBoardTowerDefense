@@ -165,7 +165,6 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
     /// </summary>
     public void OnActivate()
     {
-        // focusInteractor.GetManager().Activate(focusInteractor);
         Hovered();
     }
     
