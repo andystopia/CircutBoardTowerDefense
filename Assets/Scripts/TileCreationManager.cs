@@ -6,7 +6,7 @@ using UnityEngine;
 public class TileCreationManager : MonoBehaviour
 {
     [SerializeField] private GameManager manager;
-    [SerializeField] private Tile tilePrefab;
+    [SerializeField] private Tile.Tile tilePrefab;
 
     public ExclusionCheckedTileGrid TileGrid { get; private set; }
     private TileSelectionManager selectionManager;

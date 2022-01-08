@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using ActiveOrInactiveStateManagement;
 using ObserverPattern;
 using PrimitiveFocus;
+using Tile;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -11,9 +12,9 @@ using UnityEngine.PlayerLoop;
 /// <summary>
 /// The interaction between the tile and the 
 /// </summary>
-public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
+public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 {
-    private BasicExclusiveStateManager<ITileSelectionInteraction> tileSelectionManager;
+    private BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager;
     [SerializeField] private GameObject tileText;
     private BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop;
     private EnergyCounter energyCounter;
@@ -43,7 +44,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
 
     }
     
-    public void Init(EnergyCounter energyCounter, BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop, BasicExclusiveStateManager<ITileSelectionInteraction> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager)
+    public void Init(EnergyCounter energyCounter, BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop, BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager)
     {
         this.energyCounter = energyCounter;
         this.turretShop = turretShop;
@@ -55,6 +56,26 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
         AttemptToPlaceTurret();
     }
 
+    public (FilledState, TurretShopSelectionStatus) GetState()
+    {
+        var filledState = turretBehavior.GetTurret() != null ? FilledState.Filled : FilledState.Empty;
+        TurretShopSelectionStatus affordability;
+
+        if (turretShop.GetActive() == null)
+        {
+            affordability = TurretShopSelectionStatus.NoActiveTurret;
+        } 
+        else if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
+        {
+            affordability = TurretShopSelectionStatus.AffordableActiveTurret;
+        }
+        else
+        {
+            affordability = TurretShopSelectionStatus.TooExpensiveActiveTurret;
+        }
+        
+        return (filledState, affordability);
+    } 
 
     public void Hovered()
     {
@@ -64,7 +85,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
             {
                 if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
                 {
-                    focusInteractor.SetFocusDisplayColor(Color.green);
+                    // focusInteractor.SetFocusDisplayColor(Color.green);
 
 
                     // show the range
@@ -73,24 +94,24 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
                 }
                 else
                 {
-                    focusInteractor.SetFocusDisplayColor(Color.red);
+                    // focusInteractor.SetFocusDisplayColor(Color.red);
                 }
             }
             else
             {
-                focusInteractor.SetFocusDisplayColor(Color.white);
+                // focusInteractor.SetFocusDisplayColor(Color.white);
             }
         }
         else
         {
             if (turretShop.GetActive() != null)
             {
-                focusInteractor.SetFocusDisplayColor(Color.red);
+                // focusInteractor.SetFocusDisplayColor(Color.red);
             }
             else
             {
                 // for future possible tile menu.
-                focusInteractor.SetFocusDisplayColor(Color.white);
+                // focusInteractor.SetFocusDisplayColor(Color.white);
             }
         }
     }
@@ -107,7 +128,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteraction
             if (turretShop.GetActive() != null)
             {
                 if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
-                {;
+                {
                     var turret = turretShop.GetActive().AssociatedTurretPrefab();
 
                     energyCounter.energy -= turretShop.GetActive().GetEnergyCost();

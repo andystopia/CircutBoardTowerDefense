@@ -1,14 +1,16 @@
 using ActiveOrInactiveStateManagement;
 using PrimitiveFocus;
+using Tile;
 
-public interface ITileSelectionInteraction : IActiveOrInactiveState
+public interface ITileSelectionInteractor : IActiveOrInactiveState
 {
     public void Init(EnergyCounter energyCounter, BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop,
-        BasicExclusiveStateManager<ITileSelectionInteraction> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager);
+        BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager);
     void Hovered();
     void UnHovered();
     void AttemptToPlaceTurret();
 
     IGridPositionedItem GetGridPositionedComponent();
     IFocusInteractor GetFocusInteractor();
+    (FilledState, TurretShopSelectionStatus) GetState();
 }

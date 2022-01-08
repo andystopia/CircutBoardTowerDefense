@@ -11,7 +11,7 @@ public class NaiveTileGridInstantiationCreator : TileInstantiationCreator
     {
     }
 
-    public override Tile CreateInstance(PrefabGrid<Tile> grid, Location<int> location)
+    public override Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
     {
         if (grid[location] == null) return null;
         return base.CreateInstance(grid, location);

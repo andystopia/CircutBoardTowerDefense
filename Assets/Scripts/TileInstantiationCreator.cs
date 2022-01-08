@@ -9,7 +9,7 @@ using UnityEngine;
 /// to word space, as well as
 /// initialize all its components.
 /// </summary>
-public class TileInstantiationCreator : IGridInstantiationCreator<Tile>
+public class TileInstantiationCreator : IGridInstantiationCreator<Tile.Tile>
 {
     protected readonly GameManager gameManager;
     protected readonly TileSelectionManager tileSelectionManager;
@@ -44,13 +44,13 @@ public class TileInstantiationCreator : IGridInstantiationCreator<Tile>
     /// <param name="grid"></param>
     /// <param name="location"> the local grid space location </param>
     /// <returns> a newly instantiated tile </returns>
-    public virtual Tile CreateInstance(PrefabGrid<Tile> grid, Location<int> location)
+    public virtual Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
     {
         var spawnLoco = new Vector3((1.5f * location.column + offsetX), -0.15f, (1.5f * location.row + offsetZ));
 
         var currentTile = Object.Instantiate(grid.Prefab, spawnLoco, Quaternion.identity, tileSelectionManager.transform);
         // initializing the components.
-        currentTile.GetComponent<ITileSelectionInteraction>().Init(gameManager.GetEnergyCounter(),
+        currentTile.GetComponent<ITileSelectionInteractor>().Init(gameManager.GetEnergyCounter(),
             gameManager.GetTurretShop(), tileSelectionManager, tileFocusManager);
         currentTile.GetComponent<ITileFocusDisplay>().Init(gameManager.focus);
         currentTile.GetComponent<IPrefabGridPositionedItem>().SetLocation(location);

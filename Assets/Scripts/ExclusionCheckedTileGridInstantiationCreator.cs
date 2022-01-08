@@ -44,7 +44,7 @@ public class ExclusionCheckedTileGridInstantiationCreator : TileInstantiationCre
     /// <param name="grid"></param>
     /// <param name="location"></param>
     /// <returns></returns>
-    public override Tile CreateInstance(PrefabGrid<Tile> grid, Location<int> location)
+    public override Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
     {
         if (IsLocationExcluded(location)) return null;
         return base.CreateInstance(grid, location);

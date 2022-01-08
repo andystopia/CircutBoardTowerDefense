@@ -37,13 +37,13 @@ public class TileKeyboardInputManager : MonoBehaviour
         focusManager = GetComponent<TileFocusManager>();
     }
 
-    public void Activate(Tile tile)
+    public void Activate(Tile.Tile tile)
     {
         selectionManager.Activate(tile.GetFocusInteraction());
         focusManager.Activate(tile.GetFocusInteractor());
     }
 
-    public ITileSelectionInteraction GetActive()
+    public ITileSelectionInteractor GetActive()
     {
         return selectionManager.GetActive();
     }
@@ -63,7 +63,7 @@ public class TileKeyboardInputManager : MonoBehaviour
         Location<int> tileLocation = Location<int>.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
         while (creationManager.TileGrid.IsLocationValid(tileLocation))
         {
-            Tile possibleNextFocusTile = creationManager.TileGrid[tileLocation];
+            Tile.Tile possibleNextFocusTile = creationManager.TileGrid[tileLocation];
             if (possibleNextFocusTile != null)
             {
                 Activate(possibleNextFocusTile);

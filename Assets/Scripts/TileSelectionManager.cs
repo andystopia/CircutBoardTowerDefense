@@ -2,7 +2,7 @@ using System;
 using ActiveOrInactiveStateManagement;
 using UnityEngine;
 
-public class TileSelectionManager : BasicTogglableExclusiveStateManager<ITileSelectionInteraction>
+public class TileSelectionManager : BasicTogglableExclusiveStateManager<ITileSelectionInteractor>
 {
     private TileCreationManager creationManager;
     private TileFocusManager focusManager;
@@ -13,7 +13,7 @@ public class TileSelectionManager : BasicTogglableExclusiveStateManager<ITileSel
         focusManager = GetComponent<TileFocusManager>();
     }
 
-    public override void Activate(ITileSelectionInteraction item)
+    public override void Activate(ITileSelectionInteractor item)
     {
         if (focusManager.IsActiveFocusRegion())
         {

@@ -3,7 +3,7 @@ using ActiveOrInactiveStateManagement;
 
 public interface ITileStateInformation
 {
-    void WithState(EnergyCounter energy, BasicExclusiveStateManager<ITileSelectionInteraction> tileSelectionManager,
+    void WithState(EnergyCounter energy, BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager,
         BasicExclusiveStateManager<IOldTurretShopBehavior> turretShopManager);
 }
 
@@ -17,6 +17,6 @@ public interface ITileStateInformation
 public interface ITileStateInternalInformation
 {
     public EnergyCounter getEnergy();
-    public BasicExclusiveStateManager<ITileSelectionInteraction> GetTileSelectionManager();
+    public BasicExclusiveStateManager<ITileSelectionInteractor> GetTileSelectionManager();
     public BasicExclusiveStateManager<IOldTurretShopBehavior> TurretShopManager();
 }

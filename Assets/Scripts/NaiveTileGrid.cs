@@ -7,7 +7,7 @@ using PrimitiveFocus;
 /// the exclusion mask of where
 /// we cannot place turrets.
 /// </summary>
-public class NaiveTileGrid : PrefabGrid<Tile>
+public class NaiveTileGrid : PrefabGrid<Tile.Tile>
 {
     private const int cols = 21;
     private const int rows = 13;
@@ -19,7 +19,7 @@ public class NaiveTileGrid : PrefabGrid<Tile>
     /// <param name="tileSelectionManager"></param>
     /// <param name="tileFocusManager"></param>
     /// <param name="prefab"></param>
-    public NaiveTileGrid(GameManager gameManager, TileSelectionManager tileSelectionManager, ExclusiveSubsectionFocusManager tileFocusManager, Tile prefab) : base(GetTemplate(rows, cols, prefab), prefab)
+    public NaiveTileGrid(GameManager gameManager, TileSelectionManager tileSelectionManager, ExclusiveSubsectionFocusManager tileFocusManager, Tile.Tile prefab) : base(GetTemplate(rows, cols, prefab), prefab)
     {
         GridInstantiate(new NaiveTileGridInstantiationCreator(gameManager, tileSelectionManager, tileFocusManager));
     }
@@ -31,9 +31,9 @@ public class NaiveTileGrid : PrefabGrid<Tile>
     /// <param name="creationCols"></param>
     /// <param name="prefab"></param>
     /// <returns></returns>
-    private static Tile[,] GetTemplate(int creationRows, int creationCols, Tile prefab)
+    private static Tile.Tile[,] GetTemplate(int creationRows, int creationCols, Tile.Tile prefab)
     {
-        var tiles = new Tile[creationCols, creationRows];
+        var tiles = new Tile.Tile[creationCols, creationRows];
         
         for (int i = 0; i < tiles.GetLength(0); i++)
         {

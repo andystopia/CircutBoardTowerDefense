@@ -7,9 +7,9 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EnergyCounter energyCounter;
-    [SerializeField] private Tile tilePrefab;
+    [SerializeField] private Tile.Tile tilePrefab;
 
-    private ITileSelectionInteraction tileSelectionInteraction;
+    private ITileSelectionInteractor tileSelectionInteraction;
     
     public BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop;
     [FormerlySerializedAs("tileManager")] public TileSelectionManager tileSelectionManager;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tileSelectionInteraction = tilePrefab.GetComponent<ITileSelectionInteraction>();
+        tileSelectionInteraction = tilePrefab.GetComponent<ITileSelectionInteractor>();
     }
 
     public EnergyCounter GetEnergyCounter()
