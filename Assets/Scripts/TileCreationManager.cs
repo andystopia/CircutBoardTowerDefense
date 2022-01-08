@@ -25,7 +25,7 @@ public class TileCreationManager : MonoBehaviour
         new RectangleExclusionZone(new GridLocation(12, 0), new GridLocation(12, 4)),
         // motherboard entrance
         new RectangleExclusionZone(new GridLocation(0, 14), new GridLocation(0, 18)),
-        // wave numberx
+        // wave number
         new RectangleExclusionZone(new GridLocation(12, 5), new GridLocation(12, 6))
     };
     

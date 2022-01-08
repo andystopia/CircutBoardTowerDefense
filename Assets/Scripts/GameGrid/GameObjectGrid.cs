@@ -11,7 +11,7 @@ namespace GameGrid
     /// dealing with grids of objects.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class GameObjectGrid<T>
+    public class GameObjectGrid<T> where T : class
     {
         public Dimensions<int> Dimensions { get; }
         private readonly T[,] gridItems;
@@ -95,6 +95,11 @@ namespace GameGrid
                     yield return new GridLocation(row, col);
                 }
             }
+        }
+
+        public T GetOrNull(GridLocation location)
+        {
+            return IsLocationValid(location) ? this[location] : null;
         }
     
         /// <summary>

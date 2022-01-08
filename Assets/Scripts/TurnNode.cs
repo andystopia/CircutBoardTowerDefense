@@ -21,11 +21,11 @@ public class TurnNode : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.transform.position.Equals(transform.position))
-        {
-            other.GetComponent<Enemy>().nextNode = nextNode;
-            other.transform.LookAt(nextNode.transform);
-        }
+        // if (other.transform.position.Equals(transform.position))
+        // {
+        //     other.GetComponent<Enemy>().nextNode = nextNode;
+        //     other.transform.LookAt(nextNode.transform);
+        // }
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using ActiveOrInactiveStateManagement;
+using PathGrid;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,8 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver;
     public bool inTileMenu = false;
-
-
+    
     public FocusIndicator focus;
     // Start is called before the first frame update
     void Start()

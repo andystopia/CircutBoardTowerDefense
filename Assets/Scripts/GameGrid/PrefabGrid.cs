@@ -6,7 +6,7 @@ namespace GameGrid
     /// covariant with the associated object.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class PrefabGrid<T> : GameObjectGrid<T>
+    public abstract class PrefabGrid<T> : GameObjectGrid<T> where T : class
     {
         public T Prefab { get; }
 

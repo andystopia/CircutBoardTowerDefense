@@ -6,7 +6,7 @@ namespace GameGrid
     /// in a grid.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IGridInstantiationCreator<T>
+    public interface IGridInstantiationCreator<T> where T : class
     {
         /// <summary>
         /// Defines the method that allows the creation

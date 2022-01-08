@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 [Serializable]
-public struct GridLocation
+public struct GridLocation : IEquatable<GridLocation>
 {
     // the following fields cannot
     // be made readonly. It doesn't
@@ -53,5 +53,23 @@ public struct GridLocation
     private string GetDebuggerDisplay()
     {
         return ToString();
+    }
+    
+    public bool Equals(GridLocation other)
+    {
+        return row == other.row && column == other.column;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is GridLocation other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            return (row * 397) ^ column;
+        }
     }
 }

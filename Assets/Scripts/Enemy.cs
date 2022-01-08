@@ -12,8 +12,6 @@ public class Enemy : MonoBehaviour
     private Vector3 targetedPosition;
     private float yOffset = 0.5f;
     
-    
-    public GameObject nextNode;
     private Motherboard motherboardScript;
     private EnergyCounter energyCounterScript;
     private GameManager gameManagerScript;
