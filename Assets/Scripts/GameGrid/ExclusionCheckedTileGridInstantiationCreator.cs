@@ -34,7 +34,7 @@ namespace GameGrid
         /// </summary>
         /// <param name="location"></param>
         /// <returns>true if we can't place a tile, else false</returns>
-        private bool IsLocationExcluded(Location<int> location)
+        private bool IsLocationExcluded(GridLocation location)
         {
             return exclusionZones.Any(zone => zone.IsInZone(location));
         }
@@ -46,7 +46,7 @@ namespace GameGrid
         /// <param name="grid"></param>
         /// <param name="location"></param>
         /// <returns></returns>
-        public override Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
+        public override Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, GridLocation location)
         {
             if (IsLocationExcluded(location)) return null;
             return base.CreateInstance(grid, location);

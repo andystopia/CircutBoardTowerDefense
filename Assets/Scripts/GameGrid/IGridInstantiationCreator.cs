@@ -16,6 +16,6 @@ namespace GameGrid
         /// <param name="grid"> the grid that is having it's object instantiated</param>
         /// <param name="location"> where in the grid the instance is </param>
         /// <returns></returns>
-        public T CreateInstance(PrefabGrid<T> grid, Location<int> location);
+        public T CreateInstance(PrefabGrid<T> grid, GridLocation location);
     }
 }

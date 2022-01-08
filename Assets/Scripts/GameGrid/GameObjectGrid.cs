@@ -45,9 +45,9 @@ namespace GameGrid
         /// might not be a tile at that location.
         /// </summary>
         /// <returns></returns>
-        public Location<int> GetRandomLocation()
+        public GridLocation GetRandomLocation()
         {
-            return new Location<int>(Random.Range(0, Dimensions.height), Random.Range(0, Dimensions.height));
+            return new GridLocation(Random.Range(0, Dimensions.height), Random.Range(0, Dimensions.height));
         }
     
     
@@ -57,7 +57,7 @@ namespace GameGrid
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
-        public bool IsLocationValid(Location<int> location)
+        public bool IsLocationValid(GridLocation location)
         {
             return location.row < Dimensions.height && location.row >= 0 && location.column < Dimensions.width && location.column >= 0;
         }
@@ -67,14 +67,14 @@ namespace GameGrid
         /// space on this grid in row major fashion.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Location<int>> RowMajorIEnumerator()
+        public IEnumerable<GridLocation> RowMajorIEnumerator()
         {
             var dimensions = Dimensions;
             for (int row = 0; row < dimensions.height; row++)
             {
                 for (int col = 0; col < dimensions.width; col++)
                 {
-                    yield return new Location<int>(row, col);
+                    yield return new GridLocation(row, col);
                 }
             }
         }
@@ -85,14 +85,14 @@ namespace GameGrid
         /// fashion.
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<Location<int>> ColumnMajorIEnumerator()
+        public IEnumerator<GridLocation> ColumnMajorIEnumerator()
         {
             var dimensions = Dimensions;
             for (var col = 0; col < dimensions.width; col++)
             {
                 for (var row = 0; row < dimensions.height; row++)
                 {
-                    yield return new Location<int>(row, col);
+                    yield return new GridLocation(row, col);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace GameGrid
         /// Indexes this data structure using a location.
         /// </summary>
         /// <param name="location"></param>
-        public T this[Location<int> location]
+        public T this[GridLocation location]
         {
             get => gridItems[location.column, location.row];
             set => gridItems[location.column, location.row] = value;

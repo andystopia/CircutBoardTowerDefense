@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class GridPositionPrefabMonoBehaviour : MonoBehaviour, IPrefabGridPositionedItem
 {
-    private Location<int> location;
+    private GridLocation location;
     
     
-    public Location<int> GetLocation()
+    public GridLocation GetLocation()
     {
         return location;
     }
 
-    public void SetLocation(Location<int> location)
+    public void SetLocation(GridLocation location)
     {
         this.location = location;
     }

@@ -10,11 +10,11 @@ namespace DefaultNamespace
         [SerializeField] 
         private int column;
 
-        private Location<int>? location; 
+        private GridLocation? location; 
         
-        public Location<int> GetLocation()
+        public GridLocation GetLocation()
         {
-            location ??= new Location<int>(row, column);
+            location ??= new GridLocation(row, column);
             return location.Value;
         }
     }

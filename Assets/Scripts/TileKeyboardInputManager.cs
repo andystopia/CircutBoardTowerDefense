@@ -50,7 +50,7 @@ public class TileKeyboardInputManager : MonoBehaviour
     
     private bool AttemptMoveCardinalDirection(CardinalDirection direction)
     {
-        Location<int> deltaLoc = Location<int>.MakeFromCardinalDirection(direction);
+        GridLocation deltaLoc = GridLocation.MakeFromCardinalDirection(direction);
         // should this be the focus manager or the selection manager
         // or some other manager all together?
         var active = selectionManager.GetActive();
@@ -60,7 +60,7 @@ public class TileKeyboardInputManager : MonoBehaviour
         if (active == null) return false;
         
         // now let's translate and see if we can find where we can move.
-        Location<int> tileLocation = Location<int>.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
+        GridLocation tileLocation = GridLocation.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
         while (creationManager.TileGrid.IsLocationValid(tileLocation))
         {
             Tile.Tile possibleNextFocusTile = creationManager.TileGrid[tileLocation];
@@ -69,7 +69,7 @@ public class TileKeyboardInputManager : MonoBehaviour
                 Activate(possibleNextFocusTile);
                 return true;
             }
-            tileLocation = Location<int>.Add(tileLocation, deltaLoc);
+            tileLocation = GridLocation.Add(tileLocation, deltaLoc);
         }
         return false;
 

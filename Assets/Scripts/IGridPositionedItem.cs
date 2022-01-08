@@ -1,10 +1,10 @@
 
 public interface IGridPositionedItem
 {
-    public Location<int> GetLocation();
+    public GridLocation GetLocation();
 }
 
 public interface IPrefabGridPositionedItem : IGridPositionedItem
 {
-    public void SetLocation(Location<int> location);
+    public void SetLocation(GridLocation location);
 }

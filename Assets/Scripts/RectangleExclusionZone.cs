@@ -6,8 +6,8 @@
 /// </summary>
 public readonly struct RectangleExclusionZone : IExclusionZone
 {
-    public readonly Location<int> location1;
-    public readonly Location<int> location2;
+    public readonly GridLocation location1;
+    public readonly GridLocation location2;
 
     /// <summary>
     /// Defines a rectangle by two corner points
@@ -15,7 +15,7 @@ public readonly struct RectangleExclusionZone : IExclusionZone
     /// </summary>
     /// <param name="location1"></param>
     /// <param name="location2"></param>
-    public RectangleExclusionZone(Location<int> location1, Location<int> location2)
+    public RectangleExclusionZone(GridLocation location1, GridLocation location2)
     {
         this.location1 = location1;
         this.location2 = location2;
@@ -40,7 +40,7 @@ public readonly struct RectangleExclusionZone : IExclusionZone
     /// </summary>
     /// <param name="loc"></param>
     /// <returns>true if it is in the zone, else false</returns>
-    public bool IsInZone(Location<int> loc)
+    public bool IsInZone(GridLocation loc)
     {
         return IsSandwiched(location1.column, loc.column, location2.column) &&
                IsSandwiched(location1.row, loc.row, location2.row);

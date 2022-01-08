@@ -13,5 +13,5 @@ public interface IExclusionZone
     /// </summary>
     /// <param name="loc"></param>
     /// <returns>true if it is in the zone, else false</returns>
-    bool IsInZone(Location<int> loc);
+    bool IsInZone(GridLocation loc);
 }

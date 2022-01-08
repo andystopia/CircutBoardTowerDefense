@@ -46,7 +46,7 @@ namespace GameGrid
         /// <param name="grid"></param>
         /// <param name="location"> the local grid space location </param>
         /// <returns> a newly instantiated tile </returns>
-        public virtual Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
+        public virtual Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, GridLocation location)
         {
             var spawnLoco = GridSpaceGlobalSpaceConverter.FromLocation(location, -0.15f);
             

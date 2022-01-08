@@ -19,15 +19,15 @@ public class TileCreationManager : MonoBehaviour
     private List<IExclusionZone> exclusionZones = new List<IExclusionZone>
     {
         // turret menu
-        new RectangleExclusionZone(new Location<int>(0, 0), new Location<int>(3, 10)),
+        new RectangleExclusionZone(new GridLocation(0, 0), new GridLocation(3, 10)),
         // energy counter
-        new RectangleExclusionZone(new Location<int>(3, 0), new Location<int>(3, 3)),
+        new RectangleExclusionZone(new GridLocation(3, 0), new GridLocation(3, 3)),
         // enemy spawner
-        new RectangleExclusionZone(new Location<int>(12, 0), new Location<int>(12, 4)),
+        new RectangleExclusionZone(new GridLocation(12, 0), new GridLocation(12, 4)),
         // motherboard entrance
-        new RectangleExclusionZone(new Location<int>(0, 14), new Location<int>(0, 18)),
+        new RectangleExclusionZone(new GridLocation(0, 14), new GridLocation(0, 18)),
         // wave numberx
-        new RectangleExclusionZone(new Location<int>(12, 5), new Location<int>(12, 6))
+        new RectangleExclusionZone(new GridLocation(12, 5), new GridLocation(12, 6))
     };
     
     private void Awake()
