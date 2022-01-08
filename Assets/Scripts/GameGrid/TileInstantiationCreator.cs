@@ -48,8 +48,8 @@ namespace GameGrid
         /// <returns> a newly instantiated tile </returns>
         public virtual Tile.Tile CreateInstance(PrefabGrid<Tile.Tile> grid, Location<int> location)
         {
-            var spawnLoco = new Vector3((1.5f * location.column + offsetX), -0.15f, (1.5f * location.row + offsetZ));
-
+            var spawnLoco = GridSpaceGlobalSpaceConverter.FromLocation(location, -0.15f);
+            
             var currentTile = Object.Instantiate(grid.Prefab, spawnLoco, Quaternion.identity, tileSelectionManager.transform);
             // initializing the components.
             currentTile.GetComponent<ITileSelectionInteractor>().Init(gameManager.GetEnergyCounter(),
