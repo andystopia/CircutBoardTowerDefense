@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IOldTurretShopBehavior : IActiveOrInactiveState
 {
-    TurretPlayState AssociatedTurretPrefab();
+    Turret AssociatedTurretPrefab();
     float GetEnergyCost();
 }
 
@@ -13,7 +13,7 @@ public class OldTurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
 {
     [SerializeField] private BasicTogglableExclusiveStateManager<IOldTurretShopBehavior> shop;
     
-    [SerializeField] private TurretPlayState shopTurret;
+    [SerializeField] private Turret shopTurret;
     public GameObject litDisplay;
     public GameObject deleteDisplay;
     public GameObject turretMouseDrag;
@@ -56,7 +56,7 @@ public class OldTurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
         litDisplay.SetActive(false);
     }
 
-    public TurretPlayState AssociatedTurretPrefab()
+    public Turret AssociatedTurretPrefab()
     {
         return shopTurret;
     }

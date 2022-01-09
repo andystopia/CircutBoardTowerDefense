@@ -10,7 +10,7 @@ public class TurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
     public Sprite sprite;
     public string turretName;
     public int cost;
-    public TurretPlayState turret;
+    public Turret turret;
 
     public GameManager manager;
     // private GameObject background;
@@ -58,7 +58,7 @@ public class TurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
         label.text = turretName;
     }
 
-    public TurretPlayState AssociatedTurretPrefab()
+    public Turret AssociatedTurretPrefab()
     {
         return turret;
     }

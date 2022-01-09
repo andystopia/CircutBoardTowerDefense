@@ -23,8 +23,7 @@ namespace EnemyBehaviour
 
         public List<GameObject> tilesToDisable;
         public List<GameObject> tilesToGoThrough;
-        public TurretPlayState turretScript;
-
+        
         public float Health
         {
             get => health;

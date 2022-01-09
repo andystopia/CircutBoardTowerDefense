@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using GameState;
 using UnityEngine;
 
 namespace TurretBehaviour
 {
-    public class TurretPlayState : MonoBehaviour
+    public class TurretPlayState : MonoBehaviour, IGameObjectState, IObserver<GameActivityState>
     {
+        private TurretStateMachine stateMachine;
+        
         private GameObject target;
 
         [SerializeField] private GameObject projectilePrefab;
@@ -39,6 +43,12 @@ namespace TurretBehaviour
         public float Range => range;
         public float EnergyCost => energyCost;
 
+        protected virtual void Awake()
+        {
+            stateMachine = GetComponent<TurretStateMachine>();
+            stateMachine.StateChannel.Subscribe(this);
+            enabled = false;
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -218,5 +228,32 @@ namespace TurretBehaviour
 
         }
 
+        public void OnStateStart()
+        {
+            if (this == null) return;
+            enabled = true;
+        }
+
+        public void OnStateEnd()
+        {
+            if (this == null) return;
+            enabled = false;
+        }
+
+        public void OnCompleted()
+        {
+            // just do nothing.
+        }
+
+        public void OnError(Exception error)
+        {
+            // just do nothing.
+        }
+
+        public void OnNext(GameActivityState value)
+        {
+            if (value != GameActivityState.Playing) return;
+            stateMachine.ActivateState(this);
+        }
     }
 }
