@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TurretBehaviour
 {
-    public class Turret : MonoBehaviour
+    public class TurretPlayState : MonoBehaviour
     {
         private GameObject target;
 

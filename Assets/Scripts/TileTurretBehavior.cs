@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TileTurretBehavior : MonoBehaviour, ITileTurretBehavior
 {
-    [SerializeField] private Turret turret;
+    [SerializeField] private TurretPlayState turret;
 
-    public Turret GetTurret()
+    public TurretPlayState GetTurret()
     {
         return turret;
     }
 
-    public void SetTurret(Turret turret)
+    public void SetTurret(TurretPlayState turret)
     {
         this.turret = turret;
     }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ITileTurretBehavior
 {
-    public Turret GetTurret();
-    public void SetTurret(Turret turret);
+    public TurretPlayState GetTurret();
+    public void SetTurret(TurretPlayState turret);
 }
