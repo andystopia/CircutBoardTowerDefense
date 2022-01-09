@@ -17,15 +17,12 @@ public class TileFocusManager : ExclusiveSubsectionFocusManager
     
     public override void Activate(IFocusInteractor item)
     {
-        Debug.Log("TileFocusManager::Activate called", this);
         if (!focusRegion.IsActive(this)) return;
-        Debug.Log("TileFocusManager::Activate passed it's guard.", this);
         base.Activate(item);
     }
 
     public override void OnActivate()
     {
-        Debug.Log("TileFocusManager::OnActivate called",this);
         if (selectionManager.GetActive() != null)
         {
             selectionManager.AttemptToFocusSelectedObject();
