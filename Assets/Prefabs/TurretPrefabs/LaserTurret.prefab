@@ -94,6 +94,9 @@ GameObject:
   - component: {fileID: 89294642555686018}
   - component: {fileID: 3813824811895693426}
   - component: {fileID: -2942974746078410978}
+  - component: {fileID: -8326309061708828011}
+  - component: {fileID: -9137806829399434820}
+  - component: {fileID: -3915980938772237170}
   m_Layer: 0
   m_Name: LaserTurret
   m_TagString: Turret
@@ -145,6 +148,7 @@ MonoBehaviour:
   damageUp: 15
   rateOfFire: 0.35
   animStopTime: 2
+  fireCooldownTime: 0
   range: 5
   isTeslaTurret: 0
   isLaserTurret: 1
@@ -261,6 +265,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8326309061708828011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213958845398002225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faed47003865436c91c8e457ffcd27de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9137806829399434820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213958845398002225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9cc3deb7ee047cca510a654f4c4a259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3915980938772237170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213958845398002225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27883a4ecc614abb8da105b1ac88af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
 --- !u!1 &2066748162975261475
 GameObject:
   m_ObjectHideFlags: 0

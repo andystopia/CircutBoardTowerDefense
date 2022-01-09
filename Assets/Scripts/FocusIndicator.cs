@@ -175,7 +175,6 @@ public class FocusIndicator : MonoBehaviour, IFocusIndicator
             return;
         }
         
-        Debug.Log($"${focusable.FocusBounds.center} - ${focusable.FocusBounds.extents}");
         // gotta make sure we are always on the top, so preserve the current `y`.
         AnimateCenterAt(focusable.FocusBounds.center);
 

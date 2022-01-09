@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -94,6 +95,9 @@ GameObject:
   - component: {fileID: 536390706145393698}
   - component: {fileID: 536390706145393697}
   - component: {fileID: 536390706145393695}
+  - component: {fileID: -4510526923655859591}
+  - component: {fileID: -5499815294007747278}
+  - component: {fileID: 4618648773970901705}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -139,6 +143,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,6 +168,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &536390706145393697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -188,8 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9174df1791b32f34099caeb13eb3cb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
-    type: 3}
   energyDrop: 50
   energyGain: 10
   health: 1000
@@ -199,8 +203,46 @@ MonoBehaviour:
   speed: 0.5
   spawnRate: 0
   damageValue: 50
-  EMPExplosion: {fileID: 0}
   tilesToDisable: []
   tilesToGoThrough: []
-  isExploding: 0
   turretScript: {fileID: 0}
+--- !u!114 &-4510526923655859591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536390706145393694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47cd9bf0787b42feb05dca6d339467cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExploding: 0
+  EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
+    type: 3}
+--- !u!114 &-5499815294007747278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536390706145393694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2418e80703e8490fb1a158448966ad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4618648773970901705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536390706145393694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f1167581b344d2ba49187fe45b4c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}

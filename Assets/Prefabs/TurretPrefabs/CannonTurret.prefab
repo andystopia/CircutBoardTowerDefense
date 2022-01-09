@@ -364,6 +364,9 @@ GameObject:
   - component: {fileID: 2610814090338172077}
   - component: {fileID: 3494784633422334225}
   - component: {fileID: 6354725222105223921}
+  - component: {fileID: 1831614602282636781}
+  - component: {fileID: -2709587459561284797}
+  - component: {fileID: 5684024623479203685}
   m_Layer: 0
   m_Name: CannonTurret
   m_TagString: Turret
@@ -416,6 +419,7 @@ MonoBehaviour:
   damageUp: 30
   rateOfFire: 0.75
   animStopTime: 0.5
+  fireCooldownTime: 0
   range: 5
   isTeslaTurret: 0
   isLaserTurret: 0
@@ -551,6 +555,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1831614602282636781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461236901299259391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faed47003865436c91c8e457ffcd27de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2709587459561284797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461236901299259391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9cc3deb7ee047cca510a654f4c4a259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5684024623479203685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461236901299259391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27883a4ecc614abb8da105b1ac88af25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
 --- !u!1 &7461236902513408099
 GameObject:
   m_ObjectHideFlags: 0

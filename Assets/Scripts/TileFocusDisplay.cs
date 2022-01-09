@@ -26,7 +26,6 @@ public class TileFocusDisplay : MonoBehaviour, ITileFocusDisplay
 
     public void Show()
     {
-        Debug.Log("now attempting to hide!", this);
         focus.FocusOn(focusable, focusColor);
     }
 

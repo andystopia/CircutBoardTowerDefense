@@ -90,7 +90,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
     {
         if (GetState() == (FilledState.Empty, TurretShopSelectionStatus.AffordableActiveTurret))
         {
-            rangeIndicator.SetRange(turretShop.GetActive().AssociatedTurretPrefab().range);
+            rangeIndicator.SetRange(turretShop.GetActive().AssociatedTurretPrefab().Range);
             rangeIndicator.Show();
         }
     }

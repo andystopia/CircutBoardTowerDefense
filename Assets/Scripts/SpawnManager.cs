@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EnemyBehaviour;
 using UnityEngine;
 using TMPro;
 
@@ -51,8 +52,8 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < enemyTypes; i++)
         {
             int waveType = Random.Range(0, enemies.Count - 1);
-            float armySize = (enemies[waveType].GetComponent<Enemy>().armySize) + ((enemies[waveType].GetComponent<Enemy>().armySizeGain) * (wave - 1));
-            float spawnRate = enemies[waveType].GetComponent<Enemy>().spawnRate;
+            float armySize = (enemies[waveType].GetComponent<Enemy>().ArmySize) + ((enemies[waveType].GetComponent<Enemy>().ArmySizeGain) * (wave - 1));
+            float spawnRate = enemies[waveType].GetComponent<Enemy>().SpawnRate;
             if (i >= 1)
             {
                 StartCoroutine(SpawnWave(waveType, armySize, spawnRate + 0.5f));
@@ -69,8 +70,8 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnRate);
             GameObject temp = Instantiate(enemies[enemyType], transform.position, transform.rotation);
             var enemy = temp.GetComponent<Enemy>();
-            enemy.health += (temp.GetComponent<Enemy>().healthGain) * (wave - 1);
-            enemy.energyDrop += (temp.GetComponent<Enemy>().energyGain) * (wave - 1);
+            enemy.Health += (temp.GetComponent<Enemy>().HealthGain) * (wave - 1);
+            enemy.Health += (temp.GetComponent<Enemy>().EnergyGain) * (wave - 1);
             var locationEnumerator = pathManager.GetActivePath().CreateLocationEnumerator();
             if (locationEnumerator == null)
             {
