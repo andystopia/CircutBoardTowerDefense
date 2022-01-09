@@ -26,12 +26,12 @@ public class Projectile : MonoBehaviour
         if (energyLeft <= 0)    
         {
             Instantiate(hitParticle, target.transform.position, Quaternion.identity);
-            target.GetComponent<Enemy>().health -= damage;
+            target.GetComponent<Enemy>().Health -= damage;
             Destroy(gameObject);
             return;
         } else
         {
-            target.GetComponent<Enemy>().health -= damage;
+            target.GetComponent<Enemy>().Health -= damage;
             //particle
             if(target != null)  //this is just in case
             {

@@ -1,6 +1,7 @@
 using System;
 using ActiveOrInactiveStateManagement;
 using TMPro;
+using TurretBehaviour;
 using UnityEngine;
 
 public class TurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
@@ -64,7 +65,7 @@ public class TurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
 
     public float GetEnergyCost()
     {
-        return turret.energyCost;
+        return turret.EnergyCost;
     }
 
     private void OnMouseDown()

@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 3477224082604267302}
   - component: {fileID: 8919982350946285713}
   - component: {fileID: 5452682385452125087}
+  - component: {fileID: -1960472873873784630}
+  - component: {fileID: 3787186076160443285}
+  - component: {fileID: 1746911443310008538}
   m_Layer: 0
   m_Name: ExplodingEnemy
   m_TagString: Enemy
@@ -59,6 +62,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,6 +87,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3477224082604267302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108,8 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9174df1791b32f34099caeb13eb3cb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 6823581483409553830, guid: b80b867f1978491448ef92f7c82f38a9,
-    type: 3}
   energyDrop: 6
   energyGain: 0
   health: 20
@@ -119,11 +122,8 @@ MonoBehaviour:
   speed: 2.5
   spawnRate: 2.5
   damageValue: 5
-  EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
-    type: 3}
   tilesToDisable: []
   tilesToGoThrough: []
-  isExploding: 1
   turretScript: {fileID: 0}
 --- !u!95 &5452682385452125087
 Animator:
@@ -144,6 +144,46 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1960472873873784630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035415556319927405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47cd9bf0787b42feb05dca6d339467cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExploding: 1
+  EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
+    type: 3}
+--- !u!114 &3787186076160443285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035415556319927405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2418e80703e8490fb1a158448966ad2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1746911443310008538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3035415556319927405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f1167581b344d2ba49187fe45b4c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
 --- !u!1 &4918781819654896331
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +231,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

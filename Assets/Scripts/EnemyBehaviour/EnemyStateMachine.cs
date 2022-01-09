@@ -1,16 +1,15 @@
-using Newtonsoft.Json;
-using UnityEditor.VersionControl;
+using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 
-namespace GameState
+namespace EnemyBehaviour
 {
-    public class TestGameStateMachine : GameStateMachine
+    public class EnemyStateMachine : GameStateMachine
     {
         [SerializeField]
         private GameStateChannel stateChannel;
         public GameStateChannel StateChannel => stateChannel;
 
         
-
     }
 }

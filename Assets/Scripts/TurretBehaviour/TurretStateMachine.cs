@@ -1,16 +1,12 @@
-using Newtonsoft.Json;
-using UnityEditor.VersionControl;
+using GameState;
 using UnityEngine;
 
-namespace GameState
+namespace TurretBehaviour
 {
-    public class TestGameStateMachine : GameStateMachine
+    public class TurretStateMachine : GameStateMachine
     {
         [SerializeField]
         private GameStateChannel stateChannel;
         public GameStateChannel StateChannel => stateChannel;
-
-        
-
     }
 }

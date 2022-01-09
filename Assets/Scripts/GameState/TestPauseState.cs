@@ -17,10 +17,6 @@ namespace GameState
 
         protected virtual void Update()
         {
-            if (Time.frameCount % 100 == 0)
-            {
-                Debug.Log("Paused Game.");
-            }
         }
         
         #region PauseListeners

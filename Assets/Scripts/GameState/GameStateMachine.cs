@@ -25,7 +25,7 @@ namespace GameState
             activeStates.Clear();
         }
     }
-    public abstract class GameStateMachine : MonoBehaviour, IGameStateMachine
+    public abstract class GameStateMachine: MonoBehaviour, IGameStateMachine
     {
         private IGameObjectState activeState;
         
@@ -36,9 +36,16 @@ namespace GameState
 
         public void ActivateState(IGameObjectState state)
         {
-            activeState?.OnStateEnd();
+            if (activeState != null)
+            {
+                activeState.OnStateEnd();
+            }
+
             activeState = state;
-            activeState?.OnStateStart();
+            if (activeState != null)
+            {
+                activeState?.OnStateStart();
+            }
         }
     }
 }
