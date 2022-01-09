@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6019876202796123790}
   - component: {fileID: 7478106142132250614}
   - component: {fileID: 8971225678759400679}
+  - component: {fileID: 26224722345458965}
+  - component: {fileID: 134400970494342384}
   m_Layer: 0
   m_Name: CannonProjectile
   m_TagString: Untagged
@@ -58,6 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &7478106142132250614
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -110,9 +114,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 7053548142214586824, guid: 2b72c34344e18344397e38f179c90343,
     type: 3}
+  isLaserProjectile: 0
   energyLeft: -1
   range: 0
   oldTargets: []
+--- !u!114 &26224722345458965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643409982628877262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acac57d5d1f40a39b78486d859783e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &134400970494342384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643409982628877262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089773de54fc4fd88db281b45a033c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
 --- !u!1 &3326998220352596377
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +189,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

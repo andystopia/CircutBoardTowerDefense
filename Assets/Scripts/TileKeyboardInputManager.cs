@@ -96,7 +96,6 @@ public class TileKeyboardInputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("w" ,this);
             AttemptMoveCardinalDirection(CardinalDirection.North);
         }
 

@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -94,6 +95,8 @@ GameObject:
   - component: {fileID: 8831120985333229119}
   - component: {fileID: 5675386373478074183}
   - component: {fileID: 6162232730930410582}
+  - component: {fileID: -3388776706908413298}
+  - component: {fileID: 1834181632315426437}
   m_Layer: 0
   m_Name: LaserProjectile
   m_TagString: Untagged
@@ -139,6 +142,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,6 +167,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &5675386373478074183
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -195,3 +200,28 @@ MonoBehaviour:
   energyLeft: -1
   range: 0
   oldTargets: []
+--- !u!114 &-3388776706908413298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443569778439074687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acac57d5d1f40a39b78486d859783e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1834181632315426437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443569778439074687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089773de54fc4fd88db281b45a033c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}

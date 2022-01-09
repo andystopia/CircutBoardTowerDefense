@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3756488225294495410}
   - component: {fileID: 30626115757641674}
   - component: {fileID: 1957778968978472155}
+  - component: {fileID: -1301376788782398572}
+  - component: {fileID: 8337134910268706963}
   m_Layer: 0
   m_Name: TeslaProjectile
   m_TagString: Untagged
@@ -58,6 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,6 +85,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &30626115757641674
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -110,9 +114,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 5768595668440655312, guid: 2adadeb8b461b294b9c785b2617f9f12,
     type: 3}
+  isLaserProjectile: 0
   energyLeft: 3
   range: 4
   oldTargets: []
+--- !u!114 &-1301376788782398572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018243900158835698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acac57d5d1f40a39b78486d859783e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8337134910268706963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018243900158835698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089773de54fc4fd88db281b45a033c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
 --- !u!1 &8232839074074358471
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +189,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

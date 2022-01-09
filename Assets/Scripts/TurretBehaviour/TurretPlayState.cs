@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using GameState;
+using ProjectileBehaviour;
 using UnityEngine;
 
 namespace TurretBehaviour
@@ -166,7 +167,7 @@ namespace TurretBehaviour
         {
             yield return new WaitForSeconds(animStopTime/2);
             GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            projectileGO.GetComponent<Projectile>().ChaseThisEnemy(target, damagePerShot);
+            projectileGO.GetComponent<ProjectilePlayState>().ChaseThisEnemy(target, damagePerShot);
             StartCoroutine(animStop());
         }
 
