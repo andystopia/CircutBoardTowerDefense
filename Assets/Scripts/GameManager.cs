@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using ActiveOrInactiveStateManagement;
 using PathGrid;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private ITileSelectionInteractor tileSelectionInteraction;
     
-    public BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop;
+    public TurretShopSelectionManager turretShop;
     [FormerlySerializedAs("tileManager")] public TileSelectionManager tileSelectionManager;
 
     public bool gameOver;
@@ -30,9 +32,8 @@ public class GameManager : MonoBehaviour
         return energyCounter;
     }
 
-    public BasicExclusiveStateManager<IOldTurretShopBehavior> GetTurretShop()
+    public BasicExclusiveStateManager<TurretShopEntry.ISelectionInteractor> GetTurretShop()
     {
         return turretShop;
     }
-
 }

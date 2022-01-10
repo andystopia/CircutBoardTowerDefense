@@ -1,11 +1,16 @@
 namespace ActiveOrInactiveStateManagement
 {
-    public interface IExclusiveStateManager<T> : IActiveStateManager<T> where T : IActiveOrInactiveState
+    public interface IExclusiveStateManagerData<out T> where T : IActiveOrInactiveState
     {
         /// <summary>
         /// Returns the active item.
         /// </summary>
         /// <returns></returns>
         public T GetActive();
+    }
+    
+    
+    public interface IExclusiveStateManager<T> : IExclusiveStateManagerData<T>, IActiveStateManager<T> where T : IActiveOrInactiveState
+    {
     }
 }

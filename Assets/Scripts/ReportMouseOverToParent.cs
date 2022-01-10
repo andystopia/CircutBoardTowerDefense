@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurretShopEntry;
 using UnityEngine;
 
 public class ReportMouseOverToParent : MonoBehaviour
 {
 
-    private TurretShopEntryFocusInteractor parent;
+    private FocusInteractor parent;
 
     public void Start()
     {
-        parent = transform.parent.gameObject.GetComponent<TurretShopEntryFocusInteractor>();
+        parent = transform.parent.gameObject.GetComponent<FocusInteractor>();
     }
 
     // private void OnMouseDown()

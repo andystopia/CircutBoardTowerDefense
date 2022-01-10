@@ -16,7 +16,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 {
     private BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager;
     [SerializeField] private GameObject tileText;
-    private BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop;
+    private IExclusiveStateManagerData<IOldTurretShopBehavior> turretShop;
     private EnergyCounter energyCounter;
 
     private ITileTurretBehavior turretBehavior;
@@ -44,7 +44,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 
     }
     
-    public void Init(EnergyCounter energyCounter, BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop, BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager)
+    public void Init(EnergyCounter energyCounter, IExclusiveStateManagerData<TurretShopEntry.ISelectionInteractor> turretShop, BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager)
     {
         this.energyCounter = energyCounter;
         this.turretShop = turretShop;

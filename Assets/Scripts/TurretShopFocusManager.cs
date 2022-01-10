@@ -4,32 +4,41 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ActiveOrInactiveStateManagement;
 using PrimitiveFocus;
+using TurretShopEntry;
 using UnityEngine;
 using UnityEngine.UIElements;
+using IFocusDisplay = TurretShopEntry.IFocusDisplay;
+using IFocusInteractor = TurretShopEntry.IFocusInteractor;
 
 
 public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
 {
     [SerializeField] private ActiveRegionFocus activeRegionFocus;
-    private IActiveStateManager<IOldTurretShopBehavior> selectedManager;
-    private CircularCollection<TurretShopEntry> entries;
+    private IExclusiveStateManager<ISelectionInteractor> selectedManager;
+    private CircularCollection<TurretShopEntry.FocusInteractor> entries;
     private IFloatingUIComponent uiDisplayer;
     private TurretShopDisplay display;
 
-    private IList<TurretShopEntry> GetChildrenTurretShopEntries()
+    private IList<TurretShopEntry.FocusInteractor> GetChildrenTurretShopEntries()
     {
-        return GetComponentsInChildren<TurretShopEntry>();
+        return GetComponentsInChildren<TurretShopEntry.FocusInteractor>();
     }
     private void Awake()
-    {
+    {        
+        selectedManager = GetComponent<IExclusiveStateManager<ISelectionInteractor>>();
         display = GetComponent<TurretShopDisplay>();
     }
      private void Start()
     {
-        selectedManager = GetComponent<IActiveStateManager<IOldTurretShopBehavior>>();
         uiDisplayer = GetComponent<IFloatingUIComponent>();
 
-        entries = new CircularCollection<TurretShopEntry>(GetChildrenTurretShopEntries());
+        var childrenTurretShopEntries = GetChildrenTurretShopEntries();
+        
+        foreach (var childrenTurretShopEntry in childrenTurretShopEntries)
+        {
+            childrenTurretShopEntry.SetManager(this);
+        }
+        entries = new CircularCollection<TurretShopEntry.FocusInteractor>(childrenTurretShopEntries);
     }
     
 
@@ -37,15 +46,18 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
     {
         if (!activeRegionFocus.IsActive(this))
         {
+            
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                uiDisplayer.Show();
+                // uiDisplayer.Show();
                 activeRegionFocus.Activate(this);
-                var newEntry = entries.GetList()[0];
 
-                var entryDisplay = newEntry.GetFocusDisplay();
-                entryDisplay.SetFocusCenter(entryDisplay.GetOriginalFocusCenter() + (uiDisplayer.GetDestinationPosition() - uiDisplayer.GetStartingPosition()));
-                Activate(newEntry.GetFocusInteractor());
+                var active = GetActive();
+                var toSelect = selectedManager.GetActive().Root.FocusInteractor ?? entries.GetList()[0];
+
+                // var entryDisplay = newEntry.GetFocusDisplay();
+                // entryDisplay.SetFocusCenter(entryDisplay.GetOriginalFocusCenter() + (uiDisplayer.GetDestinationPosition() - uiDisplayer.GetStartingPosition()));
+                Activate(toSelect);
             }
             else
             {
@@ -56,7 +68,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                uiDisplayer.Hide();
+                // uiDisplayer.Hide();
                 // make sure none of our children are focused
                 InactivateAll();
                 // hand over control to the main manager:
@@ -64,41 +76,42 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
         {
             var newEntry = entries.MoveToNext();
-            Activate(newEntry.GetFocusInteractor());
+            Activate(newEntry);
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
         {
             var newEntry = entries.MoveToPrevious();
-            Activate(newEntry.GetFocusInteractor());
+            Activate(newEntry);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.X) && entries.GetActive() != null)
         {
-            selectedManager.Activate(entries.GetActive());
+            Debug.Log("Selecting new turret.");
+            selectedManager.Activate(entries.GetActive().Root.SelectionInteractor);
         }
     }
 
-    private void FixFocusCenter(ITurretShopEntryFocusDisplay focusDisplay)
+    private void FixFocusCenter(IFocusDisplay focusDisplay)
     {
         if (focusDisplay == null) return;
-        focusDisplay.SetFocusCenter(focusDisplay.GetOriginalFocusCenter() + (uiDisplayer.GetDestinationPosition() - uiDisplayer.GetCurrentPosition()));
+        // focusDisplay.SetFocusCenter(focusDisplay.GetOriginalFocusCenter() + (uiDisplayer.GetDestinationPosition() - uiDisplayer.GetCurrentPosition()));
     }
     private void Update()
     {
         HandleKeyboardInput();
         if (GetActive() != null)
         {
-            FixFocusCenter(((ITurretShopEntryFocusInteractor) GetActive()).GetFocusDisplay());
+            FixFocusCenter(((IFocusInteractor) GetActive()).GetFocusDisplay());
         }
     }
 
     public override void OnInactivate()
     {
-        display.Hide();
+        // display.Hide();
         base.OnInactivate();
     }
 }

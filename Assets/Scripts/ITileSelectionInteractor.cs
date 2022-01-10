@@ -4,7 +4,7 @@ using Tile;
 
 public interface ITileSelectionInteractor : IActiveOrInactiveState
 {
-    public void Init(EnergyCounter energyCounter, BasicExclusiveStateManager<IOldTurretShopBehavior> turretShop,
+    public void Init(EnergyCounter energyCounter, IExclusiveStateManagerData<TurretShopEntry.ISelectionInteractor> turretShop,
         BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager, ExclusiveSubsectionFocusManager focusManager);
     void Hovered();
     void UnHovered();

@@ -23,6 +23,7 @@ namespace ProjectileBehaviour
         {
             stateMachine = GetComponent<ProjectileStateMachine>();
             stateMachine.StateChannel.Subscribe(this);
+            enabled = false;
         }
         
         public void ChaseThisEnemy(GameObject targ, float damagePerShot)

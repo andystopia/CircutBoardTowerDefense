@@ -1,3 +1,5 @@
+using ActiveOrInactiveStateManagement;
+using DefaultNamespace;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +10,15 @@ using UnityEngine;
 /// that is so that the ui shows up a little
 /// better.
 /// </summary>
-public class TurretShopSelectionManager : MonoBehaviour
+public class TurretShopSelectionManager : BasicExclusiveStateManager<TurretShopEntry.ISelectionInteractor>
 {
+     [SerializeField]
+     private TurretShopEntry.SelectionInteractor defaultDisplay;
+
+     protected virtual void Start()
+     {
+          Activate(defaultDisplay);
+     }
+    
     
 }
