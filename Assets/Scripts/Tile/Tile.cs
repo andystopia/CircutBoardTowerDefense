@@ -26,7 +26,7 @@ namespace Tile
         /// or not the tile is "selected", although
         /// that definition is loose and subject to change.
         /// </summary>
-        public ITileSelectionInteractor GetFocusInteraction()
+        public ITileSelectionInteractor GetSelectionInteractor()
         {
             return selectionInteraction;
         }

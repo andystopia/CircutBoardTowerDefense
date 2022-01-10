@@ -52,7 +52,7 @@ public class TileCreationManager : MonoBehaviour
         // so it will probably cause problems down the 
         // line.
         var randomTile = TileGrid.GetRandomNonNullGridItem();
-        selectionManager.Activate(randomTile.GetFocusInteraction());
+        selectionManager.Activate(randomTile.GetSelectionInteractor());
         focusManager.Activate(randomTile.GetFocusInteractor());
     }
 

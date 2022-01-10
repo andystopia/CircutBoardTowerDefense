@@ -39,7 +39,7 @@ public class TileKeyboardInputManager : MonoBehaviour
 
     public void Activate(Tile.Tile tile)
     {
-        selectionManager.Activate(tile.GetFocusInteraction());
+        selectionManager.Activate(tile.GetSelectionInteractor());
         focusManager.Activate(tile.GetFocusInteractor());
     }
 
@@ -57,7 +57,11 @@ public class TileKeyboardInputManager : MonoBehaviour
 
         // if there's nothing active, we might as well
         // guard return, because there's nothing left to be done.
-        if (active == null) return false;
+        if (active == null)
+        {
+            Activate(creationManager.TileGrid.GetRandomNonNullGridItem());
+            return true;
+        }
         
         // now let's translate and see if we can find where we can move.
         GridLocation tileLocation = GridLocation.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
