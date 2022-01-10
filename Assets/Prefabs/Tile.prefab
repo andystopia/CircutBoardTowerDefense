@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 2852092827377091002}
   - component: {fileID: 5167699883621384236}
   - component: {fileID: -968908080603410806}
-  - component: {fileID: 3774686209814217726}
+  - component: {fileID: 1706153562297939910}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Tile
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
---- !u!114 &3774686209814217726
+--- !u!114 &1706153562297939910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

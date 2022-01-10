@@ -3,22 +3,25 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-class TileRangeIndicatorUsingGameObject : MonoBehaviour, ITileRangeIndicator
+public class TileRangeIndicatorUsingGameObject : MonoBehaviour, ITileRangeIndicator
 {
     [SerializeField] private GameObject rangeObject;
 
-    public void Show()
+
+    public GameObject RangeObject => rangeObject;
+    
+    public virtual void Show()
     {
         rangeObject.SetActive(true);
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         rangeObject.SetActive(false);
     }
 
-    public void SetRange(float range)
+    public virtual void SetRange(float range)
     {
-        rangeObject.transform.localScale = new Vector3(range - 1, range - 1, 1);
+        rangeObject.transform.localScale = new Vector3(range / 2, range / 2, 1);
     }
 }
