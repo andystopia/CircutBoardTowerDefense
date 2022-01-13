@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyPathManager : MonoBehaviour
 {
-    [SerializeField] private EnemyPath path;
+    [SerializeField] private EnemyPathBase path;
 
-    public virtual EnemyPath GetActivePath()
+    public virtual EnemyPathBase GetActivePath()
     {
         return path;
     }

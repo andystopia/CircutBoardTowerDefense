@@ -90,7 +90,6 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.X) && entries.GetActive() != null)
         {
-            Debug.Log("Selecting new turret.");
             selectedManager.Activate(entries.GetActive().Root.SelectionInteractor);
         }
     }

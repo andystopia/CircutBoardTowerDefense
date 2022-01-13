@@ -52,7 +52,7 @@ namespace EnemyBehaviour
 
         }
 
-        public void Init(IEnumerator<GridLocation> path)
+        public void Init(IEnumerable<IEnemyPathNode> path)
         {
             GetComponent<EnemyPlayState>().Init(path);
         }

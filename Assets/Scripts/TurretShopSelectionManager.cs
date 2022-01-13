@@ -15,7 +15,7 @@ public class TurretShopSelectionManager : BasicExclusiveStateManager<TurretShopE
      [SerializeField]
      private TurretShopEntry.SelectionInteractor defaultDisplay;
 
-     protected virtual void Start()
+     protected virtual void Awake()
      {
           Activate(defaultDisplay);
      }

@@ -13,4 +13,6 @@ public interface ITileSelectionInteractor : IActiveOrInactiveState
     IGridPositionedItem GetGridPositionedComponent();
     IFocusInteractor GetFocusInteractor();
     (FilledState, TurretShopSelectionStatus) GetState();
+
+    public Tile.Tile Root { get; }
 }

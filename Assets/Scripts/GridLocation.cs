@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 /// <summary>
@@ -20,7 +22,12 @@ public struct GridLocation : IEquatable<GridLocation>
 
     public readonly int Row => row;
     public readonly int Column => column;
-    
+
+    public static readonly GridLocation North = new GridLocation(1, 0);
+    public static readonly GridLocation South = new GridLocation(-1, 0);
+    public static readonly GridLocation East = new GridLocation(0, 1);
+    public static readonly GridLocation West = new GridLocation(0, -1);
+    public static readonly GridLocation Zero = new GridLocation(0, 0);
     
 
     public GridLocation(int row, int column)
@@ -46,6 +53,15 @@ public struct GridLocation : IEquatable<GridLocation>
         return new GridLocation(a.row + b.row, a.column + b.column);
     }
 
+    public static GridLocation Scale(GridLocation a, GridLocation b)
+    {
+        return new GridLocation(a.row * b.row, a.column * b.column);
+    }
+
+    public static GridLocation Scale(GridLocation value, int scalar)
+    {
+        return new GridLocation(value.row * scalar, value.column * scalar);
+    }
     public override string ToString()
     {
         return $"({row}, {column})";

@@ -24,6 +24,9 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
     private IGridPositionedItem gridPosition;
     private ITileExclusiveFocusInteractor focusInteractor;
 
+    public Tile.Tile Root { get; protected set; }
+    
+
 
     public IGridPositionedItem GetGridPositionedComponent()
     {
@@ -34,6 +37,8 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
     {
         turretBehavior = GetComponent<ITileTurretBehavior>();
         rangeIndicator = GetComponent<ITileRangeIndicator>();
+        
+        Root = GetComponent<Tile.Tile>();
         
         // note if you use, `IGridPositionedItem`, you will find
         // that this class will satisfy it, even though it shouldn't

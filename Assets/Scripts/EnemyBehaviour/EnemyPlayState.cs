@@ -15,7 +15,7 @@ namespace EnemyBehaviour
         private EnergyCounter energyCounterScript;
         private GameManager gameManagerScript;
         
-        private IEnumerator<GridLocation> path;
+        private IEnumerator<IEnemyPathNode> path;
         private Vector3 targetedPosition;
         private float yOffset = -0.5f;
         public bool isExploding;
@@ -37,11 +37,11 @@ namespace EnemyBehaviour
             enabled = false;
         }
 
-        public void Init(IEnumerator<GridLocation> path)
+        public void Init(IEnumerable<IEnemyPathNode> path)
         {
-            this.path = path;
-            path.MoveNext();
-            transform.position = GridSpaceGlobalSpaceConverter.FromLocation(path.Current, yOffset);
+            this.path = path.GetEnumerator();
+            this.path.MoveNext();
+            transform.position = GridSpaceGlobalSpaceConverter.FromLocation(this.path.Current.Location, yOffset);
             AdvanceToNextNode();
         }
 
@@ -86,9 +86,9 @@ namespace EnemyBehaviour
                 return true;
             }
             var isMoved = path.MoveNext();
-            if (isMoved)
+            if (isMoved && path.Current != null)
             {
-                targetedPosition = GridSpaceGlobalSpaceConverter.FromLocation(path.Current, yOffset);
+                targetedPosition = GridSpaceGlobalSpaceConverter.FromLocation(path.Current.Location, yOffset);
                 transform.LookAt(targetedPosition);
             }
             return isMoved;

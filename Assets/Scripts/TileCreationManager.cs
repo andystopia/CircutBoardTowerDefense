@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
 using GameGrid;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class TileCreationManager : MonoBehaviour
 
     [SerializeField] private EnemyPathManager pathManager;
     
-    private List<IExclusionZone> exclusionZones = new List<IExclusionZone>
+    private readonly List<IExclusionZone> exclusionZones = new List<IExclusionZone>
     {
         // turret menu
         new RectangleExclusionZone(new GridLocation(0, 0), new GridLocation(3, 10)),
@@ -31,29 +32,20 @@ public class TileCreationManager : MonoBehaviour
     
     private void Awake()
     {
-        // add all on path to the exclusion list.
-        var activePath = pathManager.GetActivePath();
-        
-        for (var i = 0; i < activePath.Points.Count - 1; i++)
+        // in theory, this can be done without allocation.
+        var minimal = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().ToList();
+
+        for (var i = 0; i < minimal.Count - 1; i++)
         {
-            exclusionZones.Add(new RectangleExclusionZone(activePath.Points[i], activePath.Points[i + 1]));
+            var first = minimal[i].Location;
+            var second = minimal[i + 1].Location;
+            
+            exclusionZones.Add(new RectangleExclusionZone(first, second));
         }
-        
-        
+
+
         selectionManager = GetComponent<TileSelectionManager>();
         focusManager = GetComponent<TileFocusManager>();
         TileGrid = new ExclusionCheckedTileGrid(new Dimensions<int>(21, 13), manager, selectionManager, focusManager, tilePrefab, exclusionZones);
     }
-
-    private void Start()
-    {
-        // this isn't being very polite
-        // to the focus area manager, 
-        // so it will probably cause problems down the 
-        // line.
-        var randomTile = TileGrid.GetRandomNonNullGridItem();
-        selectionManager.Activate(randomTile.GetSelectionInteractor());
-        focusManager.Activate(randomTile.GetFocusInteractor());
-    }
-
 }

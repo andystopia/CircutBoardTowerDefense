@@ -115,6 +115,7 @@ public class FocusIndicator : MonoBehaviour, IFocusIndicator
         // FocusedOn = null;
         
         currentColor = Color.white;
+        if (focusedOn == null) FocusedOn = null;
     }
 
     void Update()

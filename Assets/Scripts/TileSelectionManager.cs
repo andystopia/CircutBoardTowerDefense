@@ -12,14 +12,17 @@ public class TileSelectionManager : BasicTogglableExclusiveStateManager<ITileSel
         creationManager = GetComponent<TileCreationManager>();
         focusManager = GetComponent<TileFocusManager>();
     }
-
-    public override void Activate(ITileSelectionInteractor item)
+    
+    
+    protected virtual void Update()
     {
-        if (focusManager.IsActiveFocusRegion())
+        if (GetActive() == null) return;
+        if (focusManager.GetActive() != GetActive().Root.GetFocusInteractor())
         {
-            base.Activate(item);
+            focusManager.Activate(GetActive().Root.GetFocusInteractor());
         }
     }
+
 
 
     public void AttemptToFocusSelectedObject()

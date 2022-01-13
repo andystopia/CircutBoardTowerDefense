@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using GameGrid;
 using UnityEngine;
 
@@ -7,56 +5,36 @@ namespace PathGrid
 {
     public class PathGrid : PrefabGrid<PathGridItem>
     {
-        public PathGrid(Dimensions<int> dimensions, EnemyPath path, PathGridItem prefab) : base(CreateTemplateArray(dimensions, path, prefab), prefab)
+        private readonly EnemyPathBase path;
+        private readonly IGridInstantiationCreator<PathGridItem> instantiator;
+
+        public PathGrid(Dimensions<int> dimensions, EnemyPathBase path, PathGridItem prefab) : base(dimensions, prefab)
         {
-            GridInstantiate(new PathGridItemInstantiator());
+            this.path = path;
+            instantiator = new PathGridItemInstantiator();
+            PopulateGrid();
         }
 
-        private static IEnumerator<GridLocation> GetLocationsBetween(GridLocation a, GridLocation b)
+        private void PopulateGrid()
         {
-            while (!a.Equals(b))
-            {
-                var columnDiff = b.Column - a.Column;
-                var rowDiff = b.Row - a.Row;
-                var colStep = Math.Sign(columnDiff);
-                var rowStep = Math.Sign(rowDiff);
+            var intermediateValues = path.GetExtrapolator().GetIntermediateValues();
 
-                if (Math.Abs(columnDiff) > Math.Abs(rowDiff))
-                {
-                    a = new GridLocation(a.Row, a.Column + colStep);
-                    yield return a;
-                }
-                else
-                {
-                    a = new GridLocation(a.Row + rowStep, a.Column);
-                    yield return a;
-                }
+            foreach (var enemyPathNode in intermediateValues)
+            {
+                // cache the location for later.
+                var enemyPathNodeLocation = enemyPathNode.Location;
+                var pathNodeInstance = instantiator.CreateInstance(this, enemyPathNodeLocation);
+
+                // see if we can enable either the input or the output constraints.
+                if (enemyPathNode.IncomingDirection != null)
+                    pathNodeInstance.Enable(enemyPathNode.IncomingDirection.Value);
+                if (enemyPathNode.OutgoingDirection != null)
+                    pathNodeInstance.Enable(enemyPathNode.OutgoingDirection.Value);
+                
+                
+                this[enemyPathNodeLocation] = pathNodeInstance;
             }
         }
 
-        private static PathGridItem[,] CreateTemplateArray(Dimensions<int> dimensions, EnemyPath path, PathGridItem prefab)
-        {
-            PathGridItem[,] grid = new PathGridItem[dimensions.width, dimensions.height];
-
-            for (var i = 0; i < path.Points.Count - 1; i++)
-            {
-                var firstPoint = path.Points[i];
-                var secondPoint = path.Points[i + 1];
-
-                grid[firstPoint.Column, firstPoint.Row] = prefab;
-                
-                var between = GetLocationsBetween(firstPoint, secondPoint);
-                
-                while (between.MoveNext())
-                {
-                    var loc = between.Current;
-                    grid[loc.Column, loc.Row] = prefab;
-                }
-
-            }
-            
-            
-            return grid;
-        }
     }
 }

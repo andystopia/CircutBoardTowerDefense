@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
         // }
         
         // for test exploder enemy.
-        GameObject.FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().CreateLocationEnumerator());
+        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation());
         callCooldownBase = callCooldown;
     }
 
@@ -72,7 +72,7 @@ public class SpawnManager : MonoBehaviour
             var enemy = temp.GetComponent<Enemy>();
             enemy.Health += (temp.GetComponent<Enemy>().HealthGain) * (wave - 1);
             enemy.Health += (temp.GetComponent<Enemy>().EnergyGain) * (wave - 1);
-            var locationEnumerator = pathManager.GetActivePath().CreateLocationEnumerator();
+            var locationEnumerator = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation();
             if (locationEnumerator == null)
             {
                 Debug.Log("enumerator null in spawnwave", this);

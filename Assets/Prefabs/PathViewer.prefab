@@ -376,8 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8776fa949d414fe08626d613b065a3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  north: {fileID: 2913021262678931093}
-  south: {fileID: 1627040669680369605}
+  north: {fileID: 1627040669680369605}
+  south: {fileID: 2913021262678931093}
   east: {fileID: 3087181425651438470}
   west: {fileID: 2045586303476720573}
 --- !u!1 &8793493013568750009

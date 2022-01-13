@@ -11,10 +11,13 @@ public class TileExclusiveFocusInteractor : ExclusiveFocusInteractor, ITileExclu
 {
     private ITileFocusDisplay display;
     private ITileSelectionInteractor selectionInteractor;
+    
+    public Tile.Tile Root { get; protected set;  }
     private void Awake()
     {
         display = GetComponent<ITileFocusDisplay>();
         selectionInteractor = GetComponent<ITileSelectionInteractor>();
+        Root = GetComponent<Tile.Tile>();
         
         // make sure we're the only one who is using this interface on this object.
         GameObjectHelper.AssertOnlyComponentOfType<IExclusiveFocusInteractor>(this);
