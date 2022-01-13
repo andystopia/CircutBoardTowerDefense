@@ -5,16 +5,17 @@ public class TileFocusManager : ExclusiveSubsectionFocusManager
 {
     [SerializeField] private ActiveRegionFocus focusRegion;
     private TileSelectionManager selectionManager;
-    
+
     private void Awake()
     {
         selectionManager = GetComponent<TileSelectionManager>();
     }
+
     public bool IsActiveFocusRegion()
     {
         return focusRegion.IsActive(this);
     }
-    
+
     public override void Activate(IFocusInteractor item)
     {
         if (!focusRegion.IsActive(this)) return;

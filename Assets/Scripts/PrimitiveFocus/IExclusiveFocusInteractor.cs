@@ -1,5 +1,3 @@
-using ActiveOrInactiveStateManagement;
-
 namespace PrimitiveFocus
 {
     public interface IExclusiveFocusInteractor : IFocusInteractor
@@ -7,7 +5,7 @@ namespace PrimitiveFocus
         void SetManager(ExclusiveSubsectionFocusManager manager);
 
         /// <summary>
-        /// The more specific form if you have access to an instance of this class.
+        ///     The more specific form if you have access to an instance of this class.
         /// </summary>
         /// <returns></returns>
         ExclusiveSubsectionFocusManager GetFocusManager();

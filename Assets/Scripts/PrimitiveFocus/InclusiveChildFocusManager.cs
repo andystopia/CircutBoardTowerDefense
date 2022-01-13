@@ -13,16 +13,16 @@ namespace PrimitiveFocus
         }
 
 
-        
         #region IFocusableRegionMethods
+
         public virtual void OnActivate()
         {
-            
         }
 
         public virtual void OnInactivate()
         {
         }
+
         #endregion
     }
 }

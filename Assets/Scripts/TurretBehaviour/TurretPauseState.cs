@@ -1,6 +1,4 @@
 using GameState;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace TurretBehaviour
 {

@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace InterpolationFunction
 {
     public interface InterpolationFunction
     {
         /// <summary>
-        /// The function of the curve of the interpolation function.
+        ///     The function of the curve of the interpolation function.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -18,13 +15,12 @@ namespace InterpolationFunction
 
 
     /// <summary>
-    /// Allows for custom interpolation functions to be written
-    /// quickly, without generating a whole new class at the
-    /// cost of one pointer indirection.
-    ///
+    ///     Allows for custom interpolation functions to be written
+    ///     quickly, without generating a whole new class at the
+    ///     cost of one pointer indirection.
     /// </summary>
     /// <example>
-    /// <code>
+    ///     <code>
     /// // definition of a linear interpolator
     /// CustomInterpolator inter = new CustomInterpolator(x => x)
     /// </code>
@@ -43,14 +39,13 @@ namespace InterpolationFunction
             return function.Invoke(value);
         }
     }
-    
+
     public class PolynomialInterpolator : InterpolationFunction
     {
-        public readonly float Degree;
-
         public static readonly PolynomialInterpolator Linear = new PolynomialInterpolator(1);
         public static readonly PolynomialInterpolator Quadratic = new PolynomialInterpolator(2);
         public static readonly PolynomialInterpolator Cubic = new PolynomialInterpolator(3);
+        public readonly float Degree;
 
         public PolynomialInterpolator(float degree)
         {
@@ -65,10 +60,9 @@ namespace InterpolationFunction
 
     public class InversePolynomialInterpolator : InterpolationFunction
     {
-        public readonly float Degree;
-
         public static readonly InversePolynomialInterpolator InverseQuadratic = new InversePolynomialInterpolator(2);
         public static readonly InversePolynomialInterpolator InverseCubic = new InversePolynomialInterpolator(3);
+        public readonly float Degree;
 
         public InversePolynomialInterpolator(float degree)
         {
@@ -76,8 +70,8 @@ namespace InterpolationFunction
         }
 
         /// <summary>
-        /// Curves the input to the time function so that
-        /// it achieves an inverse polynomial style.
+        ///     Curves the input to the time function so that
+        ///     it achieves an inverse polynomial style.
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
@@ -92,58 +86,50 @@ namespace InterpolationFunction
         private const float c4 = (float) (2 * Math.PI) / 3;
 
         /// <summary>
-        /// Animates an "Ease Out Elastic" function,
-        /// Pulled from https://easings.net/#easeOutElastic.
-        ///
-        /// Makes a sort of bouncing ending call.
+        ///     Animates an "Ease Out Elastic" function,
+        ///     Pulled from https://easings.net/#easeOutElastic.
+        ///     Makes a sort of bouncing ending call.
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
         public float Transform(float time)
         {
-            if (time == 0)
-            {
-                return 0;
-            }
+            if (time == 0) return 0;
 
             // if time == 1
-            if (time > 1 - float.Epsilon)
-            {
-                return 1;
-            }
+            if (time > 1 - float.Epsilon) return 1;
 
             return (float) (Math.Pow(2, -10 * time) * Math.Sin((time * 10 - 0.75) * c4) + 1);
         }
     }
 
 
-
     /// <summary>
-    /// This class is for those stateless interpolators, which
-    /// are simple math functions, of the form f(x) = y for
-    /// x and y ∈ R, where x is a time and y is a time.
-    ///
-    /// So things like linear are really simple, as
-    /// are single term polynomials and inverse polynomials.
+    ///     This class is for those stateless interpolators, which
+    ///     are simple math functions, of the form f(x) = y for
+    ///     x and y ∈ R, where x is a time and y is a time.
+    ///     So things like linear are really simple, as
+    ///     are single term polynomials and inverse polynomials.
     /// </summary>
-
     /// <summary>
-    /// Allows CSS-Style <c>bezier-curve()</c> animation
-    /// control. A lot of flexible than a polynomial
-    /// interpolation function.
+    ///     Allows CSS-Style <c>bezier-curve()</c> animation
+    ///     control. A lot of flexible than a polynomial
+    ///     interpolation function.
     /// </summary>
     public class CubicBezierInterpolator : InterpolationFunction
     {
-        // inputs to the cubic-bezier function.
-        private readonly Vector2 p0 = Vector2.zero;
-        private readonly Vector2 p1;
-        private readonly Vector2 p2;
-        private readonly Vector2 p3 = Vector2.one;
+        public enum CSSName
+        {
+            Ease,
+            EaseIn,
+            EaseInOut,
+            EaseOut
+        }
 
         /// <summary>
-        /// You can turn this up, if you find the animation
-        /// quality unsatisfactory, though it will make the
-        /// animation more computationally expensive.
+        ///     You can turn this up, if you find the animation
+        ///     quality unsatisfactory, though it will make the
+        ///     animation more computationally expensive.
         /// </summary>
         private const int accuracy = 10;
 
@@ -156,20 +142,18 @@ namespace InterpolationFunction
 
         public static readonly CubicBezierInterpolator EaseOut = new CubicBezierInterpolator(0.0f, 0.0f, 0.58f, 1.0f);
 
-        public enum CSSName
-        {
-            Ease,
-            EaseIn,
-            EaseInOut,
-            EaseOut,
-        }
+        // inputs to the cubic-bezier function.
+        private readonly Vector2 p0 = Vector2.zero;
+        private readonly Vector2 p1;
+        private readonly Vector2 p2;
+        private readonly Vector2 p3 = Vector2.one;
 
         /// <summary>
-        /// Meant to be a compatible interpolator
-        /// with CSS's cubic-bezier function,
-        /// aka, the arguments that are passed to
-        /// the css cubic bezier function can be passed
-        /// straight to this one, with similar behavior.
+        ///     Meant to be a compatible interpolator
+        ///     with CSS's cubic-bezier function,
+        ///     aka, the arguments that are passed to
+        ///     the css cubic bezier function can be passed
+        ///     straight to this one, with similar behavior.
         /// </summary>
         /// <param name="p1x">range [0, 1]</param>
         /// <param name="p1y">range (-inf, 1]</param>
@@ -195,8 +179,14 @@ namespace InterpolationFunction
             p2.y = p2y;
         }
 
+
+        public float Transform(float time)
+        {
+            return At(FindXOutput(time)).y;
+        }
+
         /// <summary>
-        /// Converts from the CSSName to the bezier curve.
+        ///     Converts from the CSSName to the bezier curve.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -214,7 +204,7 @@ namespace InterpolationFunction
         }
 
         /// <summary>
-        /// Cubic-Bezier Function Definition.
+        ///     Cubic-Bezier Function Definition.
         /// </summary>
         /// <param name="t"> the input to the cubic bezier function</param>
         /// <returns></returns>
@@ -227,9 +217,9 @@ namespace InterpolationFunction
         }
 
         /// <summary>
-        /// The derivative of the cubic bezier function definition
-        /// Basically only useful for evaluating the <c>FindXOutput</c>
-        /// function.
+        ///     The derivative of the cubic bezier function definition
+        ///     Basically only useful for evaluating the <c>FindXOutput</c>
+        ///     function.
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
@@ -243,31 +233,26 @@ namespace InterpolationFunction
 
 
         /// <summary>
-        /// uses the Newton-Raphson method
-        /// of approximating roots in order to
-        /// figure out which x, as an input will yield
-        /// a t which will make the <c>at<c> function
-        /// yield an output with x as the first component
-        /// of the vector.
+        ///     uses the Newton-Raphson method
+        ///     of approximating roots in order to
+        ///     figure out which x, as an input will yield
+        ///     a t which will make the
+        ///     <c>
+        ///         at
+        ///         <c>
+        ///             function
+        ///             yield an output with x as the first component
+        ///             of the vector.
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         private float FindXOutput(float x)
         {
             // start in the middle of the function's range.
-            float better = 0.5f;
-            for (int i = 0; i < accuracy; i++)
-            {
-                better -= (At(better).x - x) / Derivative(better).x;
-            }
+            var better = 0.5f;
+            for (var i = 0; i < accuracy; i++) better -= (At(better).x - x) / Derivative(better).x;
 
             return better;
-        }
-        
-
-        public float Transform(float time)
-        {
-            return At(FindXOutput(time)).y;
         }
     }
 

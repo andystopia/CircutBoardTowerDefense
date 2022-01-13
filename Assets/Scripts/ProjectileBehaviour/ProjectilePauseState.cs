@@ -1,6 +1,4 @@
-using EnemyBehaviour;
 using GameState;
-using UnityEngine;
 
 namespace ProjectileBehaviour
 {

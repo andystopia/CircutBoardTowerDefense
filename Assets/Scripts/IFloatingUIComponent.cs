@@ -7,5 +7,4 @@ public interface IFloatingUIComponent
     Vector3 GetDestinationPosition();
     Vector3 GetStartingPosition();
     Vector3 GetCurrentPosition();
-    
 }

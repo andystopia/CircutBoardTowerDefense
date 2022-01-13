@@ -1,11 +1,10 @@
-
 using UnityEngine;
 
 public class GridPositionPrefabMonoBehaviour : MonoBehaviour, IPrefabGridPositionedItem
 {
     private GridLocation location;
-    
-    
+
+
     public GridLocation GetLocation()
     {
         return location;

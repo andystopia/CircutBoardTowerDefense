@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DeactivateWithinRange : MonoBehaviour
@@ -7,31 +6,26 @@ public class DeactivateWithinRange : MonoBehaviour
     public List<GameObject> tilesToDisable;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Destroy(gameObject, 2);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
-    
+
     public void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collided");
         if (collision.gameObject.CompareTag("Tile"))
         {
-            bool isAvailable = true;
-            foreach(GameObject ti in tilesToDisable)
-            {
-                if(ti == collision.gameObject)
-                {
+            var isAvailable = true;
+            foreach (var ti in tilesToDisable)
+                if (ti == collision.gameObject)
                     isAvailable = false;
-                }
-            }
             if (isAvailable)
             {
                 tilesToDisable.Add(collision.gameObject);
@@ -39,6 +33,4 @@ public class DeactivateWithinRange : MonoBehaviour
             }
         }
     }
-    
-
 }

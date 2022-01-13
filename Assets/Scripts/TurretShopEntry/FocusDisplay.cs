@@ -1,12 +1,11 @@
-using ActiveOrInactiveStateManagement;
 using UnityEngine;
 
 namespace TurretShopEntry
 {
     public class TranslatedFocusable : IFocusable
     {
-        private readonly IFocusable underlying;
         private readonly Vector3 translation;
+        private readonly IFocusable underlying;
 
         public TranslatedFocusable(IFocusable underlying, Vector3 translation)
         {
@@ -23,7 +22,7 @@ namespace TurretShopEntry
         {
             underlying.OnInactivate();
         }
-    
+
 
         public Bounds FocusBounds
         {
@@ -45,23 +44,19 @@ namespace TurretShopEntry
         private RecursiveRendererBoundsFocusable focusBounds;
 
         private IFocusable shifted;
+
         protected virtual void Start()
         {
             entry = GetComponent<TurretShopEntryRoot>();
             focusBounds = GetComponent<RecursiveRendererBoundsFocusable>();
             shifted = focusBounds;
         }
-    
-        public TurretShopEntryRoot GetEntry()
-        {
-            return entry;
-        }
 
         public Vector3 GetOriginalFocusCenter()
         {
             return focusBounds.FocusBounds.center;
         }
-    
+
         public void SetFocusCenter(Vector3 location)
         {
             shifted = new TranslatedFocusable(focusBounds, location);
@@ -71,11 +66,16 @@ namespace TurretShopEntry
         {
             focus.FocusOn(shifted);
         }
-    
+
 
         public void Hide()
         {
             focus.StopFocusOn(shifted);
+        }
+
+        public TurretShopEntryRoot GetEntry()
+        {
+            return entry;
         }
     }
 }

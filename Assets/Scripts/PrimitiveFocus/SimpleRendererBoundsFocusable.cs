@@ -2,9 +2,11 @@ using UnityEngine;
 
 public abstract class SimpleRendererBoundsFocusable : RendererBoundsFocusable
 {
-    protected Renderer currentRenderer;
     protected Bounds bounds;
-    
+    protected Renderer currentRenderer;
+
+    public override Bounds FocusBounds => bounds;
+
     private void Start()
     {
         currentRenderer = GetComponent<Renderer>();
@@ -14,6 +16,4 @@ public abstract class SimpleRendererBoundsFocusable : RendererBoundsFocusable
     {
         bounds = currentRenderer.bounds;
     }
-
-    public override Bounds FocusBounds => bounds;
 }

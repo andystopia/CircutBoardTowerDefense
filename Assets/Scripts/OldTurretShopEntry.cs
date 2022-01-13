@@ -2,40 +2,35 @@ using ActiveOrInactiveStateManagement;
 using TurretBehaviour;
 using UnityEngine;
 
-
 public class OldTurretShopEntry : MonoBehaviour, ITurretShopEntryBehavior
 {
     [SerializeField] private BasicTogglableExclusiveStateManager<ITurretShopEntryBehavior> shop;
-    
+
     [SerializeField] private Turret shopTurret;
     public GameObject litDisplay;
     public GameObject deleteDisplay;
     public GameObject turretMouseDrag;
 
     [SerializeField] private float energyCost;
-    
+
     private GameManager gameManagerScript;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-    }
-
-    private bool IsSelected()
-    {
-        return ReferenceEquals(shop.GetActive(), this);
     }
 
     private void OnMouseDown()
     {
         // if (!gameManagerScript.inTileMenu)
         // {
-            shop.ToggleActive(this);
+        shop.ToggleActive(this);
         // }
     }
 
@@ -58,5 +53,10 @@ public class OldTurretShopEntry : MonoBehaviour, ITurretShopEntryBehavior
     public float GetEnergyCost()
     {
         return energyCost;
+    }
+
+    private bool IsSelected()
+    {
+        return ReferenceEquals(shop.GetActive(), this);
     }
 }

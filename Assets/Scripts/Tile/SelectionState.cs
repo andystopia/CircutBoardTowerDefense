@@ -1,19 +1,15 @@
-using UnityEngine;
-
 namespace Tile
 {
     public enum FilledState
     {
         Filled,
-        Empty,
+        Empty
     }
 
     public enum TurretShopSelectionStatus
     {
         AffordableActiveTurret,
         TooExpensiveActiveTurret,
-        NoActiveTurret,
+        NoActiveTurret
     }
-
-
 }

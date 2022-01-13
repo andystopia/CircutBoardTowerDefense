@@ -1,13 +1,11 @@
-using System;
-using UnityEngine;
-
 namespace ObserverPattern
 {
     public enum MouseEventKind
     {
         MouseEntered,
-        MouseExit,
+        MouseExit
     }
+
     public class MouseEventObservableMonoBehaviour : BasicObservableMonoBehaviour<MouseEventKind>
     {
         protected virtual void OnMouseEnter()

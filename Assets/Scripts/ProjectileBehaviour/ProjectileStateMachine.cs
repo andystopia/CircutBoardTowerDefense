@@ -13,9 +13,7 @@ namespace ProjectileBehaviour
         protected void Start()
         {
             foreach (var component in GetComponents<IObserver<GameActivityState>>())
-            {
                 component.OnNext(StateChannel.CurrentState);
-            }
         }
     }
 }

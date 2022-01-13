@@ -1,5 +1,5 @@
 /// <summary>
-/// Abstraction of a cardinal direction.
+///     Abstraction of a cardinal direction.
 /// </summary>
 public enum CardinalDirection
 {

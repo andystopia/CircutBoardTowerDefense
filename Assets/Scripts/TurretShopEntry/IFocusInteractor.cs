@@ -4,7 +4,7 @@ namespace TurretShopEntry
 {
     public interface IFocusInteractor : IExclusiveFocusInteractor
     {
-        IFocusDisplay GetFocusDisplay();
         TurretShopEntryRoot Root { get; }
+        IFocusDisplay GetFocusDisplay();
     }
 }

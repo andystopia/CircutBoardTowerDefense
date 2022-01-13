@@ -5,8 +5,8 @@ namespace Helpers
     public class GridLocationTransform
     {
         /// <summary>
-        /// Offset a location by a given cardinal direction
-        /// by a passed number of units.
+        ///     Offset a location by a given cardinal direction
+        ///     by a passed number of units.
         /// </summary>
         /// <param name="location"></param>
         /// <param name="direction"></param>

@@ -2,18 +2,19 @@ using UnityEngine;
 
 namespace ActiveOrInactiveStateManagement
 {
-    public class BasicExclusiveStateManager<T> : MonoBehaviour,  IExclusiveStateManager<T> where T : class, IActiveOrInactiveState
+    public class BasicExclusiveStateManager<T> : MonoBehaviour, IExclusiveStateManager<T>
+        where T : class, IActiveOrInactiveState
     {
         /// <summary>
-        /// The currently selected turret shop.
-        /// This variable should probably only
-        /// be accessed by it's nonCamelCase
-        /// variant.
+        ///     The currently selected turret shop.
+        ///     This variable should probably only
+        ///     be accessed by it's nonCamelCase
+        ///     variant.
         /// </summary>
         private T selected;
 
         /// <summary>
-        /// Gets the active element.
+        ///     Gets the active element.
         /// </summary>
         /// <returns></returns>
         public virtual T GetActive()
@@ -22,23 +23,19 @@ namespace ActiveOrInactiveStateManagement
         }
 
         /// <summary>
-        /// Inactivate the current object if it's not already inactive.
+        ///     Inactivate the current object if it's not already inactive.
         /// </summary>
         /// <param name="item"></param>
         public virtual void InactivateIfActive(T item)
         {
-            if (IsActive(item))
-            {
-                Activate(null);
-            }
+            if (IsActive(item)) Activate(null);
         }
 
         /// <summary>
-        /// Sets the active item in the shop.
-        ///
-        /// If the item parameter is null, then
-        /// there will be no active shop at the
-        /// end of this method.
+        ///     Sets the active item in the shop.
+        ///     If the item parameter is null, then
+        ///     there will be no active shop at the
+        ///     end of this method.
         /// </summary>
         /// <param name="item"></param>
         public virtual void Activate(T item)
@@ -61,7 +58,7 @@ namespace ActiveOrInactiveStateManagement
         }
 
         /// <summary>
-        /// Disables any active element
+        ///     Disables any active element
         /// </summary>
         public virtual void InactivateAll()
         {

@@ -18,7 +18,7 @@ namespace GameState
         protected virtual void Update()
         {
         }
-        
+
         #region PauseListeners
 
         public void OnCompleted()
@@ -38,7 +38,9 @@ namespace GameState
         }
 
         #endregion
+
         #region PauseRecievers
+
         public void OnStateStart()
         {
             Debug.Log("Paused Begin...");

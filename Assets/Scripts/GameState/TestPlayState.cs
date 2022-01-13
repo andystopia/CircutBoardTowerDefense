@@ -19,6 +19,7 @@ namespace GameState
         }
 
         #region PlayPauseRegion
+
         public void OnCompleted()
         {
             // do nothing.
@@ -38,11 +39,13 @@ namespace GameState
         #endregion
 
         /// <summary>
-        /// This region is for the event
-        /// functions that are generated when
-        /// we have events that occur.
+        ///     This region is for the event
+        ///     functions that are generated when
+        ///     we have events that occur.
         /// </summary>
+
         #region StateBehavior
+
         public virtual void OnStateStart()
         {
             Debug.Log("Play Mode started.");
@@ -54,6 +57,7 @@ namespace GameState
             Debug.Log("Play Mode ended.");
             enabled = false;
         }
+
         #endregion
     }
 }

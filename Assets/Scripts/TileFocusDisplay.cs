@@ -1,11 +1,9 @@
-
-using System;
 using UnityEngine;
 
 public class TileFocusDisplay : MonoBehaviour, ITileFocusDisplay
 {
-    private RendererBoundsFocusable focusable;
     private FocusIndicator focus;
+    private RendererBoundsFocusable focusable;
     private Color focusColor;
 
     protected virtual void Awake()
@@ -22,7 +20,7 @@ public class TileFocusDisplay : MonoBehaviour, ITileFocusDisplay
     {
         this.focusColor = focusColor;
     }
-    
+
 
     public void Show()
     {

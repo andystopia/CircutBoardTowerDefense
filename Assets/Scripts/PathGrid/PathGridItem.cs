@@ -1,4 +1,3 @@
-using System.Data.Common;
 using UnityEngine;
 
 namespace PathGrid
@@ -9,7 +8,7 @@ namespace PathGrid
         [SerializeField] private GameObject south;
         [SerializeField] private GameObject east;
         [SerializeField] private GameObject west;
-        
+
         public void Enable(CardinalDirection direction)
         {
             var go = direction switch
@@ -18,13 +17,10 @@ namespace PathGrid
                 CardinalDirection.East => east,
                 CardinalDirection.South => south,
                 CardinalDirection.West => west,
-                _ => null,
+                _ => null
             };
 
-            if (go != null)
-            {
-                go.SetActive(true);
-            }
+            if (go != null) go.SetActive(true);
         }
     }
 }

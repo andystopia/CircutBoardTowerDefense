@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace ActiveOrInactiveStateManagement
 {
-    public class BasicInclusiveStateManager<T> : MonoBehaviour,  IInclusiveStateManager<T> where T : class, IActiveOrInactiveState
+    public class BasicInclusiveStateManager<T> : MonoBehaviour, IInclusiveStateManager<T>
+        where T : class, IActiveOrInactiveState
     {
         protected ICollection<T> currentlyActive;
-        
+
         public ICollection<T> GetActive()
         {
             return currentlyActive;

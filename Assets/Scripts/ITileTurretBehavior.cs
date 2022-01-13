@@ -1,6 +1,4 @@
-
 using TurretBehaviour;
-using UnityEngine;
 
 public interface ITileTurretBehavior
 {

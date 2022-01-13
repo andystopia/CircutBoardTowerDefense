@@ -1,17 +1,19 @@
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameState
 {
     public abstract class SimplePauseState<T> : MonoBehaviour, IObserver<GameActivityState>, IGameObjectState
     {
-        protected abstract IGameStateMachine StateMachine { get;  }
+        protected abstract IGameStateMachine StateMachine { get; }
+
         protected virtual void Awake()
         {
             enabled = false;
         }
+
         #region PlayPauseState
+
         public void OnStateStart()
         {
             if (this == null) return;
@@ -23,6 +25,7 @@ namespace GameState
             if (this == null) return;
             enabled = false;
         }
+
         #endregion
 
         #region PauseListeners
@@ -42,7 +45,7 @@ namespace GameState
             if (value != GameActivityState.Paused) return;
             StateMachine.ActivateState(this);
         }
-        
+
         #endregion
     }
 }

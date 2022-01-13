@@ -13,8 +13,9 @@ namespace InterpolationFunction
         Cubic,
         InverseQuadratic,
         InverseCubic,
-        EaseOutElastic,
+        EaseOutElastic
     }
+
     internal static class CommonInterpolatorExtensions
     {
         public static InterpolationFunction GetInterpolationFunction(this CommonInterpolators interpolators)
@@ -35,6 +36,4 @@ namespace InterpolationFunction
             };
         }
     }
-
 }
-

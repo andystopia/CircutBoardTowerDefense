@@ -11,7 +11,7 @@ namespace ObserverPattern
 
 
         /// <summary>
-        /// Subscribes to events from this observable.
+        ///     Subscribes to events from this observable.
         /// </summary>
         /// <param name="observer"></param>
         /// <returns></returns>
@@ -22,31 +22,29 @@ namespace ObserverPattern
         }
 
         /// <summary>
-        /// You probably should just use the displose pattern
-        /// to do this, but this method will remove yourself
-        /// from the listening pool.
+        ///     You probably should just use the displose pattern
+        ///     to do this, but this method will remove yourself
+        ///     from the listening pool.
         /// </summary>
         /// <param name="observer"></param>
         public void Unsubscribe([NotNull] IObserver<T> observer)
         {
             Observers.Remove(observer);
         }
-        
+
         protected void NotifyAll(T ev)
         {
-            foreach (var observer in Observers)
-            {
-                observer.OnNext(ev);
-            }
+            foreach (var observer in Observers) observer.OnNext(ev);
         }
     }
-    
+
     public class BasicObserverUnsubscriber<T> : IDisposable
     {
         [NotNull] private readonly BasicObservableMonoBehaviour<T> observable;
         [NotNull] private readonly IObserver<T> observer;
 
-        public BasicObserverUnsubscriber([NotNull] BasicObservableMonoBehaviour<T> observable, [NotNull] IObserver<T> observer)
+        public BasicObserverUnsubscriber([NotNull] BasicObservableMonoBehaviour<T> observable,
+            [NotNull] IObserver<T> observer)
         {
             this.observable = observable;
             this.observer = observer;

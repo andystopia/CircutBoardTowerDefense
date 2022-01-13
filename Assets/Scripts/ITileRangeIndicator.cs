@@ -1,4 +1,3 @@
-
 public interface ITileRangeIndicator
 {
     void Show();

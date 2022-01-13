@@ -3,31 +3,23 @@ using UnityEngine;
 
 public class TileRangeIndicatorFadeUsingGameObject : TileRangeIndicatorUsingGameObject
 {
-    private InterpolationFunction.InterpolationFunction interpolationFunc =
+    [SerializeField] private int frameDuration;
+    private int currentFrame;
+    private float currentRange;
+
+    private readonly InterpolationFunction.InterpolationFunction interpolationFunc =
         CubicBezierInterpolator.EaseInOut;
 
-    private float rangeTarget = 0.0f;
-    private float startingRange = 0.0f;
-    private float currentRange = 0.0f;
-    private int currentFrame = 0;
+    private float rangeTarget;
+    private float startingRange;
 
-    [SerializeField] private int frameDuration;
-    
     private void Awake()
     {
     }
-    public override void Show()
-    {
-        currentFrame = 0;
-        currentRange = 0;
-        base.SetRange(0);
-        base.Show();
-    }
-    
-    
+
+
     protected virtual void Update()
     {
-        
         if (currentFrame <= frameDuration)
         {
             currentRange = InterpolationHelper.Lerp(startingRange, rangeTarget,
@@ -38,7 +30,16 @@ public class TileRangeIndicatorFadeUsingGameObject : TileRangeIndicatorUsingGame
         {
             base.Hide();
         }
+
         currentFrame += 1;
+    }
+
+    public override void Show()
+    {
+        currentFrame = 0;
+        currentRange = 0;
+        base.SetRange(0);
+        base.Show();
     }
 
     public override void Hide()

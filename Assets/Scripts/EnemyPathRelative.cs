@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 [Serializable]
@@ -18,13 +16,14 @@ public struct RelativePathNode
         return $"Distance: {Distance}, Direction: {Direction}";
     }
 }
+
 [CreateAssetMenu(fileName = "Enemy Path Relative", menuName = "Enemy Path/Relative Path")]
 public class EnemyPathRelative : EnemyPathBase
 {
     [SerializeField] private GridLocation startingLocation;
     [SerializeField] private List<RelativePathNode> pathNodes;
 
-    
+
     public static GridLocation OffsetGridLocationWithPathNode(GridLocation location, RelativePathNode relativePathNode)
     {
         var (colOffset, rowOffset) = relativePathNode.Direction switch
@@ -41,8 +40,8 @@ public class EnemyPathRelative : EnemyPathBase
     }
 
     /// <summary>
-    /// Gets the extrapolator for all the points in this
-    /// structure. 
+    ///     Gets the extrapolator for all the points in this
+    ///     structure.
     /// </summary>
     /// <returns></returns>
     public override IEnemyPathIntermediateValueExtrapolator GetExtrapolator()

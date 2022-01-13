@@ -1,4 +1,3 @@
-
 public interface IGridPositionedItem
 {
     public GridLocation GetLocation();

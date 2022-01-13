@@ -3,8 +3,8 @@ using UnityEngine;
 namespace GameGrid
 {
     /// <summary>
-    /// Converts a place on the grid
-    /// into a global space.
+    ///     Converts a place on the grid
+    ///     into a global space.
     /// </summary>
     public static class GridSpaceGlobalSpaceConverter
     {
@@ -14,15 +14,15 @@ namespace GameGrid
         private const float offsetZ = -9f;
 
         /// <summary>
-        /// Converts a location (row, col) into
-        /// a global location.
+        ///     Converts a location (row, col) into
+        ///     a global location.
         /// </summary>
         /// <param name="location"></param>
         /// <param name="yOffset"></param>
         /// <returns></returns>
         public static Vector3 FromLocation(GridLocation location, float yOffset = 0.0f)
         {
-            return new Vector3((1.5f * location.Column + offsetX), yOffset, (1.5f * location.Row + offsetZ));
+            return new Vector3(1.5f * location.Column + offsetX, yOffset, 1.5f * location.Row + offsetZ);
         }
     }
 }

@@ -1,8 +1,24 @@
-using System;
 using UnityEngine;
 
 public class TileKeyboardInputManager : MonoBehaviour
 {
+    /// <summary>
+    ///     The thing that keeps track of
+    ///     which part of the UI actively has
+    ///     focus. So that way we aren't
+    ///     moving around a menu cursor when
+    ///     we're not supposed to be.
+    /// </summary>
+    [SerializeField] private ActiveRegionFocus activeRegionFocus;
+
+    /// <summary>
+    ///     The thing that creates the tiles
+    ///     and abstracts its array based design.
+    /// </summary>
+    private TileCreationManager creationManager;
+
+    private TileFocusManager focusManager;
+
     // try to use these two together,
     // definitely should be their own
     // delegation. But I'll 
@@ -14,27 +30,17 @@ public class TileKeyboardInputManager : MonoBehaviour
     // something like multi select, that 
     // definition may change.
     private TileSelectionManager selectionManager;
-    private TileFocusManager focusManager;
-    
-    /// <summary>
-    /// The thing that creates the tiles
-    /// and abstracts its array based design.
-    /// </summary>
-    private TileCreationManager creationManager;
-    /// <summary>
-    /// The thing that keeps track of
-    /// which part of the UI actively has
-    /// focus. So that way we aren't
-    /// moving around a menu cursor when
-    /// we're not supposed to be.
-    /// </summary>
-    [SerializeField] private ActiveRegionFocus activeRegionFocus;
-    
+
     private void Awake()
     {
         selectionManager = GetComponent<TileSelectionManager>();
         creationManager = GetComponent<TileCreationManager>();
         focusManager = GetComponent<TileFocusManager>();
+    }
+
+    private void Update()
+    {
+        HandleKeyboardInput();
     }
 
     public void Activate(Tile.Tile tile)
@@ -47,10 +53,10 @@ public class TileKeyboardInputManager : MonoBehaviour
     {
         return selectionManager.GetActive();
     }
-    
+
     private bool AttemptMoveCardinalDirection(CardinalDirection direction)
     {
-        GridLocation deltaLoc = GridLocation.MakeFromCardinalDirection(direction);
+        var deltaLoc = GridLocation.MakeFromCardinalDirection(direction);
         // should this be the focus manager or the selection manager
         // or some other manager all together?
         var active = selectionManager.GetActive();
@@ -62,21 +68,22 @@ public class TileKeyboardInputManager : MonoBehaviour
             Activate(creationManager.TileGrid.GetRandomNonNullGridItem());
             return true;
         }
-        
+
         // now let's translate and see if we can find where we can move.
-        GridLocation tileLocation = GridLocation.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
+        var tileLocation = GridLocation.Add(active.GetGridPositionedComponent().GetLocation(), deltaLoc);
         while (creationManager.TileGrid.IsLocationValid(tileLocation))
         {
-            Tile.Tile possibleNextFocusTile = creationManager.TileGrid[tileLocation];
+            var possibleNextFocusTile = creationManager.TileGrid[tileLocation];
             if (possibleNextFocusTile != null)
             {
                 Activate(possibleNextFocusTile);
                 return true;
             }
+
             tileLocation = GridLocation.Add(tileLocation, deltaLoc);
         }
-        return false;
 
+        return false;
     }
 
 
@@ -93,39 +100,21 @@ public class TileKeyboardInputManager : MonoBehaviour
             {
                 Debug.Log($"Activating the main game as the primary focus, was ${activeRegionFocus.GetActive()}");
                 activeRegionFocus.Activate(focusManager);
-            } else
+            }
+            else
             {
                 return;
             }
         }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            AttemptMoveCardinalDirection(CardinalDirection.North);
-        }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            AttemptMoveCardinalDirection(CardinalDirection.South);
-        }
+        if (Input.GetKeyDown(KeyCode.W)) AttemptMoveCardinalDirection(CardinalDirection.North);
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            AttemptMoveCardinalDirection(CardinalDirection.East);
-        }
+        if (Input.GetKeyDown(KeyCode.S)) AttemptMoveCardinalDirection(CardinalDirection.South);
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AttemptMoveCardinalDirection(CardinalDirection.West);
-        }
+        if (Input.GetKeyDown(KeyCode.D)) AttemptMoveCardinalDirection(CardinalDirection.East);
 
-        if (Input.GetKeyDown(KeyCode.X) && GetActive() != null)
-        {
-            GetActive().AttemptToPlaceTurret();
-        }
-    }
-    
-    private void Update()
-    {
-        HandleKeyboardInput();
+        if (Input.GetKeyDown(KeyCode.A)) AttemptMoveCardinalDirection(CardinalDirection.West);
+
+        if (Input.GetKeyDown(KeyCode.X) && GetActive() != null) GetActive().AttemptToPlaceTurret();
     }
 }

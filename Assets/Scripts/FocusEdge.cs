@@ -3,12 +3,10 @@ using UnityEngine;
 
 public class FocusEdge
 {
-    private readonly Transform gameObjectTransformation;
     private readonly float edgeScale;
-    private readonly Vector3 signOffset;
+    private readonly Transform gameObjectTransformation;
     private readonly Vector3 scaleMask;
-
-    public SpriteRenderer Renderer { get; }
+    private readonly Vector3 signOffset;
 
     public FocusEdge(Transform gameObjectTransformation, float edgeScale, Vector3 signOffset, Vector3 scaleMask)
     {
@@ -18,6 +16,8 @@ public class FocusEdge
         this.signOffset = signOffset;
         this.scaleMask = scaleMask;
     }
+
+    public SpriteRenderer Renderer { get; }
 
 
     public float Length
@@ -30,12 +30,12 @@ public class FocusEdge
             // essentially contains in one of three channels
             // how long the vector has been scaled.
             // the other two channels will be zero.
-            Vector3 currentScale = Vector3.Scale(localScale, scaleMask);
-            
+            var currentScale = Vector3.Scale(localScale, scaleMask);
+
             // this one will contain, in one channel,
             // the value we want, and in the other
             // two it will contain zeros.
-            Vector3 desiredScale = Vector3.Scale(Vector3.one * value, scaleMask);
+            var desiredScale = Vector3.Scale(Vector3.one * value, scaleMask);
 
 
             // so now this will contain the difference
@@ -44,8 +44,8 @@ public class FocusEdge
             // it will modify the channel, exactly
             // as expected, leaving the other two's scales
             // as expected.
-            Vector3 diff = desiredScale - currentScale;
-            
+            var diff = desiredScale - currentScale;
+
             localScale += diff;
             gameObjectTransformation.localScale = localScale;
         }
@@ -55,11 +55,11 @@ public class FocusEdge
     {
         get
         {
-            float len = Distance;
+            var len = Distance;
 
-            return len + (edgeScale / 2) * Math.Sign(len);
+            return len + edgeScale / 2 * Math.Sign(len);
         }
-        set => Distance = value - (edgeScale / 2) * Math.Sign(value);
+        set => Distance = value - edgeScale / 2 * Math.Sign(value);
     }
 
     public float Distance

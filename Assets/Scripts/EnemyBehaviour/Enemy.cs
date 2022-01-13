@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using GameGrid;
-using TurretBehaviour;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace EnemyBehaviour
@@ -26,7 +21,7 @@ namespace EnemyBehaviour
             set => health = value;
         }
 
-        
+
         public float HealthGain => healthGain;
         public float EnergyGain => energyGain;
 
@@ -43,9 +38,8 @@ namespace EnemyBehaviour
         public float Speed => speed;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-
         }
 
         public void Init(IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounter, Motherboard motherboard)

@@ -1,6 +1,5 @@
 using GameState;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {

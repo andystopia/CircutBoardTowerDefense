@@ -1,36 +1,30 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using JetBrains.Annotations;
-using UnityEditor.SceneManagement;
-
 
 public abstract class EnumSet<T> : IEnumerable where T : Enum
 {
-    public abstract void Add(T value);
-    public abstract void Remove(T value);
-    public abstract bool Contains(T value);
-
-
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
-    
+
+    public abstract void Add(T value);
+    public abstract void Remove(T value);
+    public abstract bool Contains(T value);
+
     public abstract IEnumerator<T> GetEnumerator();
 }
 
 /// <summary>
-/// this is a hash set backed enum.
-/// I'm a little concerned that it could
-/// be slow. So I wrote up another one
-/// with a different backing, so if
-/// we need the performance, we can
-/// use that one.
+///     this is a hash set backed enum.
+///     I'm a little concerned that it could
+///     be slow. So I wrote up another one
+///     with a different backing, so if
+///     we need the performance, we can
+///     use that one.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class EnumSetHashSet<T> : EnumSet<T> where T : Enum
@@ -69,22 +63,25 @@ public class EnumSetBitVec32<T> : EnumSet<T> where T : Enum
     // that exceeds the number 32, we are a-okay.
     // and I think we can rely on that.
     private BitVector32 variants;
-    
+
 
     /// <summary>
-    /// from https://stackoverflow.com/questions/16960555/how-do-i-cast-a-generic-enum-to-int/51025027.
-    ///
-    /// thought it was slick enough to snag.
+    ///     from https://stackoverflow.com/questions/16960555/how-do-i-cast-a-generic-enum-to-int/51025027.
+    ///     thought it was slick enough to snag.
     /// </summary>
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    private static int EnumToInt<TValue>(TValue value) where TValue : Enum => (int)(object)value;
-    
-    
+    private static int EnumToInt<TValue>(TValue value) where TValue : Enum
+    {
+        return (int) (object) value;
+    }
+
+
     private IEnumerable<CardinalDirection> GetEnabledValues()
     {
-        return Enum.GetValues(typeof(CardinalDirection)).Cast<CardinalDirection>().Where(value => variants[(int) value]);
+        return Enum.GetValues(typeof(CardinalDirection)).Cast<CardinalDirection>()
+            .Where(value => variants[(int) value]);
     }
 
     public override void Add(T value)
@@ -98,8 +95,8 @@ public class EnumSetBitVec32<T> : EnumSet<T> where T : Enum
     }
 
     /// <summary>
-    /// Sets whether this set contains the given variant
-    /// or not.
+    ///     Sets whether this set contains the given variant
+    ///     or not.
     /// </summary>
     /// <param name="value"></param>
     /// <param name="exists"></param>

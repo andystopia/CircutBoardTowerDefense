@@ -1,21 +1,21 @@
-
-using System.Numerics;
 using InterpolationFunction;
 using UnityEngine;
-using UnityEngine.UIElements;
 using VectorInterpolator;
-using Vector3 = UnityEngine.Vector3;
 
 public class TurretShopDisplay : MonoBehaviour, IFloatingUIComponent
 {
-    private PositionInterpolator positionInterpolator;
     [SerializeField] private Vector3 startingPosition;
     [SerializeField] private Vector3 endingPosition;
 
-    [Range(0, 90)]
-    [SerializeField] private int animationFrames;
+    [Range(0, 90)] [SerializeField] private int animationFrames;
 
     [SerializeField] private CommonInterpolators interpolator;
+    private PositionInterpolator positionInterpolator;
+
+    public void Update()
+    {
+        positionInterpolator?.Update();
+    }
 
 
     public void Show()
@@ -25,14 +25,16 @@ public class TurretShopDisplay : MonoBehaviour, IFloatingUIComponent
         // the menu to teleport around, 
         // instead of smoothly animate, 
         // when the animation is interupted.
-        positionInterpolator = new PositionInterpolator(animationFrames, startingPosition, endingPosition, interpolator.GetInterpolationFunction(), transform);
+        positionInterpolator = new PositionInterpolator(animationFrames, startingPosition, endingPosition,
+            interpolator.GetInterpolationFunction(), transform);
     }
 
     public void Hide()
-    {        
-        positionInterpolator = new PositionInterpolator(animationFrames, endingPosition, startingPosition, interpolator.GetInterpolationFunction(), transform);
+    {
+        positionInterpolator = new PositionInterpolator(animationFrames, endingPosition, startingPosition,
+            interpolator.GetInterpolationFunction(), transform);
     }
-    
+
 
     public Vector3 GetDestinationPosition()
     {
@@ -47,10 +49,5 @@ public class TurretShopDisplay : MonoBehaviour, IFloatingUIComponent
     public Vector3 GetCurrentPosition()
     {
         return transform.position;
-    }
-
-    public void Update()
-    {
-        positionInterpolator?.Update();
     }
 }

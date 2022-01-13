@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TileMenu : MonoBehaviour
 {
@@ -8,15 +6,13 @@ public class TileMenu : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     public void hide()
@@ -29,22 +25,21 @@ public class TileMenu : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    void upgradeTileOpened()
+    private void upgradeTileOpened()
     {
         //make sure the player cana afford it
         //give the tileOpened slots to upgrade with! + take away the energy
         closeMenu();
     }
 
-    void sellTileOpened()
+    private void sellTileOpened()
     {
         //give energy equal to the sell amount of the tile
         closeMenu();
     }
 
-    void closeMenu()
+    private void closeMenu()
     {
         // tileOpened.closeTileMenu();
     }
-
 }

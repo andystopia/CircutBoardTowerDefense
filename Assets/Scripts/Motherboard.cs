@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using GameGrid;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Debug = System.Diagnostics.Debug;
 
 public class Motherboard : MonoBehaviour
@@ -17,33 +15,43 @@ public class Motherboard : MonoBehaviour
     [SerializeField] private EnemyPathManager pathManager;
 
     private MotherboardExclusionZone exclusionZone;
+
     protected virtual void Awake()
     {
         CalculateCorrectTransform();
     }
-    
-    public void UpdateExclusionZone()
-    {
-        if (exclusionZone == null) exclusionZone = GetComponent<MotherboardExclusionZone>();
-        
-        var lastEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().Last();
-        Debug.Assert(lastEnemyPathNode.IncomingDirection != null, "firstEnemyPathNode.IncomingDirection != null");
-        exclusionZone.SetDirection(lastEnemyPathNode.Location, lastEnemyPathNode.IncomingDirection.Value.Opposite());    
-    }
-    
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         hp = startingHp;
     }
-    
+
+    // Update is called once per frame
+    private void Update()
+    {
+        hpText.text = $"Motherboard: {hp}/{startingHp}";
+
+        if (hp <= 0) gameOverText.SetActive(true);
+    }
+
+    public void UpdateExclusionZone()
+    {
+        if (exclusionZone == null) exclusionZone = GetComponent<MotherboardExclusionZone>();
+
+        var lastEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().Last();
+        Debug.Assert(lastEnemyPathNode.IncomingDirection != null, "firstEnemyPathNode.IncomingDirection != null");
+        exclusionZone.SetDirection(lastEnemyPathNode.Location, lastEnemyPathNode.IncomingDirection.Value.Opposite());
+    }
+
     public void CalculateCorrectTransform()
     {
         var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().Last();
         gameObject.transform.position = GridSpaceGlobalSpaceConverter.FromLocation(firstEnemyPathNode.Location, 3);
         // make sure that this thing isn't null.
         Debug.Assert(firstEnemyPathNode.IncomingDirection != null, "firstEnemyPathNode.IncomingDirection != null");
-        gameObject.transform.rotation = Quaternion.Euler(CardinalDirectionToEuler(firstEnemyPathNode.IncomingDirection.Value));
+        gameObject.transform.rotation =
+            Quaternion.Euler(CardinalDirectionToEuler(firstEnemyPathNode.IncomingDirection.Value));
     }
 
     private Vector3 CardinalDirectionToEuler(CardinalDirection direction)
@@ -56,15 +64,5 @@ public class Motherboard : MonoBehaviour
             CardinalDirection.West => new Vector3(0, 270, 0),
             _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        hpText.text = $"Motherboard: {hp}/{startingHp}";
-
-        if (hp <= 0)
-        {
-            gameOverText.SetActive(true);
-        }
     }
 }

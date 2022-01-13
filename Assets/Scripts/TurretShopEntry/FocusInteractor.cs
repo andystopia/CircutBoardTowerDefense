@@ -6,14 +6,24 @@ namespace TurretShopEntry
     {
         private IFocusDisplay display;
 
-        public TurretShopEntryRoot Root { get; private set; }
-
 
         private void Awake()
         {
             display = GetComponent<IFocusDisplay>();
             Root = GetComponent<TurretShopEntryRoot>();
         }
+
+        protected virtual void OnMouseEnter()
+        {
+            GetManager().Activate(this);
+        }
+
+        protected virtual void OnMouseExit()
+        {
+            GetManager().InactivateIfActive(this);
+        }
+
+        public TurretShopEntryRoot Root { get; private set; }
 
         public IFocusDisplay GetFocusDisplay()
         {
@@ -30,16 +40,6 @@ namespace TurretShopEntry
         {
             display.Hide();
             base.OnInactivate();
-        }
-
-        protected virtual void OnMouseEnter()
-        {
-            GetManager().Activate(this);
-        }
-
-        protected virtual void OnMouseExit()
-        {
-            GetManager().InactivateIfActive(this);
         }
     }
 }

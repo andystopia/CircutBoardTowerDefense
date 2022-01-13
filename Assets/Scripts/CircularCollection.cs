@@ -1,27 +1,28 @@
-
-using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// Represents a circular collection of
-/// items, where we can get the focused
-/// item and we can advance and unadvance it.
-///
-/// The default state is the 
+///     Represents a circular collection of
+///     items, where we can get the focused
+///     item and we can advance and unadvance it.
+///     The default state is the
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class CircularCollection<T> where T : class
 {
-    private IList<T> collection;
+    private readonly IList<T> collection;
     private int index;
-    
-    
+
+
     public CircularCollection(IList<T> items)
     {
         collection = items;
     }
 
-    
+    public int Count => collection.Count;
+
+    public bool IsValid => collection.Count > 0;
+
+
     public T GetActive()
     {
         if (!IsValid) return null;
@@ -60,12 +61,8 @@ public class CircularCollection<T> where T : class
         return true;
     }
 
-    public int Count => collection.Count;
-
     public IList<T> GetList()
     {
         return collection;
     }
-
-    public bool IsValid => collection.Count > 0;
 }

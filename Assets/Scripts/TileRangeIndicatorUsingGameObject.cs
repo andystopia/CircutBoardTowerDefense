@@ -1,6 +1,3 @@
-
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class TileRangeIndicatorUsingGameObject : MonoBehaviour, ITileRangeIndicator
@@ -9,7 +6,7 @@ public class TileRangeIndicatorUsingGameObject : MonoBehaviour, ITileRangeIndica
 
 
     public GameObject RangeObject => rangeObject;
-    
+
     public virtual void Show()
     {
         rangeObject.SetActive(true);

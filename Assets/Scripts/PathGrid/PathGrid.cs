@@ -1,12 +1,11 @@
 using GameGrid;
-using UnityEngine;
 
 namespace PathGrid
 {
     public class PathGrid : PrefabGrid<PathGridItem>
     {
-        private readonly EnemyPathBase path;
         private readonly IGridInstantiationCreator<PathGridItem> instantiator;
+        private readonly EnemyPathBase path;
 
         public PathGrid(Dimensions<int> dimensions, EnemyPathBase path, PathGridItem prefab) : base(dimensions, prefab)
         {
@@ -30,11 +29,10 @@ namespace PathGrid
                     pathNodeInstance.Enable(enemyPathNode.IncomingDirection.Value);
                 if (enemyPathNode.OutgoingDirection != null)
                     pathNodeInstance.Enable(enemyPathNode.OutgoingDirection.Value);
-                
-                
+
+
                 this[enemyPathNodeLocation] = pathNodeInstance;
             }
         }
-
     }
 }

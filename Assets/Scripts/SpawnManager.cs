@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DefaultNamespace;
 using EnemyBehaviour;
 using GameGrid;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.Serialization;
+using Debug = System.Diagnostics.Debug;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
@@ -17,22 +17,25 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveDisplayText;
     [SerializeField] private GameObject tutorialDisplayText;
     public GameObject enemySpawn;
-    [Header("Audio")]
-    public AudioClip spawnSound;
+
+    [Header("Audio")] public AudioClip spawnSound;
+
     public AudioSource audioSource;
-    
-    [Header("Cooldown")]
-    [Range(0, 1)] [SerializeField] private float cooldownOpacity;
+
+    [Header("Cooldown")] [Range(0, 1)] [SerializeField]
+    private float cooldownOpacity;
+
     public float callCooldown;
-    private float callCooldownBase;
-    private bool isOnCooldown;
-    private EnemySpawnExclusionZone exclusionZone;
-    
-    
-    [Header("Associated Scripts")]
-    [SerializeField] private EnergyCounter energyCounter;
+
+
+    [Header("Associated Scripts")] [SerializeField]
+    private EnergyCounter energyCounter;
+
     [SerializeField] private Motherboard motherboard;
     [SerializeField] private EnemyPathManager pathManager;
+    private float callCooldownBase;
+    private EnemySpawnExclusionZone exclusionZone;
+    private bool isOnCooldown;
 
     private SpriteRenderer spriteRenderer;
 
@@ -43,37 +46,56 @@ public class SpawnManager : MonoBehaviour
     {
         spriteRenderer = enemySpawn.GetComponent<SpriteRenderer>();
     }
-    
-    public void UpdateExclusionZone()
-    {
-        if (exclusionZone == null) exclusionZone = GetComponent<EnemySpawnExclusionZone>();
-        
-        var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
-        System.Diagnostics.Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
-        exclusionZone.SetDirection(firstEnemyPathNode.Location, firstEnemyPathNode.OutgoingDirection.Value);    
-    }
-    
+
     private void Start()
     {
         // for test exploder enemy.
-        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), energyCounter, motherboard);
+        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(),
+            energyCounter, motherboard);
         callCooldownBase = callCooldown;
         CalculateCorrectTransform();
     }
 
+    // Update is called once per frame
+    private void Update()
+    {
+        waveDisplayText.text = "Wave " + wave;
+
+        if (Input.GetKeyDown(KeyCode.Space) && isOnCooldown == false)
+        {
+            audioSource.clip = spawnSound;
+            audioSource.Play();
+            wave += 1;
+            SpawnWave(2);
+            isOnCooldown = true;
+            SetOpacity(cooldownOpacity);
+            StartCoroutine(Cooldown());
+        }
+    }
+
+    public void UpdateExclusionZone()
+    {
+        if (exclusionZone == null) exclusionZone = GetComponent<EnemySpawnExclusionZone>();
+
+        var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
+        Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
+        exclusionZone.SetDirection(firstEnemyPathNode.Location, firstEnemyPathNode.OutgoingDirection.Value);
+    }
+
     /// <summary>
-    /// Calculates the correct transform from
-    /// the path, so that way this is always
-    /// correctly positioned at the start at
-    /// the path.
+    ///     Calculates the correct transform from
+    ///     the path, so that way this is always
+    ///     correctly positioned at the start at
+    ///     the path.
     /// </summary>
     public void CalculateCorrectTransform()
     {
         var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
         gameObject.transform.position = GridSpaceGlobalSpaceConverter.FromLocation(firstEnemyPathNode.Location, 3);
         // make sure that this thing isn't null.
-        System.Diagnostics.Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
-        gameObject.transform.rotation = Quaternion.Euler(CardinalDirectionToEuler(firstEnemyPathNode.OutgoingDirection.Value));
+        Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
+        gameObject.transform.rotation =
+            Quaternion.Euler(CardinalDirectionToEuler(firstEnemyPathNode.OutgoingDirection.Value));
     }
 
     private Vector3 CardinalDirectionToEuler(CardinalDirection direction)
@@ -93,28 +115,10 @@ public class SpawnManager : MonoBehaviour
         spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, value);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        waveDisplayText.text = ("Wave " + wave);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isOnCooldown == false)
-        {
-            audioSource.clip = spawnSound;
-            audioSource.Play();
-            wave += 1;
-            SpawnWave(2);
-            isOnCooldown = true;
-            SetOpacity(cooldownOpacity);
-            StartCoroutine(Cooldown());
-        }
-    }
-
     /// <summary>
-    /// Spawns in a new wave of enemies.
-    ///
-    /// Each wave consists of a certain number of sub waves, each
-    /// Sub Wave contains only one enemy.
+    ///     Spawns in a new wave of enemies.
+    ///     Each wave consists of a certain number of sub waves, each
+    ///     Sub Wave contains only one enemy.
     /// </summary>
     /// <param name="numberOfSubWaves"> the number of sub waves to spawn</param>
     public void SpawnWave(int numberOfSubWaves)
@@ -126,8 +130,8 @@ public class SpawnManager : MonoBehaviour
             var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
 
             // determine how many we want to spawn
-            int armySize = (int) (enemyPrefab.ArmySize + enemyPrefab.ArmySizeGain * (wave - 1));
-            
+            var armySize = (int) (enemyPrefab.ArmySize + enemyPrefab.ArmySizeGain * (wave - 1));
+
             // determine how fast we want to spawn them.
             var spawnRate = CurveSpawnRate(subWaveIndex, enemyPrefab.SpawnRate);
 
@@ -137,9 +141,9 @@ public class SpawnManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Curves the enemy spawn rate depending on how many
-    /// "sub waves" (waves of enemies within a wave) have
-    /// already happened.
+    ///     Curves the enemy spawn rate depending on how many
+    ///     "sub waves" (waves of enemies within a wave) have
+    ///     already happened.
     /// </summary>
     /// <param name="enemySubWaveIndex"> how many "sub waves" have already spawned.</param>
     /// <param name="enemyPrefabSpawnRate"> how fast that enemy wants to spawn</param>
@@ -149,7 +153,7 @@ public class SpawnManager : MonoBehaviour
         return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 0.5f : enemyPrefabSpawnRate;
     }
 
-    
+
     private IEnumerator SpawnSubWave(Enemy enemyPrefab, int armySize, float spawnRate)
     {
         // Get a list of path nodes that we can pass through.
@@ -157,22 +161,22 @@ public class SpawnManager : MonoBehaviour
 
         for (var armyIndex = 0; armyIndex < armySize; armyIndex++)
         {
-            Enemy enemy = Instantiate(enemyPrefab);
-            
+            var enemy = Instantiate(enemyPrefab);
+
             // determine how much heath that enemy gets.
             enemy.Health += enemy.HealthGain * (wave - 1);
             enemy.Health += enemy.EnergyGain * (wave - 1);
 
             // send the enemy the data it wants
             enemy.Init(enemyPathNodes, energyCounter, motherboard);
-            
+
             // delay so that not all enemies spawn at the same time.
             yield return new WaitForSeconds(spawnRate);
         }
     }
 
     /// <summary>
-    /// Get the path that the enemies will have to take
+    ///     Get the path that the enemies will have to take
     /// </summary>
     /// <returns></returns>
     /// <exception cref="NullReferenceException"></exception>
@@ -188,13 +192,14 @@ public class SpawnManager : MonoBehaviour
         return enemyPathNodes;
     }
 
-    IEnumerator Cooldown()
+    private IEnumerator Cooldown()
     {
         while (callCooldown > 0)
         {
             yield return new WaitForSeconds(1);
             callCooldown -= 1;
         }
+
         tutorialDisplayText.SetActive(false);
         isOnCooldown = false;
         callCooldown = callCooldownBase;

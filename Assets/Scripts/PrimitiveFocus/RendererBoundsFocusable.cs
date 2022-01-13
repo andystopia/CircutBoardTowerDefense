@@ -1,9 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using ActiveOrInactiveStateManagement;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public abstract class RendererBoundsFocusable : MonoBehaviour, IFocusable
 {

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor.U2D;
 using UnityEngine;
 
 namespace GameState
@@ -17,18 +15,16 @@ namespace GameState
 
         public virtual void DisActivateAllStates()
         {
-            foreach (var gameObjectState in activeStates)
-            {
-                gameObjectState.OnStateEnd();
-            }
+            foreach (var gameObjectState in activeStates) gameObjectState.OnStateEnd();
 
             activeStates.Clear();
         }
     }
-    public abstract class GameStateMachine: MonoBehaviour, IGameStateMachine
+
+    public abstract class GameStateMachine : MonoBehaviour, IGameStateMachine
     {
         private IGameObjectState activeState;
-        
+
         private void Awake()
         {
             GameObjectHelper.AssertOnlyComponentOfType<IGameStateMachine>(this);
@@ -36,16 +32,10 @@ namespace GameState
 
         public void ActivateState(IGameObjectState state)
         {
-            if (activeState != null)
-            {
-                activeState.OnStateEnd();
-            }
+            if (activeState != null) activeState.OnStateEnd();
 
             activeState = state;
-            if (activeState != null)
-            {
-                activeState?.OnStateStart();
-            }
+            if (activeState != null) activeState?.OnStateStart();
         }
     }
 }

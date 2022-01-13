@@ -5,6 +5,7 @@ namespace TurretShopEntry
 {
     public class TurretShopEntryRoot : MonoBehaviour
     {
+        [SerializeField] private Turret turret;
         public IFocusInteractor FocusInteractor { get; private set; }
 
         public IFocusDisplay FocusDisplay { get; private set; }
@@ -13,9 +14,6 @@ namespace TurretShopEntry
 
         public ISelectionDisplay SelectionDisplay { get; private set; }
 
-
-        [SerializeField] private Turret turret;
-        
         public Turret Turret => turret;
 
 
