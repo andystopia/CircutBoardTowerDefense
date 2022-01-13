@@ -8,14 +8,11 @@ public class FocusEdge
     private readonly Vector3 signOffset;
     private readonly Vector3 scaleMask;
 
-    private readonly SpriteRenderer renderer;
-    
-    public SpriteRenderer Renderer => renderer; 
-    public GameObject gameObject => gameObjectTransformation.gameObject;
+    public SpriteRenderer Renderer { get; }
 
     public FocusEdge(Transform gameObjectTransformation, float edgeScale, Vector3 signOffset, Vector3 scaleMask)
     {
-        renderer = gameObjectTransformation.gameObject.GetComponent<SpriteRenderer>();
+        Renderer = gameObjectTransformation.gameObject.GetComponent<SpriteRenderer>();
         this.gameObjectTransformation = gameObjectTransformation;
         this.edgeScale = edgeScale;
         this.signOffset = signOffset;
