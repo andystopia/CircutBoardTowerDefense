@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using ExclusionZone;
 using GameGrid;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class TileCreationManager : MonoBehaviour
     private TileSelectionManager selectionManager;
     private TileFocusManager focusManager;
 
+    [SerializeField] private List<ExclusionZoneMonoBehaviour> exclusionZoneMonoBehaviours;
+
     [SerializeField] private EnemyPathManager pathManager;
     
     private readonly List<IExclusionZone> exclusionZones = new List<IExclusionZone>
@@ -22,10 +25,8 @@ public class TileCreationManager : MonoBehaviour
         new RectangleExclusionZone(new GridLocation(0, 0), new GridLocation(3, 10)),
         // energy counter
         new RectangleExclusionZone(new GridLocation(3, 0), new GridLocation(3, 3)),
-        // enemy spawner
-        new RectangleExclusionZone(new GridLocation(12, 0), new GridLocation(12, 4)),
         // motherboard entrance
-        new RectangleExclusionZone(new GridLocation(0, 14), new GridLocation(0, 18)),
+        // new RectangleExclusionZone(new GridLocation(0, 14), new GridLocation(0, 18)),
         // wave number
         new RectangleExclusionZone(new GridLocation(12, 5), new GridLocation(12, 6))
     };
@@ -35,6 +36,10 @@ public class TileCreationManager : MonoBehaviour
         // in theory, this can be done without allocation.
         var minimal = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().ToList();
 
+        foreach (var zone in exclusionZoneMonoBehaviours)
+        {
+            exclusionZones.Add(zone);   
+        }
         for (var i = 0; i < minimal.Count - 1; i++)
         {
             var first = minimal[i].Location;

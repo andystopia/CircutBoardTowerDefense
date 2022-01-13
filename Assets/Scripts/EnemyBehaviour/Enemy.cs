@@ -20,10 +20,6 @@ namespace EnemyBehaviour
         [SerializeField] private float spawnRate;
         [SerializeField] private float damageValue;
 
-
-        public List<GameObject> tilesToDisable;
-        public List<GameObject> tilesToGoThrough;
-        
         public float Health
         {
             get => health;
@@ -52,9 +48,9 @@ namespace EnemyBehaviour
 
         }
 
-        public void Init(IEnumerable<IEnemyPathNode> path)
+        public void Init(IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounter, Motherboard motherboard)
         {
-            GetComponent<EnemyPlayState>().Init(path);
+            GetComponent<EnemyPlayState>().Init(path, energyCounter, motherboard);
         }
     }
 }

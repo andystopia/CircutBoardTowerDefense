@@ -1,8 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using DefaultNamespace;
 using EnemyBehaviour;
+using GameGrid;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -16,18 +21,56 @@ public class SpawnManager : MonoBehaviour
     public float callCooldown;
     private float callCooldownBase;
     public bool isOnCd = false;
+    private EnemySpawnExclusionZone exclusionZone;
+    [SerializeField] private EnergyCounter energyCounter;
+    [SerializeField] private Motherboard motherboard;
     [SerializeField] private EnemyPathManager pathManager;
     // Start is called before the first frame update
+    
+
+    
+    public void UpdateExclusionZone()
+    {
+        if (exclusionZone == null) exclusionZone = GetComponent<EnemySpawnExclusionZone>();
+        
+        var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
+        System.Diagnostics.Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
+        exclusionZone.SetDirection(firstEnemyPathNode.Location, firstEnemyPathNode.OutgoingDirection.Value);    
+    }
+    
     void Start()
     {
         //for (int i = 0; i < enemies.Count - 1; i++)
         //{
         // enemies[i].GetComponent<Enemy>();
         // }
+
         
         // for test exploder enemy.
-        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation());
+        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), energyCounter, motherboard);
         callCooldownBase = callCooldown;
+        CalculateCorrectTransform();
+    }
+
+    public void CalculateCorrectTransform()
+    {
+        var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
+        gameObject.transform.position = GridSpaceGlobalSpaceConverter.FromLocation(firstEnemyPathNode.Location, 3);
+        // make sure that this thing isn't null.
+        System.Diagnostics.Debug.Assert(firstEnemyPathNode.OutgoingDirection != null, "firstEnemyPathNode.OutgoingDirection != null");
+        gameObject.transform.rotation = Quaternion.Euler(CardinalDirectionToEuler(firstEnemyPathNode.OutgoingDirection.Value));
+    }
+
+    private Vector3 CardinalDirectionToEuler(CardinalDirection direction)
+    {
+        return direction switch
+        {
+            CardinalDirection.North => new Vector3(0, 180, 0),
+            CardinalDirection.South => new Vector3(0, 0, 0),
+            CardinalDirection.East => new Vector3(0, 270, 0),
+            CardinalDirection.West => new Vector3(0, 90, 0),
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+        };
     }
 
     // Update is called once per frame
@@ -42,7 +85,8 @@ public class SpawnManager : MonoBehaviour
             wave += 1;
             PickWaveType(2);
             isOnCd = true;
-            enemySpawn.SetActive(false);
+            // enemySpawn.SetActive(false);
+            enemySpawn.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.67f);
             StartCoroutine(Cooldown());
         }
     }
@@ -77,7 +121,7 @@ public class SpawnManager : MonoBehaviour
             {
                 Debug.Log("enumerator null in spawnwave", this);
             }
-            enemy.Init(locationEnumerator);
+            enemy.Init(locationEnumerator, energyCounter, motherboard);
             counter -= 1;
         }
     }
@@ -92,6 +136,7 @@ public class SpawnManager : MonoBehaviour
         tutorialDisplayText.SetActive(false);
         isOnCd = false;
         callCooldown = callCooldownBase;
-        enemySpawn.SetActive(true);
+        // enemySpawn.SetActive(true);
+        enemySpawn.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
     }
 }

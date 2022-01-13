@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f6fb967fbc4b5dad958270bfdc6dd6, type: 3}
-  m_Name: short-path
+  m_Script: {fileID: 11500000, guid: 486a7eb094c64561b8fd151df3a161b8, type: 3}
+  m_Name: vertical-line
   m_EditorClassIdentifier: 
-  points:
-  - row: 12
-    column: 2
-  - row: 12
+  startingLocation:
+    row: 12
     column: 16
-  - row: 0
-    column: 16
+  pathNodes:
+  - distance: 12
+    direction: 1

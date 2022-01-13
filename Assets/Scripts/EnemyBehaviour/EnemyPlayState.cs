@@ -13,7 +13,6 @@ namespace EnemyBehaviour
     {
         private Motherboard motherboardScript;
         private EnergyCounter energyCounterScript;
-        private GameManager gameManagerScript;
         
         private IEnumerator<IEnemyPathNode> path;
         private Vector3 targetedPosition;
@@ -30,16 +29,16 @@ namespace EnemyBehaviour
         {
             enemy = GetComponent<Enemy>();
             stateMachine = GetComponent<EnemyStateMachine>();
-            energyCounterScript = GameObject.Find("Energy Counter").GetComponent<EnergyCounter>();
-            motherboardScript = GameObject.Find("Motherboard").GetComponent<Motherboard>();
-            gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
             stateMachine.StateChannel.Subscribe(this);
             enabled = false;
         }
 
-        public void Init(IEnumerable<IEnemyPathNode> path)
+        public void Init(IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounterScript, Motherboard motherboardScript)
         {
             this.path = path.GetEnumerator();
+            this.energyCounterScript = energyCounterScript;
+            this.motherboardScript = motherboardScript;
+            
             this.path.MoveNext();
             transform.position = GridSpaceGlobalSpaceConverter.FromLocation(this.path.Current.Location, yOffset);
             AdvanceToNextNode();

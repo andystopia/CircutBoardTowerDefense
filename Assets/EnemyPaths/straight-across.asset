@@ -10,31 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 486a7eb094c64561b8fd151df3a161b8, type: 3}
-  m_Name: recreated-long-path
+  m_Name: straight-across
   m_EditorClassIdentifier: 
   startingLocation:
-    row: 12
-    column: 2
+    row: 6
+    column: 0
   pathNodes:
-  - distance: 5
-    direction: 1
-  - distance: 5
+  - distance: 20
     direction: 2
-  - distance: 2
-    direction: 1
-  - distance: 4
-    direction: 2
-  - distance: 3
-    direction: 0
-  - distance: 2
-    direction: 2
-  - distance: 2
-    direction: 0
-  - distance: 5
-    direction: 2
-  - distance: 5
-    direction: 1
-  - distance: 2
-    direction: 3
-  - distance: 5
-    direction: 1
