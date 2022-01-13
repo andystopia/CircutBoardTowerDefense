@@ -2843,8 +2843,6 @@ MonoBehaviour:
     type: 3}
   turretShop: {fileID: 1379684398}
   tileSelectionManager: {fileID: 1081149967}
-  gameOver: 0
-  inTileMenu: 0
   focus: {fileID: 1248256023}
 --- !u!4 &831659072
 Transform:
@@ -4320,7 +4318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4901b146f00452a964c6bec85601e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 11400000, guid: e07938c667f9a4ed0a4ca1a10b5bf205, type: 2}
+  path: {fileID: 11400000, guid: fff01eb3fee7a4930925e2aa3ac7bc5f, type: 2}
 --- !u!4 &1458239378
 Transform:
   m_ObjectHideFlags: 0
