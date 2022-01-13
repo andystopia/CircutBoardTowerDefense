@@ -7,27 +7,42 @@ using EnemyBehaviour;
 using GameGrid;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<GameObject> enemies;
+    [FormerlySerializedAs("enemies")] public List<Enemy> enemyPrefabs;
     public float wave;
-    public TextMeshProUGUI waveDisplayText;
-    public GameObject tutorialDisplayText;
+    [SerializeField] private TextMeshProUGUI waveDisplayText;
+    [SerializeField] private GameObject tutorialDisplayText;
     public GameObject enemySpawn;
+    [Header("Audio")]
     public AudioClip spawnSound;
     public AudioSource audioSource;
+    
+    [Header("Cooldown")]
+    [Range(0, 1)] [SerializeField] private float cooldownOpacity;
     public float callCooldown;
     private float callCooldownBase;
-    public bool isOnCd = false;
+    private bool isOnCooldown;
     private EnemySpawnExclusionZone exclusionZone;
+    
+    
+    [Header("Associated Scripts")]
     [SerializeField] private EnergyCounter energyCounter;
     [SerializeField] private Motherboard motherboard;
     [SerializeField] private EnemyPathManager pathManager;
-    // Start is called before the first frame update
-    
 
+    private SpriteRenderer spriteRenderer;
+
+    // Start is called before the first frame update
+
+
+    protected virtual void Awake()
+    {
+        spriteRenderer = enemySpawn.GetComponent<SpriteRenderer>();
+    }
     
     public void UpdateExclusionZone()
     {
@@ -38,20 +53,20 @@ public class SpawnManager : MonoBehaviour
         exclusionZone.SetDirection(firstEnemyPathNode.Location, firstEnemyPathNode.OutgoingDirection.Value);    
     }
     
-    void Start()
+    private void Start()
     {
-        //for (int i = 0; i < enemies.Count - 1; i++)
-        //{
-        // enemies[i].GetComponent<Enemy>();
-        // }
-
-        
         // for test exploder enemy.
         FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), energyCounter, motherboard);
         callCooldownBase = callCooldown;
         CalculateCorrectTransform();
     }
 
+    /// <summary>
+    /// Calculates the correct transform from
+    /// the path, so that way this is always
+    /// correctly positioned at the start at
+    /// the path.
+    /// </summary>
     public void CalculateCorrectTransform()
     {
         var firstEnemyPathNode = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation().First();
@@ -73,57 +88,104 @@ public class SpawnManager : MonoBehaviour
         };
     }
 
+    public void SetOpacity(float value)
+    {
+        spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, value);
+    }
+
     // Update is called once per frame
     void Update()
     {
         waveDisplayText.text = ("Wave " + wave);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnCd == false)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnCooldown == false)
         {
             audioSource.clip = spawnSound;
             audioSource.Play();
             wave += 1;
-            PickWaveType(2);
-            isOnCd = true;
-            // enemySpawn.SetActive(false);
-            enemySpawn.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.67f);
+            SpawnWave(2);
+            isOnCooldown = true;
+            SetOpacity(cooldownOpacity);
             StartCoroutine(Cooldown());
         }
     }
 
-    public void PickWaveType(int enemyTypes) //enemyTypes = number of enemy types to spawn in the wave (max 5)
+    /// <summary>
+    /// Spawns in a new wave of enemies.
+    ///
+    /// Each wave consists of a certain number of sub waves, each
+    /// Sub Wave contains only one enemy.
+    /// </summary>
+    /// <param name="numberOfSubWaves"> the number of sub waves to spawn</param>
+    public void SpawnWave(int numberOfSubWaves)
     {
-        for (int i = 0; i < enemyTypes; i++)
+        // iterate for the number of sub waves.
+        for (var subWaveIndex = 0; subWaveIndex < numberOfSubWaves; subWaveIndex++)
         {
-            int waveType = Random.Range(0, enemies.Count - 1);
-            float armySize = (enemies[waveType].GetComponent<Enemy>().ArmySize) + ((enemies[waveType].GetComponent<Enemy>().ArmySizeGain) * (wave - 1));
-            float spawnRate = enemies[waveType].GetComponent<Enemy>().SpawnRate;
-            if (i >= 1)
-            {
-                StartCoroutine(SpawnWave(waveType, armySize, spawnRate + 0.5f));
-            }
-            else StartCoroutine(SpawnWave(waveType, armySize, spawnRate));
+            // pick a random enemy prefab
+            var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+
+            // determine how many we want to spawn
+            int armySize = (int) (enemyPrefab.ArmySize + enemyPrefab.ArmySizeGain * (wave - 1));
+            
+            // determine how fast we want to spawn them.
+            var spawnRate = CurveSpawnRate(subWaveIndex, enemyPrefab.SpawnRate);
+
+            // spawn the enemy sub wave.
+            StartCoroutine(SpawnSubWave(enemyPrefab, armySize, spawnRate));
         }
     }
 
-    IEnumerator SpawnWave(int enemyType, float armySize, float spawnRate)
+    /// <summary>
+    /// Curves the enemy spawn rate depending on how many
+    /// "sub waves" (waves of enemies within a wave) have
+    /// already happened.
+    /// </summary>
+    /// <param name="enemySubWaveIndex"> how many "sub waves" have already spawned.</param>
+    /// <param name="enemyPrefabSpawnRate"> how fast that enemy wants to spawn</param>
+    /// <returns>the curved spawn wave value</returns>
+    private float CurveSpawnRate(int enemySubWaveIndex, float enemyPrefabSpawnRate)
     {
-        float counter = armySize;
-        while (counter > 0)
+        return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 0.5f : enemyPrefabSpawnRate;
+    }
+
+    
+    private IEnumerator SpawnSubWave(Enemy enemyPrefab, int armySize, float spawnRate)
+    {
+        // Get a list of path nodes that we can pass through.
+        var enemyPathNodes = GetEnemyPathNodes();
+
+        for (var armyIndex = 0; armyIndex < armySize; armyIndex++)
         {
+            Enemy enemy = Instantiate(enemyPrefab);
+            
+            // determine how much heath that enemy gets.
+            enemy.Health += enemy.HealthGain * (wave - 1);
+            enemy.Health += enemy.EnergyGain * (wave - 1);
+
+            // send the enemy the data it wants
+            enemy.Init(enemyPathNodes, energyCounter, motherboard);
+            
+            // delay so that not all enemies spawn at the same time.
             yield return new WaitForSeconds(spawnRate);
-            GameObject temp = Instantiate(enemies[enemyType], transform.position, transform.rotation);
-            var enemy = temp.GetComponent<Enemy>();
-            enemy.Health += (temp.GetComponent<Enemy>().HealthGain) * (wave - 1);
-            enemy.Health += (temp.GetComponent<Enemy>().EnergyGain) * (wave - 1);
-            var locationEnumerator = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation();
-            if (locationEnumerator == null)
-            {
-                Debug.Log("enumerator null in spawnwave", this);
-            }
-            enemy.Init(locationEnumerator, energyCounter, motherboard);
-            counter -= 1;
         }
+    }
+
+    /// <summary>
+    /// Get the path that the enemies will have to take
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NullReferenceException"></exception>
+    private List<IEnemyPathNode> GetEnemyPathNodes()
+    {
+        var locationEnumerator = pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation();
+        var enemyPathNodes = locationEnumerator?.ToList();
+
+        // make sure that we are able to iterate over that list.
+        if (enemyPathNodes == null)
+            throw new NullReferenceException(
+                "Enemy Path Enumerator is null, when it shouldn't be, check the stacktrace and provide a valid path.");
+        return enemyPathNodes;
     }
 
     IEnumerator Cooldown()
@@ -134,9 +196,8 @@ public class SpawnManager : MonoBehaviour
             callCooldown -= 1;
         }
         tutorialDisplayText.SetActive(false);
-        isOnCd = false;
+        isOnCooldown = false;
         callCooldown = callCooldownBase;
-        // enemySpawn.SetActive(true);
-        enemySpawn.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+        SetOpacity(1.0f);
     }
 }
