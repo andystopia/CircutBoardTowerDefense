@@ -64,7 +64,6 @@ public class Motherboard : MonoBehaviour
 
         if (hp <= 0)
         {
-            gameManagerScript.gameOver = true;
             gameOverText.SetActive(true);
         }
     }

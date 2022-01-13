@@ -16,7 +16,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 {
     private BasicExclusiveStateManager<ITileSelectionInteractor> tileSelectionManager;
     [SerializeField] private GameObject tileText;
-    private IExclusiveStateManagerData<IOldTurretShopBehavior> turretShop;
+    private IExclusiveStateManagerData<ITurretShopEntryBehavior> turretShop;
     private EnergyCounter energyCounter;
 
     private ITileTurretBehavior turretBehavior;

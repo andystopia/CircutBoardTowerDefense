@@ -3,15 +3,9 @@ using TurretBehaviour;
 using UnityEngine;
 
 
-public interface IOldTurretShopBehavior : IActiveOrInactiveState
+public class OldTurretShopEntry : MonoBehaviour, ITurretShopEntryBehavior
 {
-    Turret AssociatedTurretPrefab();
-    float GetEnergyCost();
-}
-
-public class OldTurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
-{
-    [SerializeField] private BasicTogglableExclusiveStateManager<IOldTurretShopBehavior> shop;
+    [SerializeField] private BasicTogglableExclusiveStateManager<ITurretShopEntryBehavior> shop;
     
     [SerializeField] private Turret shopTurret;
     public GameObject litDisplay;
@@ -39,10 +33,10 @@ public class OldTurretShopEntry : MonoBehaviour, IOldTurretShopBehavior
 
     private void OnMouseDown()
     {
-        if (!gameManagerScript.inTileMenu)
-        {
+        // if (!gameManagerScript.inTileMenu)
+        // {
             shop.ToggleActive(this);
-        }
+        // }
     }
 
 

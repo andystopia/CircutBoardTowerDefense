@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour
     public TurretShopSelectionManager turretShop;
     [FormerlySerializedAs("tileManager")] public TileSelectionManager tileSelectionManager;
 
-    public bool gameOver;
-    public bool inTileMenu = false;
-    
     public FocusIndicator focus;
     // Start is called before the first frame update
     void Start()
