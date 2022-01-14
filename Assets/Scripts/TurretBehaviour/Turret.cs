@@ -15,7 +15,7 @@ namespace TurretBehaviour
             playState = GetComponent<TurretPlayState>();
         }
 
-        public void disableThisTurret()
+        public void Disable()
         {
             playState.disableThisTurret();
         }

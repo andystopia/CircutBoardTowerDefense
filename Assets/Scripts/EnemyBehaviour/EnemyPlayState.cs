@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using GameGrid;
 using GameState;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace EnemyBehaviour
@@ -22,7 +24,7 @@ namespace EnemyBehaviour
 
         private EnemyStateMachine stateMachine;
         private Vector3 targetedPosition;
-        private readonly float yOffset = -0.5f;
+        private const float yOffset = -0.5f;
 
         private void Awake()
         {
@@ -75,16 +77,25 @@ namespace EnemyBehaviour
                 }
             }
         }
-
-        public void Init(IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounterScript,
+        
+        [SuppressMessage("ReSharper", "ParameterHidesMember")]
+        public void Init([NotNull] IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounterScript,
             Motherboard motherboardScript)
         {
             this.path = path.GetEnumerator();
             this.energyCounterScript = energyCounterScript;
             this.motherboardScript = motherboardScript;
 
-            this.path.MoveNext();
-            transform.position = GridSpaceGlobalSpaceConverter.FromLocation(this.path.Current.Location, yOffset);
+            JumpToStartOfPath();
+        }
+
+        private void JumpToStartOfPath()
+        {
+            path.MoveNext();
+            var startingPathNode = path.Current;
+            if (startingPathNode == null)
+                throw new NullReferenceException("The passed path has a null starting point. This is forbidden.");
+            transform.position = GridSpaceGlobalSpaceConverter.FromLocation(startingPathNode.Location, yOffset);
             AdvanceToNextNode();
         }
 
@@ -121,7 +132,7 @@ namespace EnemyBehaviour
                 if (hitCollider.gameObject.TryGetComponent(out TileTurretBehavior behavior))
                 {
                     var turret = behavior.GetTurret();
-                    if (turret != null) turret.disableThisTurret();
+                    if (turret != null) turret.Disable();
                 }
 
             Destroy(gameObject);
