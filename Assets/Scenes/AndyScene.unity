@@ -4683,6 +4683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingEnergy: 200
   energyText: {fileID: 53248272}
+  deathEventChannel: {fileID: 11400000, guid: 89ea9dbd9079543c5a1fb73e78555d36, type: 2}
 --- !u!212 &1694315403
 SpriteRenderer:
   m_ObjectHideFlags: 0
