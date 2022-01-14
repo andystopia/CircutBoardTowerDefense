@@ -1,21 +1,43 @@
-﻿using TMPro;
+﻿using System;
+using System.Globalization;
+using Channel;
+using TMPro;
 using UnityEngine;
 
-public class EnergyCounter : MonoBehaviour
+public class EnergyCounter : MonoBehaviour, IObserver<EnemyDeathEvent>
 {
-    public float startingEnergy;
-    public float energy;
+    [SerializeField] private float startingEnergy;
+    public float Energy { get; set; }
     public TextMeshProUGUI energyText;
-
+    
     // Start is called before the first frame update
     private void Start()
     {
-        energy = startingEnergy;
+        Energy = startingEnergy;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        energyText.text = "" + energy;
+        energyText.text = Energy.ToString(CultureInfo.InvariantCulture);
     }
+    
+    #region EnemyDeath
+
+    public void OnCompleted()
+    {
+        // do nothing.
+    }
+
+    public void OnError(Exception error)
+    {
+        // do nothing.
+    }
+
+    public void OnNext(EnemyDeathEvent value)
+    {
+        Energy += value.Enemy.EnergyGain;
+    }
+
+    #endregion
 }

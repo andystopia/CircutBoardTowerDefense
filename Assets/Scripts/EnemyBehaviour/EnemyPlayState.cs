@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Channel;
 using GameGrid;
 using GameState;
 using JetBrains.Annotations;
@@ -16,8 +17,14 @@ namespace EnemyBehaviour
 
         public GameObject EMPExplosion;
         private Enemy enemy;
-        private EnergyCounter energyCounterScript;
-        private Motherboard motherboardScript;
+        
+        // private EnergyCounter energyCounterScript;
+        // private Motherboard motherboardScript;
+
+        private EnemyInvasionEventChannel invasionEventChannel;
+        private EnemyDeathEventChannel deathEventChannel;
+        
+        
         private bool notMoving;
 
         private IEnumerator<IEnemyPathNode> path;
@@ -45,8 +52,9 @@ namespace EnemyBehaviour
                 // if there are no more nodes to go to
                 if (!AdvanceToNextNode())
                 {
+                    invasionEventChannel.Broadcast(new EnemyInvasionEvent(enemy));
                     // destroy the object.
-                    motherboardScript.hp -= enemy.DamageValue;
+                    // motherboardScript.hp -= enemy.DamageValue;
                     Destroy(gameObject);
                     return;
                 }
@@ -57,7 +65,8 @@ namespace EnemyBehaviour
             if (enemy.Health <= 0)
             {
                 //chance for spawning a chip
-                energyCounterScript.energy += enemy.EnergyDrop;
+                // energyCounterScript.energy += enemy.EnergyDrop;
+                deathEventChannel.Broadcast(new EnemyDeathEvent(enemy));
                 if (isExploding)
                 {
                     //this explodes the enemy
@@ -79,13 +88,12 @@ namespace EnemyBehaviour
         }
         
         [SuppressMessage("ReSharper", "ParameterHidesMember")]
-        public void Init([NotNull] IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounterScript,
-            Motherboard motherboardScript)
+        public void Init([NotNull] IEnumerable<IEnemyPathNode> path, EnemyDeathEventChannel deathEventChannel, EnemyInvasionEventChannel invasionEventChannel)
         {
             this.path = path.GetEnumerator();
-            this.energyCounterScript = energyCounterScript;
-            this.motherboardScript = motherboardScript;
-
+            this.deathEventChannel = deathEventChannel;
+            this.invasionEventChannel = invasionEventChannel;
+            
             JumpToStartOfPath();
         }
 

@@ -83,7 +83,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 
         if (turretShop.GetActive() == null)
             affordability = TurretShopSelectionStatus.NoActiveTurret;
-        else if (turretShop.GetActive().GetEnergyCost() <= energyCounter.energy)
+        else if (turretShop.GetActive().GetEnergyCost() <= energyCounter.Energy)
             affordability = TurretShopSelectionStatus.AffordableActiveTurret;
         else
             affordability = TurretShopSelectionStatus.TooExpensiveActiveTurret;
@@ -158,7 +158,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
     {
         var turret = turretShop.GetActive().AssociatedTurretPrefab();
 
-        energyCounter.energy -= turretShop.GetActive().GetEnergyCost();
+        energyCounter.Energy -= turretShop.GetActive().GetEnergyCost();
         var spawnPos = new Vector3(transform.position.x, -0.5f, transform.position.z);
         turretBehavior.SetTurret(Instantiate(turret, spawnPos, transform.rotation));
     }

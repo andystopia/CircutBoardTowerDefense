@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
+using Channel;
 using GameGrid;
 using TMPro;
 using UnityEngine;
 using Debug = System.Diagnostics.Debug;
 
-public class Motherboard : MonoBehaviour
+public class Motherboard : MonoBehaviour, IObserver<EnemyInvasionEvent>
 {
     public float startingHp;
     public float hp;
@@ -16,8 +17,11 @@ public class Motherboard : MonoBehaviour
 
     private MotherboardExclusionZone exclusionZone;
 
+    [SerializeField] private EnemyInvasionEventChannel enemyDeathChannel;
+
     protected virtual void Awake()
     {
+        enemyDeathChannel.Subscribe(this);
         CalculateCorrectTransform();
     }
 
@@ -65,4 +69,27 @@ public class Motherboard : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
     }
+    
+    #region EnemyDeath
+
+    public void OnCompleted()
+    {
+        // do nothing.
+    }
+
+    public void OnError(Exception error)
+    {
+        // do nothing.
+    }
+
+    public void OnNext(EnemyInvasionEvent enemyDeathEvent)
+    {
+        // make sure this object is still alive.
+        if (this == null) return;
+        hp -= enemyDeathEvent.Enemy.DamageValue;
+    }
+    
+    
+
+    #endregion
 }

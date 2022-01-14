@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Channel;
 using EnemyBehaviour;
 using GameGrid;
 using TMPro;
@@ -39,6 +40,10 @@ public class SpawnManager : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [Header("Channels")]
+    [SerializeField] private EnemyInvasionEventChannel invasionEventChannel;
+    [SerializeField] private EnemyDeathEventChannel deathEventChannel;
+
     // Start is called before the first frame update
 
 
@@ -50,8 +55,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         // for test exploder enemy.
-        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(),
-            energyCounter, motherboard);
+        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), deathEventChannel, invasionEventChannel);
         callCooldownBase = callCooldown;
         CalculateCorrectTransform();
     }
@@ -168,7 +172,7 @@ public class SpawnManager : MonoBehaviour
             enemy.Health += enemy.EnergyGain * (wave - 1);
 
             // send the enemy the data it wants
-            enemy.Init(enemyPathNodes, energyCounter, motherboard);
+            enemy.Init(enemyPathNodes, deathEventChannel, invasionEventChannel);
 
             // delay so that not all enemies spawn at the same time.
             yield return new WaitForSeconds(spawnRate);

@@ -2797,6 +2797,9 @@ MonoBehaviour:
   energyCounter: {fileID: 1694315402}
   motherboard: {fileID: 1581723401}
   pathManager: {fileID: 1458239377}
+  invasionEventChannel: {fileID: 11400000, guid: 912ccfc3988f24139ad1bc7c2a3bd8c2,
+    type: 2}
+  deathEventChannel: {fileID: 11400000, guid: 89ea9dbd9079543c5a1fb73e78555d36, type: 2}
 --- !u!114 &831105086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4466,6 +4469,7 @@ MonoBehaviour:
   gameOverText: {fileID: 696259425}
   gameManagerScript: {fileID: 831659071}
   pathManager: {fileID: 1458239377}
+  enemyDeathChannel: {fileID: 11400000, guid: 912ccfc3988f24139ad1bc7c2a3bd8c2, type: 2}
 --- !u!114 &1581723402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4678,7 +4682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingEnergy: 200
-  energy: 0
   energyText: {fileID: 53248272}
 --- !u!212 &1694315403
 SpriteRenderer:

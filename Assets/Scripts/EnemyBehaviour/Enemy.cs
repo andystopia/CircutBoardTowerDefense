@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Channel;
 using UnityEngine;
 
 namespace EnemyBehaviour
@@ -42,9 +43,9 @@ namespace EnemyBehaviour
         {
         }
 
-        public void Init(IEnumerable<IEnemyPathNode> path, EnergyCounter energyCounter, Motherboard motherboard)
+        public void Init(IEnumerable<IEnemyPathNode> path, EnemyDeathEventChannel deathEventChannel, EnemyInvasionEventChannel invasionEventChannel)
         {
-            GetComponent<EnemyPlayState>().Init(path, energyCounter, motherboard);
+            GetComponent<EnemyPlayState>().Init(path, deathEventChannel, invasionEventChannel);
         }
     }
 }
