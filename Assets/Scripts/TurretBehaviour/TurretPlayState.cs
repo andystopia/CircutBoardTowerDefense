@@ -65,11 +65,6 @@ namespace TurretBehaviour
             {
                 var directionToPoint = target.transform.position - transform.position;
                 var rotateToFaceTarget = Quaternion.LookRotation(directionToPoint);
-                if (isLaserTurret)
-                {
-                    placeToFireLaser = target.transform.position;
-                    angleToFireLaser = rotateToFaceTarget; //i think so?
-                }
 
                 var rotation = Quaternion.Lerp(turretNeck.rotation, rotateToFaceTarget, Time.deltaTime * rotationSpeed)
                     .eulerAngles;
@@ -143,23 +138,9 @@ namespace TurretBehaviour
         {
             yield return new WaitForSeconds(animStopTime);
 
-
-            if (transform.position.x > placeToFireLaser.x)
-            {
-            }
-
-            if (transform.position.z > placeToFireLaser.z)
-            {
-            }
-
-            for (var i = 0; i < 5; i++)
-            {
-                //this ain't working
-                var spawnLoco = new Vector3(transform.position.x - placeToFireLaser.x * i * 0.2f, transform.position.y,
-                    transform.position.z - placeToFireLaser.z * i * 0.2f);
-                Debug.Log("spawn at " + spawnLoco);
-                Instantiate(projectilePrefab, spawnLoco, angleToFireLaser);
-            }
+                var projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+                projectileGO.GetComponent<ProjectilePlayState>().damage = damagePerShot;
+            
 
             //make the laser thingies
             //have it damage an enemy once

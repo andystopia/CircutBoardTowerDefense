@@ -14,7 +14,7 @@ namespace ProjectileBehaviour
         public int energyLeft;
         public float range;
         public List<GameObject> oldTargets;
-        private float damage;
+        public float damage;
         private readonly float speed = 20;
         private ProjectileStateMachine stateMachine;
         private GameObject target;
@@ -54,7 +54,7 @@ namespace ProjectileBehaviour
             }
             else
             {
-                Destroy(gameObject, 5);
+                Destroy(gameObject, 1.5f);
             }
         }
 
@@ -141,6 +141,20 @@ namespace ProjectileBehaviour
                 var directionToPoint = target.transform.position - transform.position;
                 var rotateToFaceTarget = Quaternion.LookRotation(directionToPoint);
                 transform.rotation = Quaternion.Euler(0f, rotateToFaceTarget.y, 0f);
+            }
+        }
+
+        void OnTriggerEnter(Collider collider)
+        {
+            if (isLaserProjectile)
+            {
+                Debug.Log("Hit!");
+                if (collider.CompareTag("Enemy") == true)
+                {
+                    var temp = collider.gameObject.GetComponent<Enemy>();
+                    temp.Health -= damage;
+                    
+                }
             }
         }
     }

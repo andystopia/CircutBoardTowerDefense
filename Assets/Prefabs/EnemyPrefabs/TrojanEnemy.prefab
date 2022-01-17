@@ -95,7 +95,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541176488772320102}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -121,9 +121,6 @@ MonoBehaviour:
   speed: 1.5
   spawnRate: 2
   damageValue: 20
-  tilesToDisable: []
-  tilesToGoThrough: []
-  turretScript: {fileID: 0}
 --- !u!114 &-5076136644443227706
 MonoBehaviour:
   m_ObjectHideFlags: 0
