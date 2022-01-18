@@ -148,12 +148,12 @@ namespace ProjectileBehaviour
         {
             if (isLaserProjectile)
             {
-                Debug.Log("Hit!");
                 if (collider.CompareTag("Enemy") == true)
                 {
                     var temp = collider.gameObject.GetComponent<Enemy>();
                     temp.Health -= damage;
-                    
+                    Debug.Log("Hit!");
+
                 }
             }
         }

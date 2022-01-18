@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4107973299864356343}
   - component: {fileID: -2978899229468146394}
   - component: {fileID: -6384984103952070820}
+  - component: {fileID: -7440033630662002180}
   m_Layer: 0
   m_Name: PingEnemy
   m_TagString: Enemy
@@ -181,6 +182,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateChannel: {fileID: 11400000, guid: 4943431ebaac44cf3b9f67889818544f, type: 2}
+--- !u!54 &-7440033630662002180
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7942194039253121859}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8161859690012064109
 GameObject:
   m_ObjectHideFlags: 0

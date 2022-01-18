@@ -142,9 +142,8 @@ namespace TurretBehaviour
                 projectileGO.GetComponent<ProjectilePlayState>().damage = damagePerShot;
             
 
-            //make the laser thingies
-            //have it damage an enemy once
-            //pause movement
+            //make the laser
+            //assign damage value
             Debug.Log("Firing Laser!");
             StartCoroutine(animStop());
         }
