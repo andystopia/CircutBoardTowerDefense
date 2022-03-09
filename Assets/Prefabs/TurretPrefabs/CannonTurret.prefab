@@ -415,7 +415,7 @@ MonoBehaviour:
   maxLevel: 3
   sellAmount: 50
   upgradeCost: 200
-  damagePerShot: 90
+  damagePerShot: 100
   damageUp: 30
   rateOfFire: 0.75
   animStopTime: 0.5

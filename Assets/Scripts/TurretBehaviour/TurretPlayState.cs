@@ -35,6 +35,8 @@ namespace TurretBehaviour
         private Quaternion angleToFireLaser;
         private Vector3 placeToFireLaser;
 
+        private float disableLength;
+
         private readonly float rotationSpeed = 10;
         private TurretStateMachine stateMachine;
 
@@ -53,6 +55,7 @@ namespace TurretBehaviour
         // Start is called before the first frame update
         private void Start()
         {
+            disableLength = 2.5f;
             InvokeRepeating("UpdateTarget", 0, 0.25f);
             fireCooldownTime = 1 / rateOfFire;
             isDisabled = false;
@@ -216,7 +219,7 @@ namespace TurretBehaviour
 
         private IEnumerator enableTurretTimer()
         {
-            yield return new WaitForSeconds(4.0f);
+            yield return new WaitForSeconds(disableLength);
             hackedAnimDisplay.SetActive(false);
             isDisabled = false;
         }

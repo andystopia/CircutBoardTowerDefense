@@ -14,8 +14,11 @@ namespace EnemyBehaviour
     public class EnemyPlayState : MonoBehaviour, IGameObjectState, IObserver<GameActivityState>
     {
         public bool isExploding;
+        public bool isBoss;
 
         public GameObject EMPExplosion;
+        public GameObject BossEMPExplision;
+        public GameObject BossPingSpawner;
         private Enemy enemy;
         
         // private EnergyCounter energyCounterScript;
@@ -66,7 +69,7 @@ namespace EnemyBehaviour
             {
                 //chance for spawning a chip
                 // energyCounterScript.energy += enemy.EnergyDrop;
-                deathEventChannel.Broadcast(new EnemyDeathEvent(enemy));
+                
                 if (isExploding)
                 {
                     //this explodes the enemy
@@ -75,13 +78,24 @@ namespace EnemyBehaviour
                         var spawnExplosionEffectLoco = new Vector3(transform.position.x, transform.position.y + 2,
                             transform.position.z);
                         var spawnExplosionRotation = new Quaternion(180, 0, 0, 180);
-                        Instantiate(EMPExplosion, spawnExplosionEffectLoco, spawnExplosionRotation);
-                        notMoving = true;
-                        StartCoroutine(DisableTimer());
+                        if(isBoss)
+                        {
+                            Instantiate(BossEMPExplision, spawnExplosionEffectLoco, spawnExplosionRotation);
+                            Instantiate(BossPingSpawner, spawnExplosionEffectLoco, spawnExplosionRotation);
+                            notMoving = true;
+                            StartCoroutine(DisableTimer(9.0f));
+                        }
+                        else
+                        {
+                            Instantiate(EMPExplosion, spawnExplosionEffectLoco, spawnExplosionRotation);
+                            notMoving = true;
+                            StartCoroutine(DisableTimer(3.0f));
+                        }
                     }
                 }
                 else
                 {
+                    deathEventChannel.Broadcast(new EnemyDeathEvent(enemy));
                     Destroy(gameObject);
                 }
             }
@@ -126,10 +140,12 @@ namespace EnemyBehaviour
             return Enumerable.Range(0, 3).All(i => Math.Abs(position[i] - targetedPosition[i]) < 1e-6);
         }
 
-        private IEnumerator DisableTimer()
+        private IEnumerator DisableTimer(float radius)
         {
             yield return new WaitForSeconds(0.3f);
-            DisableTurretsInRange(transform.position, 3.0f);
+            deathEventChannel.Broadcast(new EnemyDeathEvent(enemy));
+            DisableTurretsInRange(transform.position, radius);
+            Destroy(gameObject);
         }
 
         private void DisableTurretsInRange(Vector3 center, float radius)

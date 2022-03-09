@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536390704943025051}
   - component: {fileID: 536390704943025050}
+  - component: {fileID: 5402295048597693094}
   m_Layer: 0
   m_Name: BossEnemyDisplay
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536390704943025049}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 2}
   m_Children: []
   m_Father: {fileID: 536390706145393700}
@@ -71,7 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b4f2546aca0ba234480347315c83c597, type: 3}
+  m_Sprite: {fileID: 3233899975805890005, guid: 83eea325bc9e7f54fb1202de473b811f,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,6 +84,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5402295048597693094
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536390704943025049}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a186e82fd1a3c034380cd5d8a743168d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &536390706145393694
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cd9bf0787b42feb05dca6d339467cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isExploding: 0
+  isExploding: 1
+  isBoss: 1
   EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
+    type: 3}
+  BossEMPExplision: {fileID: 8773157126457952703, guid: df566557d2a51664da31926fb8c5f648,
+    type: 3}
+  BossPingSpawner: {fileID: 6990069307635442702, guid: 5fb4778733073e545b6b02520e37d1ef,
     type: 3}
 --- !u!114 &-5499815294007747278
 MonoBehaviour:

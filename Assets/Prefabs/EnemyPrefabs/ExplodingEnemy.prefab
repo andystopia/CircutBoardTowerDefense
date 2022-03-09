@@ -114,13 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9174df1791b32f34099caeb13eb3cb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyDrop: 6
+  energyDrop: 15
   energyGain: 0
   health: 20
   healthGain: 2.5
   armySize: 2
   armySizeGain: 0.5
-  speed: 2.5
+  speed: 2
   spawnRate: 2.5
   damageValue: 5
 --- !u!95 &5452682385452125087
@@ -155,8 +155,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isExploding: 1
+  isBoss: 0
   EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
     type: 3}
+  BossEMPExplision: {fileID: 0}
+  BossPingSpawner: {fileID: 0}
 --- !u!114 &3787186076160443285
 MonoBehaviour:
   m_ObjectHideFlags: 0
