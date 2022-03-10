@@ -2913,8 +2913,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 89294642555686018, guid: cdfe676ceaaf8784da5daa94241d47f4,
         type: 3}
+      propertyPath: rateOfFire
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 89294642555686018, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: animStopTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 89294642555686018, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
       propertyPath: damagePerShot
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 89294642555686018, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: fireCooldownTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 89294642555686018, guid: cdfe676ceaaf8784da5daa94241d47f4,
         type: 3}
@@ -2986,6 +3001,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598350586139793202, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ef80143949dc7094c8cf18d12b703a93, type: 2}
+    - target: {fileID: 8598350586139793203, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3929713368876803192, guid: 28fb3d6c9f17c8648b682b694314f15e,
+        type: 3}
+    - target: {fileID: 8598350586139793204, guid: cdfe676ceaaf8784da5daa94241d47f4,
+        type: 3}
+      propertyPath: m_Name
+      value: LazerTurretAnimDisplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdfe676ceaaf8784da5daa94241d47f4, type: 3}

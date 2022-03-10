@@ -37,7 +37,7 @@ namespace TurretBehaviour
 
         private float disableLength;
 
-        private readonly float rotationSpeed = 10;
+        private float rotationSpeed = 10;
         private TurretStateMachine stateMachine;
 
         private GameObject target;
@@ -57,7 +57,17 @@ namespace TurretBehaviour
         {
             disableLength = 2.5f;
             InvokeRepeating("UpdateTarget", 0, 0.25f);
-            fireCooldownTime = 1 / rateOfFire;
+            if (isLaserTurret)
+            {
+                rotationSpeed = 20;
+                InvokeRepeating("FindNewTarget", 0, 0.1f);
+                fireCooldownTime = 0.3f;
+            }
+            else
+            {
+                fireCooldownTime = 1 / rateOfFire;
+            }
+
             isDisabled = false;
         }
 
@@ -80,7 +90,16 @@ namespace TurretBehaviour
                     fireCooldownTime = 1 / rateOfFire;
                 }
 
+                if (!isLaserTurret || fireCooldownTime <= 0.3f)
+                {
+                    fireCooldownTime -= Time.deltaTime;
+                }
+            }
+
+            if (isLaserTurret && !isFiringLaser && fireCooldownTime > 0.3f)
+            {
                 fireCooldownTime -= Time.deltaTime;
+
             }
         }
 
@@ -139,7 +158,6 @@ namespace TurretBehaviour
 
         private IEnumerator makeLaser()
         {
-            yield return new WaitForSeconds(animStopTime);
 
                 var projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
                 projectileGO.GetComponent<ProjectilePlayState>().damage = damagePerShot;
@@ -148,6 +166,9 @@ namespace TurretBehaviour
             //make the laser
             //assign damage value
             Debug.Log("Firing Laser!");
+
+            yield return new WaitForSeconds(animStopTime / 2);
+
             StartCoroutine(animStop());
         }
 
