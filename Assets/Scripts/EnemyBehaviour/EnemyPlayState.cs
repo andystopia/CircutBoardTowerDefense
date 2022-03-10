@@ -18,7 +18,6 @@ namespace EnemyBehaviour
 
         public GameObject EMPExplosion;
         public GameObject BossEMPExplision;
-        public GameObject BossPingSpawner;
         private Enemy enemy;
         
         // private EnergyCounter energyCounterScript;
@@ -81,7 +80,6 @@ namespace EnemyBehaviour
                         if(isBoss)
                         {
                             Instantiate(BossEMPExplision, spawnExplosionEffectLoco, spawnExplosionRotation);
-                            Instantiate(BossPingSpawner, spawnExplosionEffectLoco, spawnExplosionRotation);
                             notMoving = true;
                             StartCoroutine(DisableTimer(9.0f));
                         }

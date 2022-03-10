@@ -46,7 +46,6 @@ public class SpawnManager : MonoBehaviour
 
     // Start is called before the first frame update
 
-
     protected virtual void Awake()
     {
         spriteRenderer = enemySpawn.GetComponent<SpriteRenderer>();
@@ -70,12 +69,41 @@ public class SpawnManager : MonoBehaviour
             audioSource.clip = spawnSound;
             audioSource.Play();
             wave += 1;
-            SpawnWave(2);
+            if(wave%10 != 0)
+            {
+                //if a normal wave
+                SpawnWave(2);
+            }
+            else
+            {
+                //if a boss wave
+                SpawnWave(3);
+                    //spawn boss here
+                SpawnBoss();
+            }
+            
             isOnCooldown = true;
             SetOpacity(cooldownOpacity);
             StartCoroutine(Cooldown());
         }
     }
+
+
+    private void SpawnBoss()
+    {
+        var enemyPathNodes = GetEnemyPathNodes();
+
+        var enemyPrefab = enemyPrefabs[4];
+        var enemy = Instantiate(enemyPrefab);
+
+        // determine how much heath that enemy gets.
+        enemy.Health += enemy.HealthGain * (wave - 1);
+        enemy.Health += enemy.EnergyGain * (wave - 1);
+
+        // send the enemy the data it wants
+        enemy.Init(enemyPathNodes, deathEventChannel, invasionEventChannel);
+    }
+
 
     public void UpdateExclusionZone()
     {
@@ -131,7 +159,40 @@ public class SpawnManager : MonoBehaviour
         for (var subWaveIndex = 0; subWaveIndex < numberOfSubWaves; subWaveIndex++)
         {
             // pick a random enemy prefab
-            var enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+            var enemyPrefab = enemyPrefabs[1];
+            int randSelection = Random.Range(0, 11);
+            switch (randSelection)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    enemyPrefab = enemyPrefabs[0];
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    enemyPrefab = enemyPrefabs[1];
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    enemyPrefab = enemyPrefabs[2];
+                    break;
+                case 10:
+                    if(wave >= 11)
+                    {
+                        enemyPrefab = enemyPrefabs[3];
+                    }
+                    else
+                    {
+                        enemyPrefab = enemyPrefabs[1];
+                    }
+                    break;
+                default:
+                    enemyPrefab = enemyPrefabs[1];
+                    break;
+            }
 
             // determine how many we want to spawn
             var armySize = (int) (enemyPrefab.ArmySize + enemyPrefab.ArmySizeGain * (wave - 1));
@@ -154,9 +215,8 @@ public class SpawnManager : MonoBehaviour
     /// <returns>the curved spawn wave value</returns>
     private float CurveSpawnRate(int enemySubWaveIndex, float enemyPrefabSpawnRate)
     {
-        return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 0.5f : enemyPrefabSpawnRate;
+        return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 1.5f : enemyPrefabSpawnRate;
     }
-
 
     private IEnumerator SpawnSubWave(Enemy enemyPrefab, int armySize, float spawnRate)
     {

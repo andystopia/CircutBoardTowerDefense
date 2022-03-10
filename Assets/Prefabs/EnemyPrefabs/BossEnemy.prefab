@@ -243,8 +243,6 @@ MonoBehaviour:
     type: 3}
   BossEMPExplision: {fileID: 8773157126457952703, guid: df566557d2a51664da31926fb8c5f648,
     type: 3}
-  BossPingSpawner: {fileID: 6990069307635442702, guid: 5fb4778733073e545b6b02520e37d1ef,
-    type: 3}
 --- !u!114 &-5499815294007747278
 MonoBehaviour:
   m_ObjectHideFlags: 0
