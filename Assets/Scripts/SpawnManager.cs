@@ -53,8 +53,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        // for test exploder enemy.
-        FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), deathEventChannel, invasionEventChannel);
+        // for test exploder enemy. (not needed anymore)
+        //FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), deathEventChannel, invasionEventChannel);
         callCooldownBase = callCooldown;
         CalculateCorrectTransform();
     }

@@ -81,7 +81,7 @@ namespace EnemyBehaviour
                         {
                             Instantiate(BossEMPExplision, spawnExplosionEffectLoco, spawnExplosionRotation);
                             notMoving = true;
-                            StartCoroutine(DisableTimer(9.0f));
+                            StartCoroutine(DisableTimer(12.0f));
                         }
                         else
                         {

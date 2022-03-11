@@ -34,7 +34,7 @@ public class Motherboard : MonoBehaviour, IObserver<EnemyInvasionEvent>
     // Update is called once per frame
     private void Update()
     {
-        hpText.text = $"Motherboard: {hp}/{startingHp}";
+        hpText.text = $"{hp}/{startingHp}";
 
         if (hp <= 0) gameOverText.SetActive(true);
     }
