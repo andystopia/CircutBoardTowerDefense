@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656e9a02eb261e469ca7b0f42146ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 9080219247599781686, guid: 0e4acab0ef69d264186c3f1fc38303c2,
+    type: 3}
   firePoint: {fileID: 6839925556505500675}
   turretDisplay: {fileID: 8497840752460508260}
   turretAnimdisplay: {fileID: 8598350586139793204}
@@ -147,7 +148,7 @@ MonoBehaviour:
   damagePerShot: 45
   damageUp: 15
   rateOfFire: 0.35
-  animStopTime: 2
+  animStopTime: 1.5
   fireCooldownTime: 0
   range: 5
   isTeslaTurret: 0
@@ -622,7 +623,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8665612557650702286, guid: 721aaf85771cc6b45acad7d1fa1c9fec,
+  m_Sprite: {fileID: -3929713368876803192, guid: 28fb3d6c9f17c8648b682b694314f15e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -644,7 +645,7 @@ Animator:
   m_GameObject: {fileID: 8598350586139793204}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a2cd465768d42b941ae0fbcfc67de1a8, type: 2}
+  m_Controller: {fileID: 9100000, guid: ef80143949dc7094c8cf18d12b703a93, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
