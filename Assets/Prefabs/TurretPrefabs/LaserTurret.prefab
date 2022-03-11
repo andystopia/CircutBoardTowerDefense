@@ -167,7 +167,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d2a55ff4309cf674f930fa9d17999a2b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -479,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2416133130121591627}
   - component: {fileID: 5814890340360386954}
+  - component: {fileID: 7737478099648353480}
   m_Layer: 0
   m_Name: LaserTurretDisplay
   m_TagString: Untagged
@@ -540,7 +541,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9fe74263b15cbee4d8bf288bea7469de, type: 3}
+  m_Sprite: {fileID: 1551868043829886875, guid: e99e2ae468384b54f87821fe7582e46f,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -551,6 +553,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7737478099648353480
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8497840752460508260}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d72626e92fe18174c8d60829f76b9e82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8598350586139793204
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +584,7 @@ GameObject:
   - component: {fileID: 8598350586139793203}
   - component: {fileID: 8598350586139793202}
   m_Layer: 0
-  m_Name: CannonTurretAnimDisplay
+  m_Name: LaserTurretAnimDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

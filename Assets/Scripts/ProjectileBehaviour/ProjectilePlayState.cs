@@ -26,7 +26,6 @@ namespace ProjectileBehaviour
             enabled = false;
         }
 
-
         // Update is called once per frame
         private void Update()
         {
@@ -54,6 +53,8 @@ namespace ProjectileBehaviour
             }
             else
             {
+                var particle = Instantiate(hitParticle, transform.position, transform.rotation);
+                Destroy(particle, 0.5f);
                 Destroy(gameObject, 1.5f);
             }
         }
@@ -152,7 +153,6 @@ namespace ProjectileBehaviour
                 {
                     var temp = collider.gameObject.GetComponent<Enemy>();
                     temp.Health -= damage;
-                    Debug.Log("Hit!");
 
                 }
             }

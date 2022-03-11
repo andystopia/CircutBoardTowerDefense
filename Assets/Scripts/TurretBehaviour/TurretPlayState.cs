@@ -83,7 +83,6 @@ namespace TurretBehaviour
                     .eulerAngles;
                 turretNeck.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-
                 if (fireCooldownTime <= 0)
                 {
                     Fire();
@@ -161,11 +160,12 @@ namespace TurretBehaviour
 
                 var projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
                 projectileGO.GetComponent<ProjectilePlayState>().damage = damagePerShot;
-            
+
+                audioSource.clip = fireSound;
+                audioSource.Play();
 
             //make the laser
             //assign damage value
-            Debug.Log("Firing Laser!");
 
             yield return new WaitForSeconds(animStopTime / 2);
 
@@ -181,7 +181,7 @@ namespace TurretBehaviour
                 //end laser
                 //resume movement
                 isFiringLaser = false;
-                Debug.Log("Stopping Laser!");
+                audioSource.Stop();
             }
 
             turretAnimdisplay.SetActive(false);
