@@ -6,7 +6,11 @@ public class MenuButton : MonoBehaviour
 {
     public GameObject hover;
     public GameObject text;
+
+    public GameObject menu;
     public bool isSelected;
+
+    public int buttonID; //1 = play, 2 = howto, 3 = quit
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +32,29 @@ public class MenuButton : MonoBehaviour
             hover.SetActive(false);
             text.SetActive(false);
         }
+
+        if (Input.GetMouseButtonDown(0) && isSelected)
+        {
+            if (buttonID == 1)
+            {
+                //level select
+            }
+
+            if (buttonID == 2)
+            {
+                //how to screen
+            }
+
+            if (buttonID == 3)
+            {
+                Application.Quit();
+            }
+        }
     }
 
     void OnMouseEnter()
     {
+        menu.GetComponent<MenuKeyboard>().isActive = false;
         isSelected = true;
     }
 
