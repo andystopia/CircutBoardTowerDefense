@@ -215,7 +215,7 @@ public class SpawnManager : MonoBehaviour
     /// <returns>the curved spawn wave value</returns>
     private float CurveSpawnRate(int enemySubWaveIndex, float enemyPrefabSpawnRate)
     {
-        return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 1.5f : enemyPrefabSpawnRate;
+        return enemySubWaveIndex >= 1 ? enemyPrefabSpawnRate + 0.5f : enemyPrefabSpawnRate;
     }
 
     private IEnumerator SpawnSubWave(Enemy enemyPrefab, int armySize, float spawnRate)

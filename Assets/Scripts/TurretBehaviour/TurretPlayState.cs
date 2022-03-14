@@ -60,7 +60,7 @@ namespace TurretBehaviour
             if (isLaserTurret)
             {
                 rotationSpeed = 20;
-                InvokeRepeating("FindNewTarget", 0, 0.1f);
+                InvokeRepeating("FindNewTarget", 0, 0.05f);
                 fireCooldownTime = 0.3f;
             }
             else

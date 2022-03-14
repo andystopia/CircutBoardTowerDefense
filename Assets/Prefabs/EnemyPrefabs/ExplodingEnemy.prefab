@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyDrop: 15
-  energyGain: 0
+  energyGain: 0.1
   health: 20
-  healthGain: 2.5
+  healthGain: 5
   armySize: 2
-  armySizeGain: 0.5
+  armySizeGain: 0.1
   speed: 2
   spawnRate: 2.5
   damageValue: 5
@@ -159,7 +159,6 @@ MonoBehaviour:
   EMPExplosion: {fileID: 8773157126457952703, guid: b13667e3e565aa84e9da7c0c4ee5b4a5,
     type: 3}
   BossEMPExplision: {fileID: 0}
-  BossPingSpawner: {fileID: 0}
 --- !u!114 &3787186076160443285
 MonoBehaviour:
   m_ObjectHideFlags: 0
