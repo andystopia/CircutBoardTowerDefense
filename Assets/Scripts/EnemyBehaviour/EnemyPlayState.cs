@@ -81,13 +81,13 @@ namespace EnemyBehaviour
                         {
                             Instantiate(BossEMPExplision, spawnExplosionEffectLoco, spawnExplosionRotation);
                             notMoving = true;
-                            StartCoroutine(DisableTimer(9.0f));
+                            StartCoroutine(DisableTimer(9.0f, enemy.Health / 450));
                         }
                         else
                         {
                             Instantiate(EMPExplosion, spawnExplosionEffectLoco, spawnExplosionRotation);
                             notMoving = true;
-                            StartCoroutine(DisableTimer(3.0f));
+                            StartCoroutine(DisableTimer(3.0f, enemy.Health / 45));
                         }
                     }
                 }
@@ -138,15 +138,15 @@ namespace EnemyBehaviour
             return Enumerable.Range(0, 3).All(i => Math.Abs(position[i] - targetedPosition[i]) < 1e-6);
         }
 
-        private IEnumerator DisableTimer(float radius)
+        private IEnumerator DisableTimer(float radius, float DisableTimeLength)
         {
             yield return new WaitForSeconds(0.3f);
             deathEventChannel.Broadcast(new EnemyDeathEvent(enemy));
-            DisableTurretsInRange(transform.position, radius);
+            DisableTurretsInRange(transform.position, radius, DisableTimeLength);
             Destroy(gameObject);
         }
 
-        private void DisableTurretsInRange(Vector3 center, float radius)
+        private void DisableTurretsInRange(Vector3 center, float radius, float DisabletimeLength)
         {
             var hitColliders = Physics.OverlapSphere(center, radius);
 
@@ -154,7 +154,7 @@ namespace EnemyBehaviour
                 if (hitCollider.gameObject.TryGetComponent(out TileTurretBehavior behavior))
                 {
                     var turret = behavior.GetTurret();
-                    if (turret != null) turret.Disable();
+                    if (turret != null) turret.Disable(DisabletimeLength);
                 }
 
             Destroy(gameObject);

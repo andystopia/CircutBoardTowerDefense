@@ -231,16 +231,16 @@ namespace TurretBehaviour
                 target = null;
         }
 
-        public void disableThisTurret()
+        public void disableThisTurret(float DTime)
         {
             hackedAnimDisplay.SetActive(true);
             isDisabled = true;
-            StartCoroutine(enableTurretTimer());
+            StartCoroutine(enableTurretTimer(DTime));
         }
 
-        private IEnumerator enableTurretTimer()
+        private IEnumerator enableTurretTimer(float DTime)
         {
-            yield return new WaitForSeconds(disableLength);
+            yield return new WaitForSeconds(DTime);
             hackedAnimDisplay.SetActive(false);
             isDisabled = false;
         }
