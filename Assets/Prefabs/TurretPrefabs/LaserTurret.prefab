@@ -140,7 +140,7 @@ MonoBehaviour:
   turretAnimdisplay: {fileID: 8598350586139793204}
   hackedAnimDisplay: {fileID: 2066748162975261475}
   turretNeck: {fileID: 7376110387619588725}
-  energyCost: 300
+  energyCost: 400
   level: 1
   maxLevel: 3
   sellAmount: 100
