@@ -10,7 +10,7 @@ public class MenuButton : MonoBehaviour
     public GameObject menu;
     public bool isSelected;
 
-    public int buttonID; //1 = play, 2 = howto, 3 = quit
+    public int buttonID; //1 = play, 2 = howto, 3 = quit, 4 = levelselect
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +37,7 @@ public class MenuButton : MonoBehaviour
         {
             if (buttonID == 1)
             {
-                //level select
+                menu.GetComponent<MenuKeyboard>().LSelect.SetActive(true);
             }
 
             if (buttonID == 2)
@@ -48,6 +48,11 @@ public class MenuButton : MonoBehaviour
             if (buttonID == 3)
             {
                 Application.Quit();
+            }
+
+            if (buttonID == 4)
+            {
+                //goto selected scene
             }
         }
     }

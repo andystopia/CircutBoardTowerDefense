@@ -5,10 +5,11 @@ using UnityEngine;
 public class MenuKeyboard : MonoBehaviour
 {
     public GameObject[] buttons;
-    
+    public GameObject LSelect;
     public int currentSelection;
 
     public bool isActive;
+    private bool isLSelect;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,12 @@ public class MenuKeyboard : MonoBehaviour
         {
             buttons[i].GetComponent<MenuButton>();
         }
+
+        if (buttons.Length > 4)
+        {
+            isLSelect = true;
+        }
+        else isLSelect = false;
     }
 
     // Update is called once per frame
@@ -32,6 +39,11 @@ public class MenuKeyboard : MonoBehaviour
             {
                 currentSelection = 3;
             }
+            
+            if (currentSelection == 3)
+            {
+                currentSelection = 6;
+            }
         }
 
         if (Input.GetKeyDown("d"))
@@ -42,6 +54,31 @@ public class MenuKeyboard : MonoBehaviour
             {
                 currentSelection = 1;
             }
+
+            if (currentSelection == 7)
+            {
+                currentSelection = 4;
+            }
+        }
+
+        if (Input.GetKeyDown("w") && isLSelect)
+        {
+            isActive = true;
+            currentSelection -= 3;
+            if (currentSelection <= 0)
+            {
+                currentSelection += 6;
+            }
+        }
+
+        if (Input.GetKeyDown("s") && isLSelect)
+        {
+            isActive = true;
+            currentSelection += 3;
+            if (currentSelection >= 7)
+            {
+                currentSelection -= 6;
+            }
         }
 
         if (Input.GetKeyDown("space"))
@@ -49,7 +86,8 @@ public class MenuKeyboard : MonoBehaviour
             isActive = true;
             if (currentSelection == 1)
             {
-                //go to level select
+                LSelect.SetActive(true);
+                gameObject.SetActive(false);
             }
 
             if (currentSelection == 2)
@@ -60,6 +98,11 @@ public class MenuKeyboard : MonoBehaviour
             if (currentSelection == 3)
             {
                 Application.Quit();
+            }
+
+            if (currentSelection >= 4)
+            {
+                //go to selected scene
             }
         }
 
