@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuKeyboard : MonoBehaviour
 {
@@ -84,26 +85,7 @@ public class MenuKeyboard : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             isActive = true;
-            if (currentSelection == 1)
-            {
-                LSelect.SetActive(true);
-                gameObject.SetActive(false);
-            }
-
-            if (currentSelection == 2)
-            {
-                //display tutorial screen
-            }
-
-            if (currentSelection == 3)
-            {
-                Application.Quit();
-            }
-
-            if (currentSelection >= 4)
-            {
-                //go to selected scene
-            }
+            buttons[currentSelection].GetComponent<MenuButton>().UseButton();
         }
 
         if (Input.GetKeyDown("escape"))
