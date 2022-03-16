@@ -3016,6 +3016,7 @@ MonoBehaviour:
   - {fileID: 8876241481259301932, guid: ce7de605f364d324a8e949092e7fc55e, type: 3}
   - {fileID: 5470825266758463746, guid: e958022944fb3f341b52ea55777802fa, type: 3}
   - {fileID: 8919982350946285713, guid: 7d6986d3c9adaa44d83e59307cf14ef9, type: 3}
+  - {fileID: 536390706145393695, guid: 09397424f2f686d40abd26d1d2ce5f18, type: 3}
   wave: 0
   waveDisplayText: {fileID: 140265575}
   tutorialDisplayText: {fileID: 162599688}
