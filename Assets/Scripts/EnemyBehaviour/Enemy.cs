@@ -22,6 +22,11 @@ namespace EnemyBehaviour
             set => health = value;
         }
 
+        public float EnergyDrop
+        {
+            get => energyDrop;
+            set => energyDrop = value;
+        }
 
         public float HealthGain => healthGain;
         public float EnergyGain => energyGain;
@@ -33,8 +38,6 @@ namespace EnemyBehaviour
         public float SpawnRate => spawnRate;
 
         public float DamageValue => damageValue;
-
-        public float EnergyDrop => energyDrop;
 
         public float Speed => speed;
 

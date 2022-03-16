@@ -98,7 +98,7 @@ public class SpawnManager : MonoBehaviour
 
         // determine how much heath that enemy gets.
         enemy.Health += enemy.HealthGain * (wave - 1);
-        enemy.Health += enemy.EnergyGain * (wave - 1);
+        enemy.EnergyDrop += enemy.EnergyGain * (wave - 1);
 
         // send the enemy the data it wants
         enemy.Init(enemyPathNodes, deathEventChannel, invasionEventChannel);
@@ -229,7 +229,7 @@ public class SpawnManager : MonoBehaviour
 
             // determine how much heath that enemy gets.
             enemy.Health += enemy.HealthGain * (wave - 1);
-            enemy.Health += enemy.EnergyGain * (wave - 1);
+            enemy.EnergyDrop += enemy.EnergyGain * (wave - 1);
 
             // send the enemy the data it wants
             enemy.Init(enemyPathNodes, deathEventChannel, invasionEventChannel);

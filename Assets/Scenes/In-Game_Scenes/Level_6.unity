@@ -4833,7 +4833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22a2158164eb7346aca7a285f40e63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingEnergy: 600
+  startingEnergy: 200
   energyText: {fileID: 53248272}
   deathEventChannel: {fileID: 11400000, guid: 89ea9dbd9079543c5a1fb73e78555d36, type: 2}
 --- !u!212 &1694315403
