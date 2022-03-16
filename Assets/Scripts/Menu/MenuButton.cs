@@ -9,6 +9,7 @@ public class MenuButton : MonoBehaviour
     public GameObject text;
 
     public GameObject menu;
+    public GameObject menu2;
     public bool isSelected;
 
     public int buttonID; //1 = play, 2 = howto, 3 = quit, 4 = levelselect
@@ -59,11 +60,12 @@ public class MenuButton : MonoBehaviour
         {
             menu.GetComponent<MenuKeyboard>().LSelect.SetActive(true);
             menu.SetActive(false);
+            menu2.SetActive(false);
         }
 
         if (buttonID == 2)
         {
-            //how to screen
+            menu2.SetActive(true);
         }
 
         if (buttonID == 3)

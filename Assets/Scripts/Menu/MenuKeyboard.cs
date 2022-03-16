@@ -93,6 +93,11 @@ public class MenuKeyboard : MonoBehaviour
             Application.Quit();
         }
 
+        if (Input.GetKeyDown("z") || Input.GetMouseButtonDown(1))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (isActive) UpdateButtons();
     }
 
