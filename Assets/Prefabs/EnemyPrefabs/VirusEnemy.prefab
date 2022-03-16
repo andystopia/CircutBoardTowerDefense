@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyDrop: 5
-  energyGain: 0.25
+  energyGain: 0
   health: 50
   healthGain: 10
   armySize: 6

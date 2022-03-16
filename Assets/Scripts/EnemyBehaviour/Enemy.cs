@@ -24,7 +24,7 @@ namespace EnemyBehaviour
 
         public float EnergyDrop
         {
-            get => energyDrop;
+            get => (int)energyDrop;
             set => energyDrop = value;
         }
 
