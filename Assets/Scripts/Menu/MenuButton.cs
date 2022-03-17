@@ -7,6 +7,7 @@ public class MenuButton : MonoBehaviour
 {
     public GameObject hover;
     public GameObject text;
+    public GameObject credits;
 
     public GameObject menu;
     public GameObject menu2;
@@ -66,6 +67,7 @@ public class MenuButton : MonoBehaviour
         if (buttonID == 2)
         {
             menu2.SetActive(true);
+            credits.SetActive(false);
         }
 
         if (buttonID == 3)
