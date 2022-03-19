@@ -4411,6 +4411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FinalScoreText: {fileID: 1358206648}
   ScoreTrackerScript: {fileID: 1026109855}
+  Level: 4
 --- !u!1 &1358776803
 GameObject:
   m_ObjectHideFlags: 0
