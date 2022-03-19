@@ -13,6 +13,10 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("ScoreStuffs")]
+    [SerializeField] private ScoreTracker ScoreTrackerScript;
+    [SerializeField] private TextMeshProUGUI ScoreNotifierText;
+
     [FormerlySerializedAs("enemies")] public List<Enemy> enemyPrefabs;
     public float wave;
     [SerializeField] private TextMeshProUGUI waveDisplayText;
@@ -55,7 +59,7 @@ public class SpawnManager : MonoBehaviour
     {
         // for test exploder enemy. (not needed anymore)
         //FindObjectOfType<Enemy>().Init(pathManager.GetActivePath().GetExtrapolator().GetMinimalRepresentation(), deathEventChannel, invasionEventChannel);
-        callCooldownBase = callCooldown;
+        callCooldownBase = 20;
         CalculateCorrectTransform();
     }
 
@@ -77,7 +81,7 @@ public class SpawnManager : MonoBehaviour
             else
             {
                 //if a boss wave
-                SpawnWave(3);
+                SpawnWave(4);
                     //spawn boss here
                 SpawnBoss();
             }
@@ -258,15 +262,30 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
+        ScoreTrackerScript.RushMod = 2;
+        ScoreNotifierText.text = "Score X2";
+        Color og_color = ScoreNotifierText.color;
+        ScoreNotifierText.color = Color.red;
         while (callCooldown > 0)
         {
-            yield return new WaitForSeconds(1);
-            callCooldown -= 1;
+            yield return new WaitForSeconds(0.5f);
+            if(callCooldown%2 == 1)
+            {
+                ScoreNotifierText.color = og_color;
+            }
+            else
+            {
+                ScoreNotifierText.color = Color.red;
+            }
+            callCooldown -= 1f;
         }
 
         tutorialDisplayText.SetActive(false);
         isOnCooldown = false;
         callCooldown = callCooldownBase;
+        ScoreTrackerScript.RushMod = 1;
+        ScoreNotifierText.text = "Score";
+        ScoreNotifierText.color = og_color;
         SetOpacity(1.0f);
     }
 }

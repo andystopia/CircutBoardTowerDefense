@@ -7,8 +7,12 @@ using UnityEngine;
 public class EnergyCounter : MonoBehaviour, IObserver<EnemyDeathEvent>
 {
     [SerializeField] private float startingEnergy;
+
+    [SerializeField] private ScoreTracker ScoreTrackerScript;
     public float Energy { get; set; }
     public TextMeshProUGUI energyText;
+    private int OldEn;
+    private int NewEn;
 
     [SerializeField] private EnemyDeathEventChannel deathEventChannel;
     protected virtual void Awake()
@@ -19,12 +23,26 @@ public class EnergyCounter : MonoBehaviour, IObserver<EnemyDeathEvent>
     private void Start()
     {
         Energy = startingEnergy;
+        OldEn = (int)startingEnergy;
+        NewEn = (int)startingEnergy;
     }
 
     // Update is called once per frame
     private void Update()
     {
         energyText.text = Energy.ToString(CultureInfo.InvariantCulture);
+
+        NewEn = (int)Energy;
+        
+        if(NewEn > OldEn)
+        {
+            ScoreTrackerScript.IncreaseScore(NewEn - OldEn);
+            OldEn = NewEn;
+        }
+        else if(NewEn < OldEn)
+        {
+            OldEn = NewEn;
+        }
     }
     
     #region EnemyDeath
