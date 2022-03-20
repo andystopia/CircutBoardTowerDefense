@@ -17,9 +17,12 @@ public class FinalScoreStuff : MonoBehaviour
 
     private void OnEnable()
     {
+        //saves temp data
+        DataSaverLoader.Gd.LatestLevel = Level;
+        DataSaverLoader.Gd.LatestScore = ScoreTrackerScript.GetScore();
+
+
         FinalScoreText.text = "Final Score\n" + ScoreTrackerScript.GetScore().ToString();
-        PlayerPrefs.SetInt("TempFinalScore", ScoreTrackerScript.GetScore());
-        PlayerPrefs.SetInt("TempLevelPlayed", Level);
         StartCoroutine(EnterName());   
     }
 

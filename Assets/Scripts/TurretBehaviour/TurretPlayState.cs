@@ -35,8 +35,6 @@ namespace TurretBehaviour
         private Quaternion angleToFireLaser;
         private Vector3 placeToFireLaser;
 
-        private float disableLength;
-
         private float rotationSpeed = 10;
         private TurretStateMachine stateMachine;
 
@@ -55,7 +53,7 @@ namespace TurretBehaviour
         // Start is called before the first frame update
         private void Start()
         {
-            disableLength = 2.5f;
+        
             InvokeRepeating("UpdateTarget", 0, 0.25f);
             if (isLaserTurret)
             {

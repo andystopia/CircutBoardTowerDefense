@@ -53,18 +53,17 @@ public class LetterIconManager : MonoBehaviour
             {
                 SelectedLetterIcon = LetterIcons[SelectedLeterIconIndex].GetComponent<TextMeshPro>();
             }
-            else
+            else if (DataSaverLoader.Gd.LatestScore > DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].Score)
             {
-                //PlayerPrefs.SetString("PLAYER_NAME", myList.Count);
-
-                //Debug.Log(FinalName);
-                //log things and go to main menu
-                Debug.Log("WILL RUN STORING CODE HERE and STORE DATA::\n"
-                            + "Level: " + PlayerPrefs.GetInt("TempLevelPlayed")
-                            + "   PlayerScore: " + PlayerPrefs.GetInt("TempFinalScore")
-                            + "   PlayerName: " + FinalName);
-                SceneManager.LoadScene(0);
+                Debug.Log("swapped a ");
+                DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].PlayerName = FinalName;
+                DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].Score = DataSaverLoader.Gd.LatestScore;
+                DataSaverLoader.SortData(true, DataSaverLoader.Gd.LatestLevel);
+                DataSaverLoader.SaveData();
             }
+           
+        //go back to main menu
+        SceneManager.LoadScene(0);
         }
 
 
@@ -85,18 +84,8 @@ public class LetterIconManager : MonoBehaviour
         }
     }
 
-    private int MyMod(int num, int mod)
+    private static int MyMod(int num, int mod)
     {
-        if (num <= 0)
-        {
-            return mod - 1;
-        }
-        else
-        {
-            return num % mod;
-        }
+        return ((num % mod) + mod) % mod;
     }
-
-
-
 }
