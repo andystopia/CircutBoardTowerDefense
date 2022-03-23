@@ -15,7 +15,7 @@ public class ScoreTracker : MonoBehaviour
 
     private void Start()
     {
-        RushMod = 1;
+        RushMod = 2;
         Scalar = 2;
         Score = 0;
     }

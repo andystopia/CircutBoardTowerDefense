@@ -262,7 +262,7 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        ScoreTrackerScript.RushMod = 2;
+        ScoreTrackerScript.RushMod = 3;
         ScoreNotifierText.text = "Score X2";
         Color og_color = ScoreNotifierText.color;
         ScoreNotifierText.color = Color.red;

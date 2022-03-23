@@ -16,6 +16,8 @@ public class MenuButton : MonoBehaviour
     public int buttonID; //1 = play, 2 = howto, 3 = quit, 4 = levelselect
     public int sceneID; //0 = Main Menu, 1 = Level 1, 2 = Level 2, etc
 
+    private bool HowToScreenUp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class MenuButton : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && isSelected)
         {
-            Debug.Log("Used");
+            //Debug.Log("Used");
             UseButton();
         }
     }
@@ -64,10 +66,17 @@ public class MenuButton : MonoBehaviour
             menu2.SetActive(false);
         }
 
-        if (buttonID == 2)
+        if (buttonID == 2 && !HowToScreenUp)
         {
+            HowToScreenUp = true;
             menu2.SetActive(true);
             credits.SetActive(false);
+        }
+        else if(buttonID == 2 && HowToScreenUp)
+        {
+            HowToScreenUp = false;
+            menu2.SetActive(false);
+            credits.SetActive(true);
         }
 
         if (buttonID == 3)

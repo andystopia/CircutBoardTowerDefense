@@ -19,15 +19,17 @@ public static class DataSaverLoader
             for(int j = 0; j < Gd.Scoreboards[i].Slots.Length; j++)
             {
                 Gd.Scoreboards[i].Slots[j].PlayerName = "TESTER" + (j + 1).ToString();
-                Gd.Scoreboards[i].Slots[j].Score = Random.Range(0, 60);//Random.Range(100, 200 * (j + 1));
-                SortData(false, 1);
+                Gd.Scoreboards[i].Slots[j].Score = Random.Range(100, 200 * (j + 1));
+                
             }
+            SortData(false, i + 1);
         }
     }
 
     public static void SortData(bool Sorted, int Level)
     {
-        for(int i = Gd.Scoreboards[Level - 1].Slots.Length - 2; i >= 0; i--)
+        Debug.Log("\nREEE Level " + Level);
+        for(int i = Gd.Scoreboards[Level - 1].Slots.Length - 2; i > 0; i--)
         {
             if(Gd.Scoreboards[Level - 1].Slots[i].Score < Gd.Scoreboards[Level - 1].Slots[i + 1].Score)
             {

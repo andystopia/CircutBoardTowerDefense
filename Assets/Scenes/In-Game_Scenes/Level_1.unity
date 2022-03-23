@@ -1738,6 +1738,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 526091204}
     m_Modifications:
+    - target: {fileID: 9041424479059659305, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041424479542813400, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9041424480412872974, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
         type: 3}
       propertyPath: m_Name
@@ -1852,6 +1862,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041424480880625553, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041424481137220795, guid: 1c9035ae8ae89214ab06a05c972cfb0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c9035ae8ae89214ab06a05c972cfb0c, type: 3}
@@ -4322,7 +4342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FinalScoreText: {fileID: 1358206648}
   ScoreTrackerScript: {fileID: 18977418}
-  Level: 1
 --- !u!1 &1358776803
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,7 +6081,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2099728353}
   - component: {fileID: 2099728355}
-  - component: {fileID: 2099728354}
   m_Layer: 0
   m_Name: spr_emptyButton2
   m_TagString: Untagged
@@ -6084,18 +6102,6 @@ Transform:
   m_Father: {fileID: 696259426}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2099728354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099728352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd4a66357ea788468a11527e92c5cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &2099728355
 SpriteRenderer:
   m_ObjectHideFlags: 0

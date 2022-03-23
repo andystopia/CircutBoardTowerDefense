@@ -10,6 +10,7 @@ public class LetterIconManager : MonoBehaviour
     private string[] AlphabetAndNums = { "_", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     [SerializeField] private GameObject[] LetterIcons;
     [SerializeField] private TextMeshPro SelectedLetterIcon;
+    [SerializeField] private TextMeshPro ScoreText;
     private int CurrentLetterIndex;
     private int SelectedLeterIconIndex;
     private bool Flip;
@@ -20,6 +21,7 @@ public class LetterIconManager : MonoBehaviour
         FinalName = "";
         CurrentLetterIndex = 0;
         SelectedLeterIconIndex = 0;
+        ScoreText.text = "Score: " + DataSaverLoader.Gd.LatestScore.ToString();
         InvokeRepeating("Blink", 0, 0.5f);
     }
 
@@ -49,21 +51,26 @@ public class LetterIconManager : MonoBehaviour
             FinalName = FinalName + SelectedLetterIcon.text;
             SelectedLeterIconIndex++;
             SelectedLetterIcon.fontSize = 25;
+
             if (SelectedLeterIconIndex < LetterIcons.Length)
             {
                 SelectedLetterIcon = LetterIcons[SelectedLeterIconIndex].GetComponent<TextMeshPro>();
             }
             else if (DataSaverLoader.Gd.LatestScore > DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].Score)
             {
-                Debug.Log("swapped a ");
                 DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].PlayerName = FinalName;
                 DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].Score = DataSaverLoader.Gd.LatestScore;
                 DataSaverLoader.SortData(true, DataSaverLoader.Gd.LatestLevel);
                 DataSaverLoader.SaveData();
+
+                //go back to main menu
+                SceneManager.LoadScene(0);
             }
-           
-        //go back to main menu
-        SceneManager.LoadScene(0);
+            else
+            {
+                //go back to main menu
+                SceneManager.LoadScene(0);
+            }
         }
 
 

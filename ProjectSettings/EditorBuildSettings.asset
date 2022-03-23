@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/In-Game_Scenes/Level_6.unity
     guid: 93a2caaeff1b0184f9c1920eabd4a9b2
   - enabled: 1
-    path: Assets/Scenes/In-Game_Scenes/HighScoreNamer.unity
+    path: Assets/Scenes/HighScoreNamer.unity
     guid: 4a3db0f528cfbab40896a7d9f8707470
+  - enabled: 1
+    path: Assets/Scenes/HighScoreDisplayer.unity
+    guid: a28f268f506e1eb46b599564979067c0
   m_configObjects: {}
