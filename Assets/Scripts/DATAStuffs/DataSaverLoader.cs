@@ -8,45 +8,37 @@ public static class DataSaverLoader
 {
     public static GameData Gd;
 
-
     public static void NewData()
     {
         Gd = new GameData();
-        Gd.Scoreboards = new Scoreboard[5];
+        Gd.Scoreboards = new Scoreboard[6];
         for(int i = 0; i < Gd.Scoreboards.Length; i++)
         {
-            Gd.Scoreboards[i].Slots = new ScoreboardSlot[9];
+            Gd.Scoreboards[i].Slots = new ScoreboardSlot[10];
             for(int j = 0; j < Gd.Scoreboards[i].Slots.Length; j++)
             {
-                Gd.Scoreboards[i].Slots[j].PlayerName = "TESTER" + (j + 1).ToString();
+                Gd.Scoreboards[i].Slots[j].PlayerName = "TESTER" + (j).ToString();
                 Gd.Scoreboards[i].Slots[j].Score = Random.Range(100, 200 * (j + 1));
-                
             }
-            SortData(false, i + 1);
+            SortData(i + 1);
         }
     }
 
-    public static void SortData(bool Sorted, int Level)
+    public static void SortData(int Level)
     {
-        Debug.Log("\nREEE Level " + Level);
-        for(int i = Gd.Scoreboards[Level - 1].Slots.Length - 2; i > 0; i--)
+        bool Sorted = false;
+        while(!Sorted)
         {
-            if(Gd.Scoreboards[Level - 1].Slots[i].Score < Gd.Scoreboards[Level - 1].Slots[i + 1].Score)
+            Sorted = true;
+            for (int i = Gd.Scoreboards[Level - 1].Slots.Length - 1; i > 0; i--)
             {
-                //swaps the scores
-                int tempInt = Gd.Scoreboards[Level - 1].Slots[i].Score;
-                Gd.Scoreboards[Level - 1].Slots[i].Score = Gd.Scoreboards[Level - 1].Slots[i + 1].Score;
-                Gd.Scoreboards[Level - 1].Slots[i + 1].Score = tempInt;
-
-                //swaps the names
-                string tempString = Gd.Scoreboards[Level - 1].Slots[i].PlayerName;
-                Gd.Scoreboards[Level - 1].Slots[i].PlayerName = Gd.Scoreboards[Level - 1].Slots[i + 1].PlayerName;
-                Gd.Scoreboards[Level - 1].Slots[i + 1].PlayerName = tempString;
-            }
-            else if(Sorted)
-            {
-                //ends looping when a swap isn't needed anymore (when the array is already sorted)
-                i = Gd.Scoreboards[Level - 1].Slots.Length;
+                if (Gd.Scoreboards[Level - 1].Slots[i].Score > Gd.Scoreboards[Level - 1].Slots[i - 1].Score)
+                {
+                    Sorted = false;
+                    ScoreboardSlot temp = Gd.Scoreboards[Level - 1].Slots[i];
+                    Gd.Scoreboards[Level - 1].Slots[i] = Gd.Scoreboards[Level - 1].Slots[i - 1];
+                    Gd.Scoreboards[Level - 1].Slots[i - 1] = temp;
+                }
             }
         }
     }

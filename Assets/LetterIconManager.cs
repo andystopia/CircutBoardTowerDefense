@@ -60,7 +60,7 @@ public class LetterIconManager : MonoBehaviour
             {
                 DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].PlayerName = FinalName;
                 DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots.Length - 1].Score = DataSaverLoader.Gd.LatestScore;
-                DataSaverLoader.SortData(true, DataSaverLoader.Gd.LatestLevel);
+                DataSaverLoader.SortData(DataSaverLoader.Gd.LatestLevel);
                 DataSaverLoader.SaveData();
 
                 //go back to main menu

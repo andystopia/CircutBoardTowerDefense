@@ -16,8 +16,8 @@ public class ScoreBoardSlotManager : MonoBehaviour
 
         for(int i = 0; i < ScoreBoardSlots.Length; i++)
         {
-            ScoreBoardSlots[i].text += "            THAT" + DataSaverLoader.Gd.Scoreboards[i].Slots[DataSaverLoader.Gd.LatestLevel - 1].PlayerName
-                + "      " + DataSaverLoader.Gd.Scoreboards[i].Slots[DataSaverLoader.Gd.LatestLevel].Score;
+            ScoreBoardSlots[i].text += "            " + DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[i].PlayerName
+                + "      " + DataSaverLoader.Gd.Scoreboards[DataSaverLoader.Gd.LatestLevel - 1].Slots[i].Score;
         }
     }
 

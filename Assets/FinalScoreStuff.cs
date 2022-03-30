@@ -11,10 +11,11 @@ public class FinalScoreStuff : MonoBehaviour
     private void OnEnable()
     {
         //saves temp data
-        /*
+        
+        
         DataSaverLoader.Gd.LatestLevel = SceneManager.GetActiveScene().buildIndex;
         DataSaverLoader.Gd.LatestScore = ScoreTrackerScript.GetScore();
-        */
+        
 
         FinalScoreText.text = "Final Score\n" + ScoreTrackerScript.GetScore().ToString();
         StartCoroutine(EnterName());   
@@ -23,7 +24,6 @@ public class FinalScoreStuff : MonoBehaviour
     IEnumerator EnterName()
     {
         yield return new WaitForSeconds(5f);
-        //SceneManager.LoadScene(7);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(7);
     }
 }
