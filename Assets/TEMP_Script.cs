@@ -11,42 +11,39 @@ public class TEMP_Script : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            DataSaverLoader.Gd.LatestLevel = 1;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            DataSaverLoader.Gd.LatestLevel = 2;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            DataSaverLoader.Gd.LatestLevel = 3;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(3);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            DataSaverLoader.Gd.LatestLevel = 4;
-            SceneManager.LoadScene(8);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            DataSaverLoader.Gd.LatestLevel = 4;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(4);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            DataSaverLoader.Gd.LatestLevel = 5;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(6);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            DataSaverLoader.Gd.LatestLevel = 6;
-            SceneManager.LoadScene(8);
+            LoadScoreBoardDisplayScreen(6);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             SceneManager.LoadScene(0);
         }
     }
+
+    void LoadScoreBoardDisplayScreen(int Level)
+    {
+        DataSaverLoader.Gd.LatestLevel = Level;
+        DataSaverLoader.SaveData();
+        SceneManager.LoadScene(8);
+    }
+
 }
