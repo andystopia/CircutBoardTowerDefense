@@ -41,7 +41,7 @@ public class MenuKeyboard : MonoBehaviour
                 currentSelection = 3;
             }
             
-            if (currentSelection == 3)
+            if (isLSelect && currentSelection == 3)
             {
                 currentSelection = 6;
             }

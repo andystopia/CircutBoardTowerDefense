@@ -896,7 +896,6 @@ GameObject:
   m_Component:
   - component: {fileID: 455096786}
   - component: {fileID: 455096785}
-  - component: {fileID: 455096784}
   m_Layer: 0
   m_Name: Level Select Screen
   m_TagString: Untagged
@@ -904,29 +903,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &455096784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455096783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 316dd04b50accc345bdb3d529c084803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  LSelect: {fileID: 0}
-  currentSelection: 0
-  isActive: 0
 --- !u!212 &455096785
 SpriteRenderer:
   m_ObjectHideFlags: 0
