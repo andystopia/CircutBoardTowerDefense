@@ -16,53 +16,61 @@ MonoBehaviour:
     row: 6
     column: 0
   pathNodes:
-  - distance: 5
-    direction: 2
-  - distance: 5
-    direction: 0
   - distance: 3
     direction: 2
   - distance: 4
-    direction: 1
-  - distance: 11
+    direction: 0
+  - distance: 1
     direction: 2
+  - distance: 1
+    direction: 0
   - distance: 4
-    direction: 0
-  - distance: 2
-    direction: 3
-  - distance: 1
-    direction: 1
-  - distance: 2
-    direction: 3
-  - distance: 2
-    direction: 0
-  - distance: 3
-    direction: 3
-  - distance: 3
-    direction: 1
-  - distance: 1
-    direction: 3
-  - distance: 2
-    direction: 0
-  - distance: 5
     direction: 2
-  - distance: 5
-    direction: 1
-  - distance: 1
-    direction: 3
-  - distance: 1
-    direction: 1
-  - distance: 2
-    direction: 3
-  - distance: 1
-    direction: 1
-  - distance: 1
-    direction: 3
   - distance: 3
     direction: 1
-  - distance: 6
+  - distance: 1
+    direction: 2
+  - distance: 2
+    direction: 1
+  - distance: 10
     direction: 2
   - distance: 1
     direction: 0
+  - distance: 1
+    direction: 2
+  - distance: 5
+    direction: 0
+  - distance: 4
+    direction: 3
+  - distance: 1
+    direction: 1
+  - distance: 2
+    direction: 3
+  - distance: 1
+    direction: 1
+  - distance: 4
+    direction: 3
+  - distance: 5
+    direction: 1
+  - distance: 2
+    direction: 2
+  - distance: 3
+    direction: 1
+  - distance: 1
+    direction: 2
+  - distance: 2
+    direction: 1
+  - distance: 2
+    direction: 2
+  - distance: 1
+    direction: 0
+  - distance: 1
+    direction: 2
+  - distance: 2
+    direction: 0
+  - distance: 2
+    direction: 2
+  - distance: 1
+    direction: 1
   - distance: 2
     direction: 2
