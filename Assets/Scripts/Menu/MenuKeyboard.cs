@@ -36,7 +36,7 @@ public class MenuKeyboard : MonoBehaviour
         {
             isActive = true;
             currentSelection -= 1;
-            if (currentSelection == 0)
+            if (currentSelection <= 0)
             {
                 currentSelection = 3;
             }
@@ -98,6 +98,11 @@ public class MenuKeyboard : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
+        if (Input.GetKeyDown("x") && isLSelect && currentSelection > 0)
+        {
+            LoadScoreBoardDisplayScreen(currentSelection);
+        }
+
         if (isActive) UpdateButtons();
     }
 
@@ -111,5 +116,12 @@ public class MenuKeyboard : MonoBehaviour
             }
             else buttons[i].GetComponent<MenuButton>().isSelected = false;
         }
+    }
+
+    void LoadScoreBoardDisplayScreen(int Level)
+    {
+        DataSaverLoader.Gd.LatestLevel = Level;
+        DataSaverLoader.SaveData();
+        SceneManager.LoadScene(8);
     }
 }
