@@ -27,7 +27,7 @@ public class TEMP_Script : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            LoadScoreBoardDisplayScreen(6);
+            LoadScoreBoardDisplayScreen(5);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
