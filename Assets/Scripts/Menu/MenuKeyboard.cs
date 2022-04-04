@@ -12,11 +12,10 @@ public class MenuKeyboard : MonoBehaviour
     public bool isActive;
     private bool isLSelect;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        currentSelection = 0;
-        isActive = false;
+        currentSelection = 1;
+        isActive = true;
         for (var i = 1; i < buttons.Length; i++)
         {
             buttons[i].GetComponent<MenuButton>();
@@ -40,8 +39,7 @@ public class MenuKeyboard : MonoBehaviour
             {
                 currentSelection = 3;
             }
-            
-            if (isLSelect && currentSelection == 3)
+            else if (isLSelect && currentSelection == 3)
             {
                 currentSelection = 6;
             }
@@ -55,8 +53,7 @@ public class MenuKeyboard : MonoBehaviour
             {
                 currentSelection = 1;
             }
-
-            if (currentSelection == 7)
+            else if (currentSelection == 7)
             {
                 currentSelection = 4;
             }
@@ -93,7 +90,7 @@ public class MenuKeyboard : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKeyDown("z") || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown("c") || Input.GetMouseButtonDown(1))
         {
             SceneManager.LoadScene(0);
         }
