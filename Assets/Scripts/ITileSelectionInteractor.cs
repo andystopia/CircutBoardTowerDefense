@@ -15,6 +15,7 @@ public interface ITileSelectionInteractor : IActiveOrInactiveState
     void Hovered();
     void UnHovered();
     void AttemptToPlaceTurret();
+    void SellTurret();
 
     IGridPositionedItem GetGridPositionedComponent();
     IFocusInteractor GetFocusInteractor();

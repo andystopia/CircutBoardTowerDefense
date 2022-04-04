@@ -68,7 +68,7 @@ public class SpawnManager : MonoBehaviour
     {
         waveDisplayText.text = "Wave " + wave;
 
-        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Return)) && isOnCooldown == false)
+        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Return)) && isOnCooldown == false)
         {
             audioSource.clip = spawnSound;
             audioSource.Play();

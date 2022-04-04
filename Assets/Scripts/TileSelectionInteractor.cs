@@ -124,6 +124,11 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
         }
     }
 
+    public void SellTurret()
+    {
+        Debug.Log("Sold");
+    }
+
 
     /// <summary>
     ///     In this case, the active state is represents

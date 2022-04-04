@@ -14,8 +14,10 @@ public class MenuKeyboard : MonoBehaviour
 
     void Awake()
     {
-        currentSelection = 1;
+        currentSelection = 1; //Keep this at 0 for Browser build or else it can mess up Mouse Controls on the menu
+
         isActive = true;
+
         for (var i = 1; i < buttons.Length; i++)
         {
             buttons[i].GetComponent<MenuButton>();
