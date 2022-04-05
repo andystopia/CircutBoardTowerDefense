@@ -134,8 +134,10 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
                 break;
 
             case (FilledState.Filled, _):
-                var refund = turretBehavior.GetTurret().SellAmount;
-                Debug.Log(refund);
+                var turret = turretBehavior.GetTurret();
+                var refund = turret.SellAmount;
+                energyCounter.Energy += refund;
+                Destroy(turret.gameObject);
                 break;
         }
     }
