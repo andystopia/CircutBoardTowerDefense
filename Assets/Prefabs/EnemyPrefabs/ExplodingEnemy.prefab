@@ -119,7 +119,7 @@ MonoBehaviour:
   health: 20
   healthGain: 5
   armySize: 2
-  armySizeGain: 0.1
+  armySizeGain: 0.5
   speed: 2
   spawnRate: 2.5
   damageValue: 5

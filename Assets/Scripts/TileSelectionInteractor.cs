@@ -119,7 +119,7 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
                 break;
 
             case (FilledState.Filled, _):
-                Debug.Log("Open_Menu_Here");
+                //Debug.Log("Open_Menu_Here");
                 DisplayWarningText("Turret already exists!");
                 break;
         }
