@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyDrop: 10
-  energyGain: 0
+  energyGain: 0.5
   health: 100
-  healthGain: 25
+  healthGain: 36
   armySize: 4
   armySizeGain: 0.5
   speed: 1.5
