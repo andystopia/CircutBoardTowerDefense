@@ -121,7 +121,6 @@ public class MenuKeyboard : MonoBehaviour
     {
         for (var i = 1; i < buttons.Length; i++)
         {
-            Debug.Log(i + " is false");
             buttons[i].GetComponent<MenuButton>().isSelected = false;
         }
     }
