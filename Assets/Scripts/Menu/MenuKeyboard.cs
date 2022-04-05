@@ -117,6 +117,15 @@ public class MenuKeyboard : MonoBehaviour
         }
     }
 
+    public void DisableAllButtons()
+    {
+        for (var i = 1; i < buttons.Length; i++)
+        {
+            Debug.Log(i + " is false");
+            buttons[i].GetComponent<MenuButton>().isSelected = false;
+        }
+    }
+
     void LoadScoreBoardDisplayScreen(int Level)
     {
         DataSaverLoader.Gd.LatestLevel = Level;

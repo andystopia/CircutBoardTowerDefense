@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuButton : MonoBehaviour
 {
     public GameObject hover;
     public GameObject text;
     public GameObject credits;
+    public GameObject keyboardmenu;
 
     public GameObject menu;
     public GameObject menu2;
@@ -48,6 +50,18 @@ public class MenuButton : MonoBehaviour
 
     void OnMouseEnter()
     {
+        switch(text.GetComponent<Text>().text)
+        {
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+                menu.GetComponent<MenuKeyboard>().currentSelection = sceneID;
+                menu.GetComponent<MenuKeyboard>().DisableAllButtons();
+                break;
+        }
         menu.GetComponent<MenuKeyboard>().isActive = false;
         isSelected = true;
     }
