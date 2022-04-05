@@ -35,9 +35,10 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
         focusInteractor = GetComponent<ITileExclusiveFocusInteractor>();
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        AttemptToPlaceTurret();
+        if (Input.GetMouseButtonDown(0)) AttemptToPlaceTurret();
+        if (Input.GetMouseButtonDown(1)) SellTurret();
     }
 
     protected void OnMouseEnter()
@@ -126,7 +127,17 @@ public class TileSelectionInteractor : MonoBehaviour, ITileSelectionInteractor
 
     public void SellTurret()
     {
-        Debug.Log("Sold");
+        switch (GetState())
+        {
+            case (FilledState.Empty, _):
+                Debug.Log("Nothing to sell here");
+                break;
+
+            case (FilledState.Filled, _):
+                var refund = turretBehavior.GetTurret().SellAmount;
+                Debug.Log(refund);
+                break;
+        }
     }
 
 

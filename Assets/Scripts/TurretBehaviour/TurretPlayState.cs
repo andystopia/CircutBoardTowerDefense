@@ -42,6 +42,7 @@ namespace TurretBehaviour
 
         public float Range => range;
         public float EnergyCost => energyCost;
+        public float SellAmount => sellAmount;
 
         protected virtual void Awake()
         {

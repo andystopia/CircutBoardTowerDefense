@@ -10,6 +10,8 @@ namespace TurretBehaviour
 
         public float EnergyCost => GetComponent<TurretPlayState>().EnergyCost;
 
+        public float SellAmount => GetComponent<TurretPlayState>().SellAmount;
+
         protected virtual void Awake()
         {
             playState = GetComponent<TurretPlayState>();
