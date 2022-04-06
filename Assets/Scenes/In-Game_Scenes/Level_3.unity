@@ -816,7 +816,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 2.6049263, z: 1.0301685, w: 0}
+  m_margin: {x: 0, y: 2.6049263, z: -0.45665407, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4267,7 +4267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FinalScoreText: {fileID: 1358206648}
   ScoreTrackerScript: {fileID: 1500777820}
-  Level: 3
 --- !u!1 &1358776803
 GameObject:
   m_ObjectHideFlags: 0
