@@ -47,7 +47,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
     {
         if (!activeRegionFocus.IsActive(this))
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
             {
                 // uiDisplayer.Show();
                 activeRegionFocus.Activate(this);
@@ -66,7 +66,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
             {
                 // uiDisplayer.Hide();
                 // make sure none of our children are focused
@@ -89,7 +89,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
             Activate(newEntry);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) && entries.GetActive() != null)
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace) && entries.GetActive() != null)
             selectedManager.Activate(entries.GetActive().Root.SelectionInteractor);
     }
 

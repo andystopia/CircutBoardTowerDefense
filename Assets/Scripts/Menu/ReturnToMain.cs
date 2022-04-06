@@ -10,7 +10,7 @@ public class ReturnToMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("c") || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
         {
             SceneManager.LoadScene(0);
         }

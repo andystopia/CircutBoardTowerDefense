@@ -45,7 +45,7 @@ public class LetterIconManager : MonoBehaviour
             SelectedLetterIcon.text = AlphabetAndNums[CurrentLetterIndex];
             SelectedLetterIcon.fontSize = 25;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        else if (Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace) || Input.GetKeyDown(KeyCode.Return))
         {
             CurrentLetterIndex = 0;
             FinalName = FinalName + SelectedLetterIcon.text;

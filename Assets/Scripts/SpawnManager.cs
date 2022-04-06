@@ -68,12 +68,37 @@ public class SpawnManager : MonoBehaviour
     {
         waveDisplayText.text = "Wave " + wave;
 
-        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Return)) && isOnCooldown == false)
+        if(DataSaverLoader.Gd.IsArcadeBuild)
+        {
+            if ((Input.GetKeyDown(KeyCode.Alpha1)) && isOnCooldown == false)
+            {
+                audioSource.clip = spawnSound;
+                audioSource.Play();
+                wave += 1;
+                if (wave % 10 != 0)
+                {
+                    //if a normal wave
+                    SpawnWave(2);
+                }
+                else
+                {
+                    //if a boss wave
+                    SpawnWave(4);
+                    //spawn boss here
+                    SpawnBoss();
+                }
+
+                isOnCooldown = true;
+                SetOpacity(cooldownOpacity);
+                StartCoroutine(Cooldown());
+            }
+        }
+        else if(Input.GetKeyDown(DataSaverLoader.Gd.CallNextWave))
         {
             audioSource.clip = spawnSound;
             audioSource.Play();
             wave += 1;
-            if(wave%10 != 0)
+            if (wave % 10 != 0)
             {
                 //if a normal wave
                 SpawnWave(2);
@@ -82,10 +107,10 @@ public class SpawnManager : MonoBehaviour
             {
                 //if a boss wave
                 SpawnWave(4);
-                    //spawn boss here
+                //spawn boss here
                 SpawnBoss();
             }
-            
+
             isOnCooldown = true;
             SetOpacity(cooldownOpacity);
             StartCoroutine(Cooldown());

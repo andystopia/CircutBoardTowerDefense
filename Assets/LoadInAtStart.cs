@@ -6,23 +6,31 @@ public class LoadInAtStart : MonoBehaviour
 {
     private void Awake()
     {
-        
+
+
         if (!DataSaverLoader.LoadData())
         {
             DataSaverLoader.NewData();
         }
-        
 
+        DataSaverLoader.Gd.IsArcadeBuild = false;
 
-        //DataSaverLoader.SortData(false, 1);
-
-        /*
-        for (int i = 0; i < DataSaverLoader.Gd.Scoreboards[1].Slots.Length; i++)
+        if (DataSaverLoader.Gd.IsArcadeBuild)
         {
-            Debug.Log("                 Level: 2                      #" + (i + 1) + " Ranked -> PlayerName: "
-                + DataSaverLoader.Gd.Scoreboards[1].Slots[i].PlayerName + "    Score: " + DataSaverLoader.Gd.Scoreboards[1].Slots[i].Score);
+            //arcade controls
+            DataSaverLoader.Gd.MenuAndBack = "c";
+            DataSaverLoader.Gd.CallNextWave = "1";
+            DataSaverLoader.Gd.SelectAndPlace = "space";
+            DataSaverLoader.Gd.SellTurret = "v";
         }
-        */
+        else
+        {
+            //keyboard mouse build
+            DataSaverLoader.Gd.MenuAndBack = "q";
+            DataSaverLoader.Gd.CallNextWave = "space";
+            DataSaverLoader.Gd.SelectAndPlace = "e";
+            DataSaverLoader.Gd.SellTurret = "r";
+        }
         
     }
 }

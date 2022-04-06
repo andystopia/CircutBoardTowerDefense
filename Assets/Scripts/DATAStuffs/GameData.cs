@@ -22,4 +22,11 @@ public class GameData
 
     public int LatestScore;
     public int LatestLevel;
+    public bool IsArcadeBuild;
+
+    //input refs
+    public string MenuAndBack;
+    public string CallNextWave;
+    public string SellTurret;
+    public string SelectAndPlace;
 }

@@ -81,7 +81,7 @@ public class MenuKeyboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace))
         {
             isActive = true;
             buttons[currentSelection].GetComponent<MenuButton>().UseButton();
@@ -92,7 +92,7 @@ public class MenuKeyboard : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetKeyDown("c") || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
         {
             SceneManager.LoadScene(0);
         }

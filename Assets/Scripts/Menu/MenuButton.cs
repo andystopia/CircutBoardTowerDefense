@@ -50,15 +50,24 @@ public class MenuButton : MonoBehaviour
 
     void OnMouseEnter()
     {
-        switch(text.GetComponent<Text>().text)
+        switch(sceneID)
         {
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
                 menu.GetComponent<MenuKeyboard>().currentSelection = sceneID;
+                menu.GetComponent<MenuKeyboard>().DisableAllButtons();
+                break;
+        }
+        switch (buttonID)
+        {
+            case 1:
+            case 2:
+            case 3:
+                menu.GetComponent<MenuKeyboard>().currentSelection = buttonID;
                 menu.GetComponent<MenuKeyboard>().DisableAllButtons();
                 break;
         }
