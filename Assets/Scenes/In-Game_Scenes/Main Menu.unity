@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -738,9 +738,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons:
   - {fileID: 0}
-  - {fileID: 267536865}
-  - {fileID: 1274095445}
-  - {fileID: 272448273}
+  - {fileID: 267536868}
+  - {fileID: 1274095448}
+  - {fileID: 272448276}
   LSelect: {fileID: 1946784710}
   currentSelection: 0
   isActive: 0
@@ -5484,6 +5484,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730910837}
   m_CullTransparentMesh: 1
+--- !u!1 &1738773732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738773734}
+  - component: {fileID: 1738773733}
+  m_Layer: 0
+  m_Name: KeyMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!114 &1738773733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738773732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a7d81ea91744bea593cf2eb9ce3c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorAssignedKeyMapping: {fileID: 11400000, guid: 6a79f6d13d3f5422087c69abad8b8a24,
+    type: 2}
+--- !u!4 &1738773734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738773732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.7897213, y: 0.390548, z: 1.5476885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806075051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5746,12 +5791,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons:
   - {fileID: 0}
-  - {fileID: 1588889527}
-  - {fileID: 344096794}
-  - {fileID: 1243812874}
-  - {fileID: 1454503727}
-  - {fileID: 1253324851}
-  - {fileID: 1241818782}
+  - {fileID: 1588889530}
+  - {fileID: 344096797}
+  - {fileID: 1243812877}
+  - {fileID: 1454503729}
+  - {fileID: 1253324853}
+  - {fileID: 1241818784}
   LSelect: {fileID: 236513445}
   currentSelection: 0
   isActive: 0

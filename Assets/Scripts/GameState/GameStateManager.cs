@@ -1,3 +1,4 @@
+using KeyboardEventSystem;
 using UnityEngine;
 
 namespace GameState
@@ -16,7 +17,7 @@ namespace GameState
         {
             // p or if it's already paused, escape.
             // toggle the playing/paused states.
-            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) &&
+            if (KeyMap.ActiveMap.Pause.WasPressedThisFrame() || KeyMap.ActiveMap.CancelOperationKey.WasPressedThisFrame() &&
                 eventChannel.CurrentState == GameActivityState.Paused)
                 eventChannel.Broadcast(eventChannel.CurrentState == GameActivityState.Playing
                     ? GameActivityState.Paused

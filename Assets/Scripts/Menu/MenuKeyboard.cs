@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using KeyboardEventSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuKeyboard : MonoBehaviour
 {
-    public GameObject[] buttons;
+    public MenuButton[] buttons;
     public GameObject LSelect;
     public int currentSelection;
 
@@ -17,11 +18,7 @@ public class MenuKeyboard : MonoBehaviour
         currentSelection = 1; //Keep this at 0 for Browser build or else it can mess up Mouse Controls on the menu
 
         isActive = true;
-
-        for (var i = 1; i < buttons.Length; i++)
-        {
-            buttons[i].GetComponent<MenuButton>();
-        }
+        
 
         if (buttons.Length > 4)
         {
@@ -33,7 +30,7 @@ public class MenuKeyboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("a"))
+        if (KeyMap.ActiveMap.MainMenuMove.West.WasPressedThisFrame())
         {
             isActive = true;
             currentSelection -= 1;
@@ -47,7 +44,7 @@ public class MenuKeyboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("d"))
+        if (KeyMap.ActiveMap.MainMenuMove.East.WasPressedThisFrame())
         {
             isActive = true;
             currentSelection += 1;
@@ -61,7 +58,7 @@ public class MenuKeyboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("w") && isLSelect)
+        if (KeyMap.ActiveMap.MainMenuMove.North.WasPressedThisFrame() && isLSelect)
         {
             isActive = true;
             currentSelection -= 3;
@@ -71,7 +68,7 @@ public class MenuKeyboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("s") && isLSelect)
+        if (KeyMap.ActiveMap.MainMenuMove.South.WasPressedThisFrame() && isLSelect)
         {
             isActive = true;
             currentSelection += 3;
@@ -81,23 +78,23 @@ public class MenuKeyboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace))
+        if (KeyMap.ActiveMap.ClickKey.WasPressedThisFrame())
         {
             isActive = true;
-            buttons[currentSelection].GetComponent<MenuButton>().UseButton();
+            buttons[currentSelection].UseButton();
         }
 
-        if (Input.GetKeyDown("escape"))
+        if (KeyMap.ActiveMap.CancelOperationKey.WasPressedThisFrame())
         {
             Application.Quit();
         }
 
-        if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
+        if (KeyMap.ActiveMap.MenuAndBack.WasPressedThisFrame())
         {
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKeyDown("x") && isLSelect && currentSelection > 0)
+        if (KeyMap.ActiveMap.ShowScoreboard.WasPressedThisFrame() && isLSelect && currentSelection > 0)
         {
             LoadScoreBoardDisplayScreen(currentSelection);
         }
@@ -111,9 +108,9 @@ public class MenuKeyboard : MonoBehaviour
         {
             if (currentSelection == i)
             {
-                buttons[i].GetComponent<MenuButton>().isSelected = true;
+                buttons[i].isSelected = true;
             }
-            else buttons[i].GetComponent<MenuButton>().isSelected = false;
+            else buttons[i].isSelected = false;
         }
     }
 
@@ -121,7 +118,7 @@ public class MenuKeyboard : MonoBehaviour
     {
         for (var i = 1; i < buttons.Length; i++)
         {
-            buttons[i].GetComponent<MenuButton>().isSelected = false;
+            buttons[i].isSelected = false;
         }
     }
 

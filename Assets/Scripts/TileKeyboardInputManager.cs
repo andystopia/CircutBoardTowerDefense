@@ -1,3 +1,4 @@
+using KeyboardEventSystem;
 using UnityEngine;
 
 public class TileKeyboardInputManager : MonoBehaviour
@@ -96,7 +97,7 @@ public class TileKeyboardInputManager : MonoBehaviour
         {
             // I always want to return focus to the main game, when I hit escape.
             // I also always want to be the focus region when nobody else is.
-            if (Input.GetKeyDown(KeyCode.Escape) || activeRegionFocus.GetActive() == null)
+            if (KeyMap.ActiveMap.CancelOperationKey.WasPressedThisFrame() || activeRegionFocus.GetActive() == null)
             {
                 Debug.Log($"Activating the main game as the primary focus, was ${activeRegionFocus.GetActive()}");
                 activeRegionFocus.Activate(focusManager);
@@ -107,16 +108,16 @@ public class TileKeyboardInputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W)) AttemptMoveCardinalDirection(CardinalDirection.North);
+        if (KeyMap.ActiveMap.FocusIndicatorMove.North.WasPressedThisFrame()) AttemptMoveCardinalDirection(CardinalDirection.North);
 
-        if (Input.GetKeyDown(KeyCode.S)) AttemptMoveCardinalDirection(CardinalDirection.South);
+        if (KeyMap.ActiveMap.FocusIndicatorMove.South.WasPressedThisFrame()) AttemptMoveCardinalDirection(CardinalDirection.South);
 
-        if (Input.GetKeyDown(KeyCode.D)) AttemptMoveCardinalDirection(CardinalDirection.East);
+        if (KeyMap.ActiveMap.FocusIndicatorMove.East.WasPressedThisFrame()) AttemptMoveCardinalDirection(CardinalDirection.East);
 
-        if (Input.GetKeyDown(KeyCode.A)) AttemptMoveCardinalDirection(CardinalDirection.West);
+        if (KeyMap.ActiveMap.FocusIndicatorMove.West.WasPressedThisFrame()) AttemptMoveCardinalDirection(CardinalDirection.West);
 
-        if (Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace) && GetActive() != null) GetActive().AttemptToPlaceTurret();
+        if (KeyMap.ActiveMap.PlaceTurret.WasPressedThisFrame() && GetActive() != null) GetActive().AttemptToPlaceTurret();
 
-        if (Input.GetKeyDown(DataSaverLoader.Gd.SellTurret) && GetActive() != null) GetActive().SellTurret();
+        if (KeyMap.ActiveMap.SellTurret.WasPressedThisFrame() && GetActive() != null) GetActive().SellTurret();
     }
 }

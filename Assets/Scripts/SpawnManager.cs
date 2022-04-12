@@ -5,6 +5,7 @@ using System.Linq;
 using Channel;
 using EnemyBehaviour;
 using GameGrid;
+using KeyboardEventSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -67,33 +68,8 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         waveDisplayText.text = "Wave " + wave;
-
-        if(DataSaverLoader.Gd.IsArcadeBuild)
-        {
-            if ((Input.GetKeyDown(KeyCode.Alpha1)) && isOnCooldown == false)
-            {
-                audioSource.clip = spawnSound;
-                audioSource.Play();
-                wave += 1;
-                if (wave % 10 != 0)
-                {
-                    //if a normal wave
-                    SpawnWave(2);
-                }
-                else
-                {
-                    //if a boss wave
-                    SpawnWave(4);
-                    //spawn boss here
-                    SpawnBoss();
-                }
-
-                isOnCooldown = true;
-                SetOpacity(cooldownOpacity);
-                StartCoroutine(Cooldown());
-            }
-        }
-        else if(Input.GetKeyDown(DataSaverLoader.Gd.CallNextWave))
+        
+        if (KeyMap.ActiveMap.SummonWave.WasPressedThisFrame() && !isOnCooldown)
         {
             audioSource.clip = spawnSound;
             audioSource.Play();
@@ -110,7 +86,7 @@ public class SpawnManager : MonoBehaviour
                 //spawn boss here
                 SpawnBoss();
             }
-
+        
             isOnCooldown = true;
             SetOpacity(cooldownOpacity);
             StartCoroutine(Cooldown());

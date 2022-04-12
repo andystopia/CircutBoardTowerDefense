@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ActiveOrInactiveStateManagement;
+using KeyboardEventSystem;
 using PrimitiveFocus;
 using TurretShopEntry;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
     {
         if (!activeRegionFocus.IsActive(this))
         {
-            if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
+            if(KeyMap.ActiveMap.MenuAndBack.WasPressedThisFrame())
             {
                 // uiDisplayer.Show();
                 activeRegionFocus.Activate(this);
@@ -66,7 +67,7 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
         }
         else
         {
-            if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
+            if (KeyMap.ActiveMap.MenuAndBack.WasPressedThisFrame())
             {
                 // uiDisplayer.Hide();
                 // make sure none of our children are focused
@@ -76,20 +77,19 @@ public class TurretShopFocusManager : ExclusiveSubsectionFocusManager
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
+        if (KeyMap.ActiveMap.FocusIndicatorMove.East.WasPressedThisFrame() || KeyMap.ActiveMap.AdvanceThroughList.WasPressedThisFrame())
         {
             var newEntry = entries.MoveToNext();
             Activate(newEntry);
         }
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Tab) &&
-            (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        if (KeyMap.ActiveMap.FocusIndicatorMove.West.WasPressedThisFrame() || KeyMap.ActiveMap.RegressThroughList.WasPressedThisFrame())
         {
             var newEntry = entries.MoveToPrevious();
             Activate(newEntry);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace) && entries.GetActive() != null)
+        if (KeyMap.ActiveMap.ClickKey.WasPressedThisFrame() && entries.GetActive() != null)
             selectedManager.Activate(entries.GetActive().Root.SelectionInteractor);
     }
 

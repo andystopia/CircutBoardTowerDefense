@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using KeyboardEventSystem;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -27,25 +28,25 @@ public class LetterIconManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (KeyMap.ActiveMap.CancelOperationKey.WasPressedThisFrame())
         {
             Application.Quit();
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        if (KeyMap.ActiveMap.MainMenuMove.North.WasPressedThisFrame())
         {
             CurrentLetterIndex++;
-            CurrentLetterIndex = MyMod(CurrentLetterIndex, AlphabetAndNums.Length);
+            CurrentLetterIndex = MathHelper.MathMod(CurrentLetterIndex, AlphabetAndNums.Length);
             SelectedLetterIcon.text = AlphabetAndNums[CurrentLetterIndex];
             SelectedLetterIcon.fontSize = 25;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (KeyMap.ActiveMap.MainMenuMove.South.WasPressedThisFrame())
         {
             CurrentLetterIndex--;
-            CurrentLetterIndex = MyMod(CurrentLetterIndex, AlphabetAndNums.Length);
+            CurrentLetterIndex = MathHelper.MathMod(CurrentLetterIndex, AlphabetAndNums.Length);
             SelectedLetterIcon.text = AlphabetAndNums[CurrentLetterIndex];
             SelectedLetterIcon.fontSize = 25;
         }
-        else if (Input.GetKeyDown(DataSaverLoader.Gd.SelectAndPlace) || Input.GetKeyDown(KeyCode.Return))
+        else if (KeyMap.ActiveMap.ClickKey.WasPressedThisFrame())
         {
             CurrentLetterIndex = 0;
             FinalName = FinalName + SelectedLetterIcon.text;
@@ -79,20 +80,20 @@ public class LetterIconManager : MonoBehaviour
 
     private void Blink()
     {
-        if (Flip)
-        {
-            SelectedLetterIcon.fontSize = 23;
-            Flip = false;
-        }
-        else
-        {
-            SelectedLetterIcon.fontSize = 25;
-            Flip = true;
-        }
-    }
+        // if (Flip)
+        // {
+        //     SelectedLetterIcon.fontSize = 23;
+        //     Flip = false;
+        // }
+        // else
+        // {
+        //     SelectedLetterIcon.fontSize = 25;
+        //     Flip = true;
+        // }
 
-    private static int MyMod(int num, int mod)
-    {
-        return ((num % mod) + mod) % mod;
+        // this is generally faster for the average 
+        // programmer to read.
+        SelectedLetterIcon.fontSize = Flip ? 23 : 25;
+        Flip = !Flip;
     }
 }

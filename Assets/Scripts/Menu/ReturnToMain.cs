@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using KeyboardEventSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class ReturnToMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(DataSaverLoader.Gd.MenuAndBack))
+        if (KeyMap.ActiveMap.MenuAndBack.WasPressedThisFrame())
         {
             SceneManager.LoadScene(0);
         }
